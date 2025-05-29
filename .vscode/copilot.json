@@ -1,0 +1,12 @@
+{
+  "defaultLanguage": "Vietnamese",
+  "prompts": {
+    "default": "Vui lòng viết code và bình luận bằng tiếng Việt",
+    "codeCompletion": "Hoàn thành code với bình luận bằng tiếng Việt",
+    "documentation": "Viết tài liệu bằng tiếng Việt"
+  },
+  "settings": {
+    "useNonEnglishPrompts": true,
+    "preferLocalLanguage": true
+  }
+}

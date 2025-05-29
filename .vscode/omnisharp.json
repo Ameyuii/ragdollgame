@@ -1,0 +1,32 @@
+{
+  "RoslynExtensionsOptions": {
+    "EnableAnalyzersSupport": true,
+    "LocationPaths": [],
+    "EnableImportCompletion": true,
+    "EnableAsyncCompletion": true,
+    "DocumentAnalysisTimeoutMs": 30000
+  },
+  "FormattingOptions": {
+    "EnableEditorConfigSupport": true,
+    "OrganizeImports": true
+  },
+  "FileOptions": {
+    "SystemExcludeSearchPatterns": [
+      "**/node_modules/**/*",
+      "**/bin/**/*",
+      "**/obj/**/*",
+      "**/Temp/**/*",
+      "**/Library/**/*"
+    ],
+    "ExcludeSearchPatterns": []
+  },
+  "MsBuild": {
+    "LoadProjectsOnDemand": true,
+    "MSBuildSDKsPath": null,
+    "UseLegacySdkResolver": false,
+    "PreferredTargetFramework": "net472",
+    "TargetFramework": "net472",
+    "SolutionFilesPattern": "*.sln",
+    "EnablePackageAutoRestore": true
+  }
+}

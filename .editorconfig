@@ -1,0 +1,67 @@
+# Mỗi dự án Unity có thể sử dụng phiên bản ngôn ngữ C# khác nhau tùy thuộc vào phiên bản Unity
+# Cài đặt này đảm bảo rằng chúng ta sử dụng phiên bản C# phù hợp với phiên bản Unity hiện tại
+root = true
+
+# Unity built-in C# files
+[*.cs]
+charset = utf-8
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+
+# Sử dụng C# 7.3 cho Unity 2019 và 2020
+# Sử dụng C# 8.0 cho Unity 2021
+# Sử dụng C# 9.0 cho Unity 2022
+# Sử dụng C# 10.0 cho Unity 2023+
+csharp_language_version = 10.0
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+
+# Tắt các tính năng không được hỗ trợ trong phiên bản C# dưới 9.0
+dotnet_style_readonly_field = true:suggestion
+dotnet_style_object_initializer = true:suggestion
+dotnet_style_collection_initializer = true:suggestion
+dotnet_style_explicit_tuple_names = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+dotnet_style_prefer_auto_properties = true:suggestion
+dotnet_style_prefer_conditional_expression_over_assignment = true:suggestion
+dotnet_style_prefer_conditional_expression_over_return = true:suggestion
+
+# Quy tắc đặc biệt cho dự án Unity với tiếng Việt
+# Cho phép sử dụng tên biến tiếng Việt có dấu trong comments và strings
+# GitHub Copilot sẽ tuân theo quy tắc này
+
+# Naming conventions cho tiếng Việt
+dotnet_naming_rule.vietnamese_naming_allowed.severity = none
+dotnet_naming_rule.local_variables_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.public_members_should_be_pascal_case.severity = suggestion
+
+# Unity-specific files
+[*.{meta,unity,prefab,asset}]
+indent_style = space
+indent_size = 2
+
+# JSON files  
+[*.json]
+indent_style = space
+indent_size = 4
+
+# Shader files
+[*.{shader,cginc,hlsl,compute}]
+indent_style = space
+indent_size = 4
+
+# Markdown files
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
