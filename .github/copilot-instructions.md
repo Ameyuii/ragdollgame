@@ -9,7 +9,6 @@
 ## Project Context
 - Unity 3D project với AI NPC system
 - Sử dụng C# và Unity Engine
-- Combat system với combo attacks
 - Git repository: https://github.com/Ameyuii/ragdollgame
 
 ## Coding Standards

@@ -9,6 +9,7 @@ Dự án này đã được cấu hình để GitHub Copilot tuân theo các quy
 - **Mục đích**: Hướng dẫn chính cho GitHub Copilot
 - **Nội dung**: Quy tắc ngôn ngữ, phong cách code, naming conventions
 - **Quan trọng**: Đây là file chính mà Copilot sẽ tham khảo
+- **🚨 CẢNH BÁO**: File này TUYỆT ĐỐI KHÔNG ĐƯỢC XÓA trong bất kỳ trường hợp nào. Nếu bị mất, toàn bộ hệ thống Copilot sẽ mất quy tắc!
 
 ### 2. `.vscode/settings.json`
 - **Mục đích**: Cấu hình VS Code và GitHub Copilot
@@ -34,6 +35,7 @@ Dự án này đã được cấu hình để GitHub Copilot tuân theo các quy
 - Thêm features mới mà không được yêu cầu
 - Thay đổi Input System bindings tự ý
 - Xóa hoặc thay đổi existing components
+- **🚨 TUYỆT ĐỐI KHÔNG XÓA** file `.github/copilot-instructions.md` trong bất kỳ trường hợp nào
 
 ### 🤔 CẦN XÁC NHẬN TRƯỚC
 - Thêm new components hoặc dependencies
@@ -132,6 +134,19 @@ void Update()
 1. Check OmniSharp is running properly
 2. Reload project: Ctrl+Shift+P → "OmniSharp: Restart OmniSharp"
 3. Check `.vscode/settings.json` for correct Unity paths
+
+## Bảo vệ File Quan trọng
+
+### 🚨 File KHÔNG ĐƯỢC XÓA
+- `.github/copilot-instructions.md` - File cấu hình chính của GitHub Copilot
+- `Assets/InputSystem_Actions.inputactions` - Input system bindings
+- `ProjectSettings/` folder - Unity project settings
+
+### Khôi phục file bị mất
+Nếu file `copilot-instructions.md` bị mất:
+1. Tạo lại từ backup hoặc git history
+2. Restart VS Code hoàn toàn
+3. Test lại Copilot suggestions
 
 ## Team Guidelines
 

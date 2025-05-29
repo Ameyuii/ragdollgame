@@ -95,14 +95,41 @@ public class NPCController : MonoBehaviour
     
     // Tham chiếu các thành phần
     private Animator? animator;
-    private NavMeshAgent? navMeshAgent;
-      // Tên các tham số animator
+    private NavMeshAgent? navMeshAgent;    // Tên các tham số animator
     private static readonly string ANIM_IS_WALKING = "IsWalking";
     private static readonly string ANIM_ATTACK = "Attack";
+    private static readonly string ANIM_ATTACK1 = "Attack1";
+    private static readonly string ANIM_ATTACK2 = "Attack2";
     private static readonly string ANIM_COMBO_NEXT = "ComboNext";
     private static readonly string ANIM_HIT = "Hit";
     private static readonly string ANIM_DIE = "Die";
     
+    [Header("Attack Variation Settings")]
+    [Tooltip("Tỷ lệ sử dụng attack thông thường (%)")]
+    [Range(0f, 100f)]
+    public float basicAttackChance = 40f;
+    
+    [Tooltip("Tỷ lệ sử dụng attack1 (%)")]
+    [Range(0f, 100f)]
+    public float attack1Chance = 30f;
+    
+    [Tooltip("Tỷ lệ sử dụng attack2 (%)")]
+    [Range(0f, 100f)]
+    public float attack2Chance = 30f;
+    
+    [Header("Advanced Attack Settings")]
+    [Tooltip("Có sử dụng cooldown khác nhau cho từng loại attack không")]
+    public bool useVariableAttackCooldown = false;
+    
+    [Tooltip("Cooldown cho attack1 (nếu khác với attack thông thường)")]
+    public float attack1Cooldown = 1.2f;
+    
+    [Tooltip("Cooldown cho attack2 (nếu khác với attack thông thường)")]
+    public float attack2Cooldown = 1.5f;
+
+    // Biến theo dõi loại attack cuối cùng
+    private string lastUsedAttackTrigger = "";
+
     // Khởi tạo các thành phần
     void Awake()
     {
@@ -165,6 +192,9 @@ public class NPCController : MonoBehaviour
         {
             obstacleLayerMask = LayerMask.GetMask("Default");
         }
+        
+        // Validate và normalize tỷ lệ attack
+        ValidateAttackChances();
         
         // Lưu trạng thái khởi tạo
         isInitialized = true;
@@ -362,12 +392,30 @@ public class NPCController : MonoBehaviour
         
         return true;
     }
-    
-    // Kiểm tra xem có thể tấn công không (dựa vào cooldown)
+      // Kiểm tra xem có thể tấn công không (dựa vào cooldown)
     public bool CanAttack()
     {
-        return Time.time >= lastAttackTime + attackCooldown;
-    }    // Bắt đầu tấn công với combo system
+        float currentCooldown = attackCooldown;
+        
+        // Nếu sử dụng cooldown khác nhau cho từng attack
+        if (useVariableAttackCooldown)
+        {
+            switch (lastUsedAttackTrigger)
+            {
+                case var trigger when trigger == ANIM_ATTACK1:
+                    currentCooldown = attack1Cooldown;
+                    break;
+                case var trigger when trigger == ANIM_ATTACK2:
+                    currentCooldown = attack2Cooldown;
+                    break;
+                default:
+                    currentCooldown = attackCooldown; // Basic attack
+                    break;
+            }
+        }
+        
+        return Time.time >= lastAttackTime + currentCooldown;
+    }// Bắt đầu tấn công với combo system
     public void Attack(NPCController target)
     {
         if (isDead || !CanAttack() || target == null) return;
@@ -383,21 +431,21 @@ public class NPCController : MonoBehaviour
         
         // Kích hoạt animation tấn công
         if (animator != null)
-        {
-            if (canCombo && currentComboCount > 0)
+        {            if (canCombo && currentComboCount > 0)
             {
                 // Tiếp tục combo
                 animator.SetTrigger(ANIM_COMBO_NEXT);
                 currentComboCount++;
                 if (showDebugLogs) Debug.Log($"🔥 {gameObject.name} combo hit {currentComboCount}/{maxComboHits} → {target.gameObject.name}");
-            }
-            else
+            }            else
             {
-                // Bắt đầu combo mới
-                animator.SetTrigger(ANIM_ATTACK);
+                // Bắt đầu combo mới với random attack
+                string attackTrigger = GetRandomAttackTrigger();
+                animator.SetTrigger(attackTrigger);
+                lastUsedAttackTrigger = attackTrigger; // Lưu lại loại attack đã sử dụng
                 currentComboCount = 1;
                 isInCombo = true;
-                if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu combo attack {target.gameObject.name}");
+                if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu combo attack ({attackTrigger}) → {target.gameObject.name}");
             }
             
             lastComboTime = Time.time;
@@ -835,5 +883,79 @@ public class NPCController : MonoBehaviour
     {
         // Xử lý sự kiện khi nhân vật bước đi
         if (showDebugLogs) Debug.Log($"{gameObject.name}: Bước chân");
+    }
+      // Random chọn attack trigger theo tỷ lệ được cấu hình
+    private string GetRandomAttackTrigger()
+    {
+        // Tạo random số từ 0 đến 100
+        float randomValue = Random.Range(0f, 100f);
+        string selectedTrigger;
+        
+        // Chọn attack dựa trên tỷ lệ
+        if (randomValue <= basicAttackChance)
+        {
+            selectedTrigger = ANIM_ATTACK;
+        }
+        else if (randomValue <= basicAttackChance + attack1Chance)
+        {
+            selectedTrigger = ANIM_ATTACK1;
+        }
+        else
+        {
+            selectedTrigger = ANIM_ATTACK2;
+        }
+        
+        if (showDebugLogs) 
+            Debug.Log($"🎲 {gameObject.name}: Random value: {randomValue:F1}% → Attack trigger: {selectedTrigger}");
+            
+        return selectedTrigger;
+    }
+
+    // Validate và normalize tỷ lệ attack để đảm bảo tổng = 100%
+    private void ValidateAttackChances()
+    {
+        float totalChance = basicAttackChance + attack1Chance + attack2Chance;
+        
+        if (Mathf.Abs(totalChance - 100f) > 0.1f)
+        {
+            if (showDebugLogs) 
+                Debug.LogWarning($"⚠️ {gameObject.name}: Tổng tỷ lệ attack không bằng 100% ({totalChance:F1}%). Đang normalize...");
+            
+            // Normalize về 100%
+            if (totalChance > 0)
+            {
+                basicAttackChance = (basicAttackChance / totalChance) * 100f;
+                attack1Chance = (attack1Chance / totalChance) * 100f;
+                attack2Chance = (attack2Chance / totalChance) * 100f;
+            }
+            else
+            {
+                // Fallback nếu tất cả đều = 0
+                basicAttackChance = 40f;
+                attack1Chance = 30f;
+                attack2Chance = 30f;
+            }
+        }
+        
+        if (showDebugLogs)
+            Debug.Log($"✅ {gameObject.name}: Attack chances - Basic: {basicAttackChance:F1}%, Attack1: {attack1Chance:F1}%, Attack2: {attack2Chance:F1}%");
+    }
+
+    // Method để debug thông tin attack system (có thể gọi từ Inspector hoặc console)
+    [ContextMenu("Debug Attack System Info")]
+    public void DebugAttackSystemInfo()
+    {
+        Debug.Log($"=== ATTACK SYSTEM INFO - {gameObject.name} ===");
+        Debug.Log($"📊 Attack Chances: Basic {basicAttackChance:F1}%, Attack1 {attack1Chance:F1}%, Attack2 {attack2Chance:F1}%");
+        Debug.Log($"⏰ Cooldowns: Basic {attackCooldown}s, Attack1 {attack1Cooldown}s, Attack2 {attack2Cooldown}s");
+        Debug.Log($"🎯 Last Used Attack: {(string.IsNullOrEmpty(lastUsedAttackTrigger) ? "None" : lastUsedAttackTrigger)}");
+        Debug.Log($"🔄 Variable Cooldown: {(useVariableAttackCooldown ? "Enabled" : "Disabled")}");
+        Debug.Log($"⚔️ Can Attack Now: {CanAttack()}");
+        if (!CanAttack())
+        {
+            float timeRemaining = (lastAttackTime + attackCooldown) - Time.time;
+            Debug.Log($"⏳ Time until next attack: {timeRemaining:F1}s");
+        }
+        Debug.Log("==========================================");
     }
 }
