@@ -29,8 +29,7 @@ public class NPCController : MonoBehaviour
     
     [Tooltip("Tốc độ tăng tốc")]
     public float acceleration = 8f;
-    
-    [Header("Thiết lập tấn công")]
+      [Header("Thiết lập tấn công")]
     [Tooltip("Sát thương mỗi đòn tấn công")]
     public float attackDamage = 20f;
     
@@ -39,6 +38,13 @@ public class NPCController : MonoBehaviour
     
     [Tooltip("Tầm đánh (m)")]
     public float attackRange = 2f;
+    
+    [Tooltip("Thời gian animation attack (giây) - điều chỉnh theo animation thực tế")]
+    public float attackAnimationDuration = 1.0f;
+    
+    [Tooltip("Timing hit trong animation (0.0-1.0, ví dụ 0.65 = 65% animation)")]
+    [Range(0.1f, 0.9f)]
+    public float attackHitTiming = 0.65f;
     
     [Header("Thiết lập AI")]
     [Tooltip("Khoảng cách phát hiện kẻ địch (m)")]
@@ -60,11 +66,11 @@ public class NPCController : MonoBehaviour
     [Header("Debug Options")]
     [Tooltip("Hiển thị thông tin debug chi tiết")]
     public bool showDebugLogs = true; // Bật debug mặc định để theo dõi vấn đề
-    
-    // Biến theo dõi trạng thái
+      // Biến theo dõi trạng thái
     private float lastAttackTime;
     private bool isDead = false;
     private NPCController? targetEnemy;
+    private NPCController? currentAttackTarget; // Target hiện tại đang bị tấn công
     private bool isMoving = false;
     
     // Biến để xử lý smooth transition và tránh trượt
@@ -346,9 +352,7 @@ public class NPCController : MonoBehaviour
     public bool CanAttack()
     {
         return Time.time >= lastAttackTime + attackCooldown;
-    }
-    
-    // Tấn công một mục tiêu
+    }    // Bắt đầu tấn công với timing tự động
     public void Attack(NPCController target)
     {
         if (isDead || !CanAttack() || target == null) return;
@@ -356,20 +360,68 @@ public class NPCController : MonoBehaviour
         // Cập nhật thời gian tấn công
         lastAttackTime = Time.time;
         
-        // Kích hoạt animation tấn công nếu có
+        // Lưu target để sử dụng khi animation hit
+        currentAttackTarget = target;
+        
+        // Kích hoạt animation tấn công
         if (animator != null)
         {
             animator.SetTrigger(ANIM_ATTACK);
+            if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu animation tấn công {target.gameObject.name}");
+            
+            // Bắt đầu coroutine để delay damage đến hit frame
+            StartCoroutine(DelayedAttackHit());
+        }
+        else
+        {
+            // Fallback: nếu không có animator thì gây damage ngay
+            DealDamageToTarget();
+        }
+    }
+      // Coroutine để delay damage đến timing phù hợp với animation
+    private System.Collections.IEnumerator DelayedAttackHit()
+    {
+        // Chờ đến timing hit được cấu hình
+        yield return new WaitForSeconds(attackAnimationDuration * attackHitTiming);
+        
+        // Gây damage tại thời điểm hit
+        OnAttackHit();
+    }
+    
+    // Method này sẽ được gọi từ Animation Event tại hit frame
+    public void OnAttackHit()
+    {
+        DealDamageToTarget();
+    }
+    
+    // Gây sát thương thực sự cho target hiện tại
+    private void DealDamageToTarget()
+    {
+        if (currentAttackTarget == null || currentAttackTarget.IsDead()) 
+        {
+            if (showDebugLogs) Debug.Log($"❌ {gameObject.name}: Không có target hợp lệ để gây damage");
+            return;
         }
         
-        // Gây sát thương thực sự
-        target.TakeDamage(attackDamage, this);
+        // Kiểm tra target vẫn trong tầm đánh
+        float distanceToTarget = Vector3.Distance(transform.position, currentAttackTarget.transform.position);
+        if (distanceToTarget > attackRange * 1.2f) // Cho phép một chút sai số
+        {
+            if (showDebugLogs) Debug.Log($"❌ {gameObject.name}: Target {currentAttackTarget.gameObject.name} đã ra khỏi tầm đánh");
+            return;
+        }
+        
+        // Gây sát thương
+        currentAttackTarget.TakeDamage(attackDamage, this);
         
         // Thêm impact vật lý
-        AddPhysicsImpact(target);
+        AddPhysicsImpact(currentAttackTarget);
         
         // Debug log
-        if (showDebugLogs) Debug.Log($"⚔️ {gameObject.name} (Team {team}) tấn công {target.gameObject.name} (Team {target.team}) gây {attackDamage} sát thương!");
+        if (showDebugLogs) Debug.Log($"⚔️ {gameObject.name} (Team {team}) gây {attackDamage} sát thương cho {currentAttackTarget.gameObject.name} (Team {currentAttackTarget.team})!");
+        
+        // Reset target sau khi attack
+        currentAttackTarget = null;
     }
     
     // Thêm tác động vật lý khi tấn công
