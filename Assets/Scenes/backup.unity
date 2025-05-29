@@ -1606,6 +1606,10 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackRange: 2
+  attackAnimationDuration: 1
+  attackHitTiming: 0.65
+  maxComboHits: 1
+  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -2873,6 +2877,10 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackRange: 2
+  attackAnimationDuration: 1
+  attackHitTiming: 0.65
+  maxComboHits: 1
+  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -3015,6 +3023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4501573749018913252, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
+      propertyPath: maxHealth
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 4761424220931704355, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.987515
@@ -3375,7 +3387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd1f96d846420140b950bd3a4cff6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCController
-  maxHealth: 100
+  maxHealth: 10000
   currentHealth: 0
   team: 0
   moveSpeed: 3.5
@@ -3384,6 +3396,10 @@ MonoBehaviour:
   attackDamage: 20
   attackCooldown: 1
   attackRange: 2
+  attackAnimationDuration: 1
+  attackHitTiming: 0.65
+  maxComboHits: 1
+  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -3393,7 +3409,7 @@ MonoBehaviour:
     m_Bits: 0
   hitEffect: {fileID: 0}
   deathEffect: {fileID: 0}
-  showDebugLogs: 1
+  showDebugLogs: 0
 --- !u!136 &1741654462
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3456,7 +3472,13 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+    'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
+    'mixamorig:RightHandRing1'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand more
+    ...\n\tFrom animation clip 'mixamo.com'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

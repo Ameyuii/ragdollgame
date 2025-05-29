@@ -28,8 +28,7 @@ public class NPCController : MonoBehaviour
     public float rotationSpeed = 120f;
     
     [Tooltip("Tốc độ tăng tốc")]
-    public float acceleration = 8f;
-      [Header("Thiết lập tấn công")]
+    public float acceleration = 8f;    [Header("Thiết lập tấn công")]
     [Tooltip("Sát thương mỗi đòn tấn công")]
     public float attackDamage = 20f;
     
@@ -45,6 +44,13 @@ public class NPCController : MonoBehaviour
     [Tooltip("Timing hit trong animation (0.0-1.0, ví dụ 0.65 = 65% animation)")]
     [Range(0.1f, 0.9f)]
     public float attackHitTiming = 0.65f;
+    
+    [Header("Combo Attack Settings")]
+    [Tooltip("Số lượng hits tối đa trong combo")]
+    public int maxComboHits = 1;
+    
+    [Tooltip("Thời gian window để thực hiện combo tiếp theo (giây)")]
+    public float comboWindow = 0.5f;
     
     [Header("Thiết lập AI")]
     [Tooltip("Khoảng cách phát hiện kẻ địch (m)")]
@@ -65,13 +71,17 @@ public class NPCController : MonoBehaviour
     
     [Header("Debug Options")]
     [Tooltip("Hiển thị thông tin debug chi tiết")]
-    public bool showDebugLogs = true; // Bật debug mặc định để theo dõi vấn đề
-      // Biến theo dõi trạng thái
+    public bool showDebugLogs = true; // Bật debug mặc định để theo dõi vấn đề      // Biến theo dõi trạng thái
     private float lastAttackTime;
     private bool isDead = false;
     private NPCController? targetEnemy;
     private NPCController? currentAttackTarget; // Target hiện tại đang bị tấn công
     private bool isMoving = false;
+    
+    // Biến combo attack
+    private int currentComboCount = 0;
+    private float lastComboTime = 0f;
+    private bool isInCombo = false;
     
     // Biến để xử lý smooth transition và tránh trượt
     private bool isTransitioning = false;
@@ -86,10 +96,10 @@ public class NPCController : MonoBehaviour
     // Tham chiếu các thành phần
     private Animator? animator;
     private NavMeshAgent? navMeshAgent;
-    
-    // Tên các tham số animator
+      // Tên các tham số animator
     private static readonly string ANIM_IS_WALKING = "IsWalking";
     private static readonly string ANIM_ATTACK = "Attack";
+    private static readonly string ANIM_COMBO_NEXT = "ComboNext";
     private static readonly string ANIM_HIT = "Hit";
     private static readonly string ANIM_DIE = "Die";
     
@@ -166,8 +176,7 @@ public class NPCController : MonoBehaviour
         StartCoroutine(FindEnemyRoutine());
         
         // Bắt đầu patrol nếu không có mục tiêu
-        StartCoroutine(PatrolWhenIdle());
-        
+        StartCoroutine(PatrolWhenIdle());        
         // Khởi tạo vị trí theo dõi
         lastFramePosition = transform.position;
     }
@@ -176,6 +185,9 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         if (isDead || !isInitialized) return;
+        
+        // Kiểm tra combo timeout
+        CheckComboTimeout();
         
         // Nếu có mục tiêu thì tấn công khi trong tầm
         if (targetEnemy != null && !targetEnemy.IsDead())
@@ -202,6 +214,9 @@ public class NPCController : MonoBehaviour
                 MoveToTarget(targetEnemy.transform.position);
             }
         }
+        
+        // Kiểm tra combo timeout
+        CheckComboTimeout();
     }
     
     // Xử lý di chuyển mượt mà với transition
@@ -352,10 +367,13 @@ public class NPCController : MonoBehaviour
     public bool CanAttack()
     {
         return Time.time >= lastAttackTime + attackCooldown;
-    }    // Bắt đầu tấn công với timing tự động
+    }    // Bắt đầu tấn công với combo system
     public void Attack(NPCController target)
     {
         if (isDead || !CanAttack() || target == null) return;
+        
+        // Kiểm tra combo logic
+        bool canCombo = CanContinueCombo();
         
         // Cập nhật thời gian tấn công
         lastAttackTime = Time.time;
@@ -366,8 +384,23 @@ public class NPCController : MonoBehaviour
         // Kích hoạt animation tấn công
         if (animator != null)
         {
-            animator.SetTrigger(ANIM_ATTACK);
-            if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu animation tấn công {target.gameObject.name}");
+            if (canCombo && currentComboCount > 0)
+            {
+                // Tiếp tục combo
+                animator.SetTrigger(ANIM_COMBO_NEXT);
+                currentComboCount++;
+                if (showDebugLogs) Debug.Log($"🔥 {gameObject.name} combo hit {currentComboCount}/{maxComboHits} → {target.gameObject.name}");
+            }
+            else
+            {
+                // Bắt đầu combo mới
+                animator.SetTrigger(ANIM_ATTACK);
+                currentComboCount = 1;
+                isInCombo = true;
+                if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu combo attack {target.gameObject.name}");
+            }
+            
+            lastComboTime = Time.time;
             
             // Bắt đầu coroutine để delay damage đến hit frame
             StartCoroutine(DelayedAttackHit());
@@ -378,7 +411,47 @@ public class NPCController : MonoBehaviour
             DealDamageToTarget();
         }
     }
-      // Coroutine để delay damage đến timing phù hợp với animation
+    
+    // Kiểm tra có thể tiếp tục combo không
+    private bool CanContinueCombo()
+    {
+        if (maxComboHits <= 1) return false; // Không có combo
+        if (!isInCombo) return false; // Không trong combo
+        if (currentComboCount >= maxComboHits) return false; // Đã đạt max combo
+        if (Time.time > lastComboTime + comboWindow) 
+        {
+            // Hết thời gian combo window
+            ResetCombo();
+            return false;
+        }
+        return true;
+    }
+    
+    // Reset combo state
+    private void ResetCombo()
+    {
+        currentComboCount = 0;
+        isInCombo = false;
+        if (showDebugLogs) Debug.Log($"💫 {gameObject.name} combo reset");
+    }
+    
+    // Method này được gọi từ Animation Event khi combo kết thúc
+    public void OnComboEnd()
+    {
+        ResetCombo();
+        if (showDebugLogs) Debug.Log($"🏁 {gameObject.name} combo sequence completed");
+    }
+    
+    // Method để kiểm tra combo trong Update
+    void CheckComboTimeout()
+    {
+        if (isInCombo && Time.time > lastComboTime + comboWindow)
+        {
+            ResetCombo();
+        }
+    }
+    
+    // Coroutine để delay damage đến timing phù hợp với animation
     private System.Collections.IEnumerator DelayedAttackHit()
     {
         // Chờ đến timing hit được cấu hình
