@@ -42,6 +42,10 @@ public class RagdollController : MonoBehaviour
     [SerializeField, Tooltip("Có vô hiệu hóa AI/Input sau khi chết không")]
     private bool voHieuHoaControlKhiChet = true;
     
+    [Header("Auto Recovery")]
+    [SerializeField, Tooltip("Thời gian tự động khôi phục từ ragdoll (0 = không tự động)")]
+    private float autoRecoveryTime = 3f;
+    
     [Header("Debug")]
     [SerializeField, Tooltip("Hiển thị thông tin debug")]
     private bool hienThiDebug = true;
@@ -179,10 +183,18 @@ public class RagdollController : MonoBehaviour
             case TrangThaiRagdoll.ChuyenDoiSangRagdoll:
                 float tienTrinhChuyenSangRagdoll = Mathf.Clamp01(thoiGianDaTroi / thoiGianChuyenSangRagdoll);
                 tyLeBlendVatLy = Mathf.Lerp(0f, 1f, tienTrinhChuyenSangRagdoll);
-                
-                if (tienTrinhChuyenSangRagdoll >= 1f)
+                  if (tienTrinhChuyenSangRagdoll >= 1f)
                 {
                     ChuyenSangTrangThaiRagdoll();
+                }
+                break;
+                
+            case TrangThaiRagdoll.Ragdoll:
+                // Tự động khôi phục sau một khoảng thời gian nếu được thiết lập
+                if (autoRecoveryTime > 0 && thoiGianDaTroi >= autoRecoveryTime && !daChet)
+                {
+                    if (hienThiDebug) Debug.Log($"🔄 Auto recovery từ ragdoll sau {autoRecoveryTime}s");
+                    KhoiPhucAnimation();
                 }
                 break;
                 

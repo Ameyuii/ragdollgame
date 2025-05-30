@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "label": "Build Unity Project",
+            "type": "shell",
+            "command": "\"C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.21f1\\Editor\\Unity.exe\"",
+            "args": [
+                "-projectPath",
+                ".",
+                "-buildTarget",
+                "StandaloneWindows64",
+                "-quit",
+                "-batchmode",
+                "-logFile",
+                "build.log"
+            ],
+            "group": "build",
+            "isBackground": false,
+            "problemMatcher": []
+        }
+    ]
+}

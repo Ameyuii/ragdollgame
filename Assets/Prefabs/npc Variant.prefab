@@ -67,15 +67,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7446312103769086644, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4501573749018913252}
-    - targetCorrespondingSourceObject: {fileID: 7446312103769086644, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4513584365077526350}
-    - targetCorrespondingSourceObject: {fileID: 7446312103769086644, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1177968603227362834}
-    - targetCorrespondingSourceObject: {fileID: 7446312103769086644, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3648063059661852315}
     - targetCorrespondingSourceObject: {fileID: 295596751833091792, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
       insertIndex: -1
@@ -996,79 +987,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7446312103769086644, guid: 9324c6987727f524f99d8fb31caa27fd, type: 3}
   m_PrefabInstance: {fileID: 3669205698042363941}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4501573749018913252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178162724132788881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fd1f96d846420140b950bd3a4cff6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCController
-  maxHealth: 100
-  currentHealth: 0
-  team: 1
-  moveSpeed: 3.5
-  rotationSpeed: 120
-  acceleration: 8
-  attackDamage: 20
-  attackCooldown: 1
-  attackRange: 2
-  detectionRange: 30
-  enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  hitEffect: {fileID: 0}
-  deathEffect: {fileID: 0}
-  showDebugLogs: 0
---- !u!114 &4513584365077526350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178162724132788881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85690b11bff6643429a4932c3ef6b691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCCamera
-  kichHoatKhiStart: 0
-  khoangCachBanDau: 5
-  khoangCachToiThieu: 2
-  khoangCachToiDa: 15
-  doCaoCamera: 2
-  tocDoXoayCamera: 150
-  nhanTocDoXoayNhanh: 2.5
-  doNhayChuot: 2
-  tocDoZoom: 2
-  tocDoLerpCamera: 5
-  tocDoLerpXoay: 10
-  tuDongFocus: 1
---- !u!114 &1177968603227362834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6178162724132788881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a20470cc88916458b61e4512c6eeda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NPCHealthComponent
-  mauToiDa: 100
-  mauHienTai: 100
-  damageToiThieuChoRagdoll: 20
-  thoiGianBatTu: 1
-  hieUUngBiTanCong: {fileID: 0}
-  amThanhBiTanCong: {fileID: 0}
 --- !u!114 &3648063059661852315
 MonoBehaviour:
   m_ObjectHideFlags: 0

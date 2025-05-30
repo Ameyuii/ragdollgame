@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class DieuChinhThongSoCamera : MonoBehaviour
 {    [Header("Cài đặt Panel")]
     [SerializeField, Tooltip("Hiển thị panel ngay khi start")]
-    private bool autoShowOnStart = true;
+    private bool autoShowOnStart = false;
 
     [SerializeField, Tooltip("Kích thước icon toggle")]
     private float iconSize = 60f;

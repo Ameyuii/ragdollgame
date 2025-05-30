@@ -572,12 +572,36 @@ public class NPCController : MonoBehaviour
         if (hitEffect != null)
         {
             Instantiate(hitEffect, transform.position, Quaternion.identity);
-        }
-        
-        // Kích hoạt animation bị đánh nếu có
+        }        // Kích hoạt animation bị đánh nếu có
         if (animator != null)
         {
-            animator.SetTrigger(ANIM_HIT);
+            // Kiểm tra xem parameter có tồn tại không trước khi trigger
+            try 
+            {
+                bool hasHitParameter = false;
+                foreach (AnimatorControllerParameter param in animator.parameters)
+                {
+                    if (param.name == ANIM_HIT && param.type == AnimatorControllerParameterType.Trigger)
+                    {
+                        hasHitParameter = true;
+                        break;
+                    }
+                }
+                
+                if (hasHitParameter)
+                {
+                    animator.SetTrigger(ANIM_HIT);
+                }
+                else if (showDebugLogs)
+                {
+                    Debug.LogWarning($"⚠️ Animator parameter '{ANIM_HIT}' không tồn tại trong {gameObject.name}");
+                }
+            }
+            catch (System.Exception e)
+            {
+                if (showDebugLogs)
+                    Debug.LogWarning($"⚠️ Lỗi khi trigger animation Hit: {e.Message}");
+            }
         }
         
         if (showDebugLogs) Debug.Log($"💔 {gameObject.name} nhận {damage} sát thương từ {(attacker ? attacker.gameObject.name : "Unknown")}. Máu còn: {currentHealth:F1}/{maxHealth}");
