@@ -1608,8 +1608,6 @@ MonoBehaviour:
   attackRange: 2
   attackAnimationDuration: 1
   attackHitTiming: 0.65
-  maxComboHits: 1
-  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -1620,6 +1618,12 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   deathEffect: {fileID: 0}
   showDebugLogs: 0
+  basicAttackChance: 40
+  attack1Chance: 30
+  attack2Chance: 30
+  useVariableAttackCooldown: 0
+  attack1Cooldown: 1.2
+  attack2Cooldown: 1.5
 --- !u!114 &865824558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2208,7 +2212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12651929b38510d4b932a7b7b9016dfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1400001
+      value: -0.083
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12651929b38510d4b932a7b7b9016dfc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2879,8 +2883,6 @@ MonoBehaviour:
   attackRange: 2
   attackAnimationDuration: 1
   attackHitTiming: 0.65
-  maxComboHits: 1
-  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -2891,6 +2893,12 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   deathEffect: {fileID: 0}
   showDebugLogs: 1
+  basicAttackChance: 40
+  attack1Chance: 30
+  attack2Chance: 30
+  useVariableAttackCooldown: 0
+  attack1Cooldown: 1.2
+  attack2Cooldown: 1.5
 --- !u!114 &1389493687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3023,6 +3031,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2450342311912115893, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4501573749018913252, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
       propertyPath: maxHealth
       value: 10000
@@ -3033,7 +3045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4761424220931704355, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1400001
+      value: -0.067
       objectReference: {fileID: 0}
     - target: {fileID: 4761424220931704355, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3070,6 +3082,10 @@ PrefabInstance:
     - target: {fileID: 6178162724132788881, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
       propertyPath: m_Name
       value: npc Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915484919840955412, guid: 1ffa14f4e2d8d7a4f84785222c10426a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3398,8 +3414,6 @@ MonoBehaviour:
   attackRange: 2
   attackAnimationDuration: 1
   attackHitTiming: 0.65
-  maxComboHits: 1
-  comboWindow: 0.5
   detectionRange: 30
   enemyLayerMask:
     serializedVersion: 2
@@ -3410,6 +3424,12 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   deathEffect: {fileID: 0}
   showDebugLogs: 0
+  basicAttackChance: 40
+  attack1Chance: 30
+  attack2Chance: 30
+  useVariableAttackCooldown: 0
+  attack1Cooldown: 1.2
+  attack2Cooldown: 1.5
 --- !u!136 &1741654462
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3472,13 +3492,7 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-    'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
-    'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
-    'mixamorig:RightHandRing1'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand more
-    ...\n\tFrom animation clip 'mixamo.com'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0

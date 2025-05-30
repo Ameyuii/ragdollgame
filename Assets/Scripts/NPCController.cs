@@ -45,13 +45,6 @@ public class NPCController : MonoBehaviour
     [Range(0.1f, 0.9f)]
     public float attackHitTiming = 0.65f;
     
-    [Header("Combo Attack Settings")]
-    [Tooltip("Số lượng hits tối đa trong combo")]
-    public int maxComboHits = 1;
-    
-    [Tooltip("Thời gian window để thực hiện combo tiếp theo (giây)")]
-    public float comboWindow = 0.5f;
-    
     [Header("Thiết lập AI")]
     [Tooltip("Khoảng cách phát hiện kẻ địch (m)")]
     public float detectionRange = 30f;
@@ -71,17 +64,12 @@ public class NPCController : MonoBehaviour
     
     [Header("Debug Options")]
     [Tooltip("Hiển thị thông tin debug chi tiết")]
-    public bool showDebugLogs = true; // Bật debug mặc định để theo dõi vấn đề      // Biến theo dõi trạng thái
+    public bool showDebugLogs = true; // Bật debug mặc định để theo dõi vấn đề    // Biến theo dõi trạng thái
     private float lastAttackTime;
     private bool isDead = false;
     private NPCController? targetEnemy;
     private NPCController? currentAttackTarget; // Target hiện tại đang bị tấn công
     private bool isMoving = false;
-    
-    // Biến combo attack
-    private int currentComboCount = 0;
-    private float lastComboTime = 0f;
-    private bool isInCombo = false;
     
     // Biến để xử lý smooth transition và tránh trượt
     private bool isTransitioning = false;
@@ -97,10 +85,9 @@ public class NPCController : MonoBehaviour
     private Animator? animator;
     private NavMeshAgent? navMeshAgent;    // Tên các tham số animator
     private static readonly string ANIM_IS_WALKING = "IsWalking";
-    private static readonly string ANIM_ATTACK = "Attack";
-    private static readonly string ANIM_ATTACK1 = "Attack1";
-    private static readonly string ANIM_ATTACK2 = "Attack2";
-    private static readonly string ANIM_COMBO_NEXT = "ComboNext";
+    private static readonly string ANIM_ATTACK = "Attack";      // trigger chính
+    private static readonly string ANIM_ATTACK1 = "Attack1";    // trigger attack1
+    private static readonly string ANIM_ATTACK2 = "Attack2";    // trigger attack2
     private static readonly string ANIM_HIT = "Hit";
     private static readonly string ANIM_DIE = "Die";
     
@@ -214,11 +201,7 @@ public class NPCController : MonoBehaviour
     // Cập nhật mỗi khung hình
     void Update()
     {
-        if (isDead || !isInitialized) return;
-        
-        // Kiểm tra combo timeout
-        CheckComboTimeout();
-        
+        if (isDead || !isInitialized) return;        
         // Nếu có mục tiêu thì tấn công khi trong tầm
         if (targetEnemy != null && !targetEnemy.IsDead())
         {
@@ -243,10 +226,7 @@ public class NPCController : MonoBehaviour
                 // Di chuyển đến mục tiêu với transition smooth
                 MoveToTarget(targetEnemy.transform.position);
             }
-        }
-        
-        // Kiểm tra combo timeout
-        CheckComboTimeout();
+        }        
     }
     
     // Xử lý di chuyển mượt mà với transition
@@ -407,21 +387,19 @@ public class NPCController : MonoBehaviour
                     break;
                 case var trigger when trigger == ANIM_ATTACK2:
                     currentCooldown = attack2Cooldown;
-                    break;
-                default:
+                    break;                default:
                     currentCooldown = attackCooldown; // Basic attack
                     break;
             }
         }
         
         return Time.time >= lastAttackTime + currentCooldown;
-    }// Bắt đầu tấn công với combo system
+    }
+    
+    // Bắt đầu tấn công đơn giản (đã bỏ combo system)
     public void Attack(NPCController target)
     {
         if (isDead || !CanAttack() || target == null) return;
-        
-        // Kiểm tra combo logic
-        bool canCombo = CanContinueCombo();
         
         // Cập nhật thời gian tấn công
         lastAttackTime = Time.time;
@@ -429,26 +407,14 @@ public class NPCController : MonoBehaviour
         // Lưu target để sử dụng khi animation hit
         currentAttackTarget = target;
         
-        // Kích hoạt animation tấn công
+        // Kích hoạt animation tấn công với random attack
         if (animator != null)
-        {            if (canCombo && currentComboCount > 0)
-            {
-                // Tiếp tục combo
-                animator.SetTrigger(ANIM_COMBO_NEXT);
-                currentComboCount++;
-                if (showDebugLogs) Debug.Log($"🔥 {gameObject.name} combo hit {currentComboCount}/{maxComboHits} → {target.gameObject.name}");
-            }            else
-            {
-                // Bắt đầu combo mới với random attack
-                string attackTrigger = GetRandomAttackTrigger();
-                animator.SetTrigger(attackTrigger);
-                lastUsedAttackTrigger = attackTrigger; // Lưu lại loại attack đã sử dụng
-                currentComboCount = 1;
-                isInCombo = true;
-                if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} bắt đầu combo attack ({attackTrigger}) → {target.gameObject.name}");
-            }
+        {
+            string attackTrigger = GetRandomAttackTrigger();
+            animator.SetTrigger(attackTrigger);
+            lastUsedAttackTrigger = attackTrigger; // Lưu lại loại attack đã sử dụng
             
-            lastComboTime = Time.time;
+            if (showDebugLogs) Debug.Log($"🎯 {gameObject.name} thực hiện attack ({attackTrigger}) → {target.gameObject.name}");
             
             // Bắt đầu coroutine để delay damage đến hit frame
             StartCoroutine(DelayedAttackHit());
@@ -458,47 +424,7 @@ public class NPCController : MonoBehaviour
             // Fallback: nếu không có animator thì gây damage ngay
             DealDamageToTarget();
         }
-    }
-    
-    // Kiểm tra có thể tiếp tục combo không
-    private bool CanContinueCombo()
-    {
-        if (maxComboHits <= 1) return false; // Không có combo
-        if (!isInCombo) return false; // Không trong combo
-        if (currentComboCount >= maxComboHits) return false; // Đã đạt max combo
-        if (Time.time > lastComboTime + comboWindow) 
-        {
-            // Hết thời gian combo window
-            ResetCombo();
-            return false;
-        }
-        return true;
-    }
-    
-    // Reset combo state
-    private void ResetCombo()
-    {
-        currentComboCount = 0;
-        isInCombo = false;
-        if (showDebugLogs) Debug.Log($"💫 {gameObject.name} combo reset");
-    }
-    
-    // Method này được gọi từ Animation Event khi combo kết thúc
-    public void OnComboEnd()
-    {
-        ResetCombo();
-        if (showDebugLogs) Debug.Log($"🏁 {gameObject.name} combo sequence completed");
-    }
-    
-    // Method để kiểm tra combo trong Update
-    void CheckComboTimeout()
-    {
-        if (isInCombo && Time.time > lastComboTime + comboWindow)
-        {
-            ResetCombo();
-        }
-    }
-    
+    }    
     // Coroutine để delay damage đến timing phù hợp với animation
     private System.Collections.IEnumerator DelayedAttackHit()
     {
