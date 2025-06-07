@@ -13,7 +13,7 @@ public class CombatController : MonoBehaviour
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackCooldown = 0.5f; // 🔧 GIẢM COOLDOWN từ 1s xuống 0.5s để test nhanh hơn
     [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 15f; // Tăng tốc độ xoay để nhân vật quay mặt nhanh hơn
     
     [Header("Combat Behavior")]
     [SerializeField] private CombatBehaviorType behaviorType = CombatBehaviorType.Aggressive;
@@ -797,44 +797,41 @@ public class CombatController : MonoBehaviour
             animator.SetFloat("Speed", speed);
             animator.SetBool("IsMoving", speed > 0.1f);
         }
-    }
-      /// <summary>
-    /// Handle rotation toward target với anti-loop protection
-    /// </summary>
-    private void HandleRotation()
-    {
-        if (currentTarget != null)
-        {
-            Vector3 directionToTarget = (currentTarget.transform.position - transform.position).normalized;
-            directionToTarget.y = 0; // Keep rotation on Y axis only
-            
-            if (directionToTarget != Vector3.zero)
-            {
-                // 🔥 CRITICAL FIX: Chỉ rotate khi đang di chuyển hoặc khoảng cách đủ xa
-                float distanceToTarget = GetDistanceToTarget();
-                bool shouldRotate = true;
-                
-                // Nếu 2 NPC quá gần nhau và cùng target vào nhau, tạm dừng rotation để tránh loop
-                if (distanceToTarget < attackRange * 1.2f)
-                {
-                    // Check xem target có đang target ngược lại không
-                    CombatController targetCombat = currentTarget.GetComponent<CombatController>();
-                    if (targetCombat != null && targetCombat.CurrentTarget == teamMember)
-                    {
-                        // Cả 2 đang target nhau và quá gần -> chỉ cho NPC có instanceID thấp hơn được rotate
-                        shouldRotate = GetInstanceID() < currentTarget.GetInstanceID();
-                        Debug.Log($"🔄 [ROTATION ANTI-LOOP] {gameObject.name} shouldRotate = {shouldRotate} (vs {currentTarget.name})");
-                    }
-                }
-                
-                if (shouldRotate)
-                {
-                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-                }
-            }
-        }
-    }
+    }      /// <summary>
+      /// Handle rotation toward target - ENHANCED: Đảm bảo nhân vật luôn quay mặt vào nhau khi combat
+      /// </summary>
+      private void HandleRotation()
+      {
+          if (currentTarget != null)
+          {
+              Vector3 directionToTarget = (currentTarget.transform.position - transform.position).normalized;
+              directionToTarget.y = 0; // Chỉ xoay trên trục Y
+              
+              if (directionToTarget != Vector3.zero)
+              {
+                  // ✅ ENHANCED FIX: Tăng tốc độ xoay và đảm bảo luôn xoay về target
+                  Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+                  float actualRotationSpeed = rotationSpeed;
+                  
+                  // 🔥 CRITICAL: Tăng tốc độ xoay khi trong combat để phản ứng nhanh hơn
+                  if (currentState == CombatState.InCombat || currentState == CombatState.Engaging)
+                  {
+                      actualRotationSpeed = rotationSpeed * 2f; // Gấp đôi tốc độ khi combat
+                  }
+                  
+                  transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, actualRotationSpeed * Time.deltaTime);
+                  
+                  if (debugMode)
+                  {
+                      float currentAngle = Vector3.Angle(transform.forward, directionToTarget);
+                      if (currentAngle > 10f) // Chỉ log khi góc lệch lớn
+                      {
+                          Debug.Log($"🔄 [ROTATION] {gameObject.name} đang quay về phía {currentTarget.name} - góc lệch: {currentAngle:F1}° (speed: {actualRotationSpeed:F1})");
+                      }
+                  }
+              }
+          }
+      }
     
     /// <summary>
     /// Get distance to current target
@@ -844,9 +841,8 @@ public class CombatController : MonoBehaviour
         if (currentTarget == null) return float.MaxValue;
         return Vector3.Distance(transform.position, currentTarget.transform.position);
     }
-    
-    /// <summary>
-    /// Event handler for target changed
+      /// <summary>
+    /// Event handler for target changed - ENHANCED với immediate rotation
     /// </summary>
     private void OnTargetChanged(TeamMember newTarget)
     {
@@ -856,6 +852,18 @@ public class CombatController : MonoBehaviour
         if (newTarget != null)
         {
             Debug.Log($"🎯 [COMBAT] {gameObject.name} CurrentTarget set to: {newTarget.name}");
+            
+            // 🔥 IMMEDIATE ROTATION FIX: Ngay lập tức quay một phần về phía target mới
+            Vector3 directionToTarget = (newTarget.transform.position - transform.position).normalized;
+            directionToTarget.y = 0;
+            if (directionToTarget != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+                // Quay ngay 30% để bắt đầu nhìn về phía target
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.3f);
+                Debug.Log($"🔄 [COMBAT] {gameObject.name} đã quay một phần về phía target mới {newTarget.name}");
+            }
+            
             if (previousTarget != null && previousTarget != newTarget)
             {
                 Debug.Log($"🔄 [COMBAT] {gameObject.name} Target changed from {previousTarget.name} to {newTarget.name}");
@@ -1027,9 +1035,8 @@ public class CombatController : MonoBehaviour
             // Silently ignore animation errors
         }
     }
-    
-    /// <summary>
-    /// Start combat with specific target - FIXED WITH DEBUG LOGS
+      /// <summary>
+    /// Start combat with specific target - ENHANCED với immediate rotation
     /// </summary>
     public void StartCombat(TeamMember target)
     {
@@ -1047,9 +1054,20 @@ public class CombatController : MonoBehaviour
             return;
         }
         
-        // Set target và change state
+        // Set target
         currentTarget = target;
         Debug.Log($"✅ [COMBAT] {gameObject.name} đã set currentTarget = {target.name}");
+        
+        // 🔥 IMMEDIATE ROTATION FIX: Ngay lập tức bắt đầu quay về phía target
+        Vector3 directionToTarget = (target.transform.position - transform.position).normalized;
+        directionToTarget.y = 0;
+        if (directionToTarget != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            // Quay ngay 40% để nhân vật bắt đầu nhìn về phía nhau
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.4f);
+            Debug.Log($"🔄 [COMBAT] {gameObject.name} đã quay ngay về phía {target.name} khi bắt đầu combat");
+        }
         
         // Force state change
         ChangeState(CombatState.Engaging);
@@ -1089,20 +1107,19 @@ public class CombatController : MonoBehaviour
         {
             StartCoroutine(PerformAttack());
         }
-    }
-    
-    private void OnDestroy()
-    {        // Unsubscribe from events safely
+    }    private void OnDestroy()
+    {        
+        // Unsubscribe from events safely để tránh memory leaks
         try
         {
-            if (enemyDetector != null)
+            if (enemyDetector?.OnTargetChanged != null)
                 enemyDetector.OnTargetChanged -= OnTargetChanged;
-            if (teamMember != null)
+            if (teamMember?.OnDeath != null)
                 teamMember.OnDeath -= OnDeath;
         }
         catch
         {
-            // Ignore errors during cleanup
+            // Ignore errors during cleanup - event unsubscription
         }
     }
     
