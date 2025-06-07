@@ -8,6 +8,13 @@
 - Không tạo các script new khi đã có 1 script cũ tương tự có thể sửa, sẽ làm lỗi duplicate
 - Không tạo các chức năng mới tương tự chức năng đã có với cách code khác và ở nơi khác, phải hỏi lại trước khi làm điều này
 
+## Git Safety Rules
+- **TUYỆT ĐỐI KHÔNG** thực hiện bất kỳ lệnh git nào mà không được xác nhận trước
+- **PHẢI HỎI** user trước khi chạy: git restore, git reset, git stash, git checkout, git merge, git rebase
+- **PHẢI HỎI** user trước khi xóa/thay đổi file quan trọng
+- **PHẢI GIẢI THÍCH** rõ ràng hậu quả của lệnh git trước khi thực hiện
+- Ưu tiên sử dụng git status, git log để kiểm tra trước khi thao tác
+
 ## Project Context
 - Unity 3D project với AI NPC system
 - Sử dụng C# và Unity Engine

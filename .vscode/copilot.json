@@ -8,5 +8,10 @@
   "settings": {
     "useNonEnglishPrompts": true,
     "preferLocalLanguage": true
+  },
+  "gitSafetyRules": {
+    "requireConfirmation": true,
+    "dangerousCommands": ["git restore", "git reset", "git stash", "git checkout", "git merge", "git rebase", "git rm", "git clean"],
+    "alwaysAsk": "Phải hỏi user trước khi thực hiện bất kỳ lệnh git nào"
   }
 }

@@ -1,0 +1,191 @@
+{
+  "project_name": "Animal Revolt",
+  "project_version": "1.0",
+  "last_updated": "2025-06-05",
+  "documentation_rules": {
+    "auto_update_guide": true,
+    "require_user_guide_update": true,
+    "guide_file_path": "SETUP_AND_USER_GUIDE.md",
+    "update_on_completion": true,
+    "track_completion_percentage": true
+  },
+  "workflow_reminders": {
+    "after_feature_completion": [
+      "Cập nhật SETUP_AND_USER_GUIDE.md với hướng dẫn sử dụng chức năng mới",
+      "Thêm section troubleshooting nếu cần thiết",
+      "Cập nhật FAQ với câu hỏi thường gặp liên quan đến feature mới",
+      "Test và verify hướng dẫn setup hoạt động chính xác",
+      "Cập nhật completion percentage cho feature trong user guide",
+      "Kiểm tra xem có cần thêm dependencies mới không"
+    ],
+    "before_code_completion": [
+      "Kiểm tra xem chức năng có cần documentation không",
+      "Chuẩn bị content cho user guide trước khi code",
+      "Xác định troubleshooting scenarios có thể xảy ra",
+      "Lên kế hoạch cho setup instructions",
+      "Chuẩn bị example usage scenarios"
+    ],
+    "during_development": [
+      "Ghi chú lại các issues gặp phải để add vào troubleshooting",
+      "Document các configuration đặc biệt cần thiết",
+      "Track file dependencies và references",
+      "Note performance considerations nếu có"
+    ]
+  },
+  "mandatory_actions": {
+    "on_feature_complete": {
+      "update_user_guide": true,
+      "add_setup_instructions": true,
+      "document_usage_examples": true,
+      "list_known_issues": true,
+      "add_troubleshooting_section": true,
+      "update_faq_if_needed": true,
+      "verify_file_references": true
+    },
+    "on_bug_fix": {
+      "update_troubleshooting_section": true,
+      "check_setup_instructions_validity": true,
+      "update_known_issues_list": true
+    },
+    "on_refactor": {
+      "update_file_references": true,
+      "verify_setup_steps_still_valid": true,
+      "update_code_examples": true
+    }
+  },
+  "file_templates": {
+    "new_feature_guide_template": {
+      "title": "### 🆕 [FEATURE_NAME] ([COMPLETION_PERCENTAGE]% hoàn thành)",
+      "sections": [
+        "**Trạng thái**: [STATUS_DESCRIPTION]",
+        "**File liên quan**: [FILES_LIST]", 
+        "**Cách sử dụng**:",
+        "**Chức năng đã hoàn thành** (nếu có):",
+        "**Cần hoàn thiện** (nếu chưa 100%):",
+        "**Troubleshooting**:"
+      ]
+    },
+    "troubleshooting_template": {
+      "title": "#### [ISSUE_NAME]",
+      "sections": [
+        "**Nguyên nhân**: [CAUSE_DESCRIPTION]",
+        "**Giải pháp**: [SOLUTION_STEPS]"
+      ]
+    },
+    "faq_template": {
+      "title": "### Q: [QUESTION]",
+      "sections": [
+        "**A**: [DETAILED_ANSWER_WITH_STEPS]"
+      ]
+    }
+  },
+  "completion_tracking": {
+    "feature_status_levels": {
+      "0-25": "⚠️ Early Development",
+      "26-50": "🔄 In Progress", 
+      "51-75": "🔧 Advanced Development",
+      "76-90": "⚡ Near Completion",
+      "91-99": "✅ Almost Done",
+      "100": "🎉 Completed"
+    },
+    "required_documentation_at_completion": [
+      "Setup instructions",
+      "Usage examples", 
+      "File references with clickable links",
+      "Known limitations",
+      "Troubleshooting section",
+      "Integration notes"
+    ]
+  },
+  "reminders": {
+    "display_after_completion": "🎯 NHẮC NHỞ: Đừng quên cập nhật SETUP_AND_USER_GUIDE.md với hướng dẫn sử dụng chức năng vừa hoàn thành! Bao gồm cả troubleshooting và FAQ nếu cần.",
+    "display_before_coding": "📝 NHẮC NHỞ: Chuẩn bị documentation content cho chức năng sắp code! Suy nghĩ về user experience và potential issues.",
+    "display_during_refactor": "🔄 NHẮC NHỞ: Đang refactor - hãy cập nhật file references và setup instructions trong user guide!",
+    "display_on_bug_fix": "🐛 NHẮC NHỞ: Bug đã fix - cập nhật troubleshooting section và remove từ known issues nếu có!"
+  },
+  "quality_gates": {
+    "documentation_requirements": {
+      "min_completion_for_documentation": 25,
+      "required_sections_at_50_percent": ["Setup", "Basic Usage"],
+      "required_sections_at_75_percent": ["Setup", "Usage", "Troubleshooting"],
+      "required_sections_at_100_percent": ["Setup", "Usage", "Troubleshooting", "FAQ", "File References"]
+    },
+    "link_validation": {
+      "check_file_references": true,
+      "validate_clickable_links": true,
+      "ensure_relative_paths": true
+    }
+  },
+  "automation_rules": {
+    "auto_update_timestamps": true,
+    "auto_generate_file_references": true,
+    "auto_check_completion_status": true,
+    "prompt_for_missing_documentation": true
+  },
+  "project_specific": {
+    "unity_version": "2022.3 LTS+",
+    "render_pipeline": "URP",
+    "key_directories": [
+      "Assets/Scripts/",
+      "Assets/Prefabs/",
+      "Assets/Scenes/",
+      "Assets/Military/"
+    ],
+    "critical_files": [
+      "SETUP_AND_USER_GUIDE.md",
+      "ANIMAL_REVOLT_GAME_DESIGN.md", 
+      "ANIMAL_REVOLT_TODO_LIST.md"
+    ],
+    "feature_categories": {
+      "CharacterSelection": "UI/UX",
+      "RagdollSystem": "Physics/Animation",
+      "CameraSystem": "Camera/Controls",
+      "InputSystem": "Input/Controls",
+      "NavigationSystem": "AI/Navigation",
+      "AssetIntegration": "Assets/Content"
+    }
+  },
+  "directory_restrictions": {
+    "enabled": true,
+    "allowed_directories": {
+      "prefabs": {
+        "path": "Assets/Prefabs",
+        "description": "Thư mục duy nhất được phép thao tác với Prefab",
+        "operations": ["create", "read", "update", "delete", "search"],
+        "file_types": ["*.prefab", "*.prefab.meta"]
+      },
+      "code": {
+        "path": "AnimalRevolt",
+        "description": "Thư mục duy nhất được phép thao tác với Code",
+        "operations": ["create", "read", "update", "delete", "search"],
+        "file_types": ["*.cs", "*.cs.meta", "*.js", "*.ts"]
+      }
+    },
+    "restricted_operations": {
+      "outside_allowed_directories": {
+        "check_info": false,
+        "read_files": false,
+        "write_files": false,
+        "search_files": false,
+        "list_files": false
+      }
+    },
+    "enforcement_rules": {
+      "strict_mode": true,
+      "auto_reject_outside_access": true,
+      "warning_message": "⚠️ Không được phép truy cập file/thư mục ngoài phạm vi được chỉ định: Assets/Prefabs (cho Prefab) và AnimalRevolt (cho Code)"
+    }
+  },
+  "notification_settings": {
+    "show_reminders": true,
+    "reminder_frequency": "every_completion",
+    "include_quality_checks": true,
+    "suggest_improvements": true
+  },
+  "maintenance": {
+    "regular_review_schedule": "weekly",
+    "update_completion_tracking": true,
+    "validate_links_monthly": true,
+    "review_troubleshooting_relevance": true
+  }
+}

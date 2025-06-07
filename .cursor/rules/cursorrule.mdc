@@ -1,0 +1,11 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+luôn trả lời bằng tiếng việt
+các chú thích luôn bừng tiếng việt
+ưu tiên sử dụng kết nối mcp để làm việc
+hạn chế tạo các file test, sử dụng log để đọc log console bằng mcp và sửa lỗi,
+
+sau khi hoàn thành mã hay reload lại unity để check lỗi
