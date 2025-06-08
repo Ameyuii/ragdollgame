@@ -133,9 +133,7 @@ namespace AnimalRevolt.UI
             {
                 cameraManager = FindFirstObjectByType<AnimalRevolt.Camera.CameraManager>();
             }
-        }
-
-        /// <summary>
+        }        /// <summary>
         /// Tạo nút toggle UI
         /// </summary>
         private void CreateToggleButton()
@@ -144,7 +142,7 @@ namespace AnimalRevolt.UI
             GameObject canvasObj = new GameObject("UnifiedUIToggleCanvas");
             toggleCanvas = canvasObj.AddComponent<Canvas>();
             toggleCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            toggleCanvas.sortingOrder = 9999; // Trên cùng
+            toggleCanvas.sortingOrder = 1001; // Chỉ cần cao hơn UI toggle khác một chút
             
             canvasObj.AddComponent<CanvasScaler>();
             canvasObj.AddComponent<GraphicRaycaster>();
@@ -155,15 +153,30 @@ namespace AnimalRevolt.UI
 
             // Setup Image
             buttonImage = buttonObj.AddComponent<Image>();
-            buttonImage.sprite = toggleIcon;
+            
+            // 🔥 FIX: Chỉ set sprite nếu có, tránh tạo image che màn hình
+            if (toggleIcon != null)
+            {
+                buttonImage.sprite = toggleIcon;
+                Debug.Log($"🎛️ [UI TOGGLE] Toggle button sprite set: {toggleIcon.name}");
+            }
+            else
+            {
+                // Tạo simple colored background thay vì sprite
+                buttonImage.color = new Color(0.2f, 0.2f, 0.2f, 0.8f);
+                Debug.LogWarning($"⚠️ [UI TOGGLE] No toggle sprite found, using colored background");
+            }
+            
             buttonImage.color = inactiveColor;
 
             // Setup Button
             toggleButton = buttonObj.AddComponent<Button>();
             toggleButton.onClick.AddListener(ToggleAllUI);
 
-            // Setup position
+            // Setup position - đảm bảo chỉ là button nhỏ ở góc
             SetupButtonPosition(buttonObj.GetComponent<RectTransform>());
+            
+            Debug.Log($"✅ [UI TOGGLE] Toggle button created at position {buttonPosition} with size {buttonSize}");
         }
 
         /// <summary>
@@ -622,5 +635,48 @@ namespace AnimalRevolt.UI
         public void HideCameraUI(int cameraIndex) => SetCameraUIVisibility(cameraIndex, false);
 
         #endregion
+
+        /// <summary>
+        /// Debug method để kiểm tra các UI objects có thể che màn hình
+        /// </summary>
+        [ContextMenu("🔍 Debug UI Screen Blocking")]
+        public void DebugUIScreenBlocking()
+        {
+            Debug.Log("=== 🔍 KIỂM TRA UI CHE MÀN HÌNH ===");
+            
+            // Kiểm tra tất cả Canvas trong scene
+            Canvas[] allCanvases = FindObjectsByType<Canvas>(FindObjectsSortMode.None);
+            Debug.Log($"📊 Tổng số Canvas trong scene: {allCanvases.Length}");
+            
+            foreach (Canvas canvas in allCanvases)
+            {
+                if (canvas.gameObject.activeInHierarchy)
+                {
+                    Debug.Log($"🖼️ Canvas: '{canvas.name}' - SortingOrder: {canvas.sortingOrder} - RenderMode: {canvas.renderMode}");
+                    
+                    // Kiểm tra nếu Canvas có kích thước toàn màn hình
+                    RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+                    if (canvasRect != null)
+                    {
+                        Vector2 size = canvasRect.sizeDelta;
+                        Debug.Log($"    📐 Size: {size} (có thể che màn hình nếu quá lớn)");
+                    }
+                    
+                    // Kiểm tra các Image component có thể che màn hình  
+                    Image[] images = canvas.GetComponentsInChildren<Image>(true);
+                    foreach (Image img in images)
+                    {
+                        if (img.gameObject.activeInHierarchy && img.color.a > 0.8f)
+                        {
+                            RectTransform imgRect = img.GetComponent<RectTransform>();
+                            Vector2 imgSize = imgRect != null ? imgRect.sizeDelta : Vector2.zero;
+                            Debug.LogWarning($"⚠️ Có thể che màn hình: '{img.name}' - Alpha: {img.color.a:F2} - Size: {imgSize}");
+                        }
+                    }
+                }
+            }
+            
+            Debug.Log("===================================");
+        }
     }
 }
