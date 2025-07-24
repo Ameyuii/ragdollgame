@@ -32166,3 +32166,5 @@ public class FinalUIInputFix : MonoBehaviour
 [INFO] Loading thread messages for thread cpl_thread_b3716bf1_3c5b_4590_98c2_1c57efc75b69
 [INFO] State saved successfully
 [INFO] Loading state from file, and setting to: Initialized
+[INFO] AssistantController: Dispose called
+[INFO] FunctionExecutionController: Dispose called
