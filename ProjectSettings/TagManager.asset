@@ -8,6 +8,8 @@ TagManager:
   - Cube
   - Ground
   - NPC
+  - Team1
+  - Team2
   layers:
   - Default
   - TransparentFX

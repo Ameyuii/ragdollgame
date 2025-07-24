@@ -1,21 +1,32 @@
 {
   "dependencies": {
+    "com.coplaydev.coplay": {
+      "version": "https://github.com/CoplayDev/unity-plugin.git#beta",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.inputsystem": "1.1.1",
+        "com.unity.cloud.gltfast": "6.12.1"
+      },
+      "hash": "d07a4def2e974457aadc5b0d4ac238b73bb6a1e3"
+    },
     "com.gamelovers.mcp-unity": {
       "version": "https://github.com/CoderGamester/mcp-unity.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.editorcoroutines": "1.0.0"
+        "com.unity.editorcoroutines": "1.0.0",
+        "com.unity.test-framework": "1.3.3"
       },
-      "hash": "cb4b03c1c96dd419f145d85d4e5c3dc318a90eb1"
+      "hash": "2d8d85370248ef238c3e65ca68f34ff9a073db28"
     },
     "com.unity.ai.assistant": {
-      "version": "1.0.0-pre.5",
+      "version": "1.0.0-pre.8",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ai.toolkit": "1.0.0-pre.7",
+        "com.unity.ai.toolkit": "1.0.0-pre.12",
         "com.unity.serialization": "3.1.1",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.unity.modules.unitywebrequest": "1.0.0"
@@ -43,7 +54,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ai.toolkit": {
-      "version": "1.0.0-pre.8",
+      "version": "1.0.0-pre.12",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -58,6 +69,19 @@
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.cloud.gltfast": {
+      "version": "6.12.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.4",
+        "com.unity.collections": "1.2.4",
+        "com.unity.mathematics": "1.2.6",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

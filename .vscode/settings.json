@@ -71,9 +71,9 @@
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "*.sln": "*.csproj",
+        "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "test ai unity.sln",
+    "dotnet.defaultSolution": "testaiunity.sln",
     "omnisharp.useModernNet": true,
     "omnisharp.path": "latest",
     "omnisharp.projectLoadTimeout": 180,
@@ -90,12 +90,8 @@
     "omnisharp.enableRoslynAnalyzers": true,
     "omnisharp.enableEditorConfigSupport": true,
     "chat.tools.autoApprove": true,
-    
     "github.copilot.enable": {
-        "*": true,
-        "plaintext": true,
-        "markdown": true,
-        "csharp": true
+        "*": false
     },
     "github.copilot.advanced": {
         "language": "Vietnamese",
@@ -103,19 +99,11 @@
         "contextLines": 20,
         "inlineSuggestCount": 3
     },
-    
-    // Copilot chat settings
     "github.copilot.chat.welcomeMessage": "Chào bạn! Tôi sẽ hỗ trợ bạn với dự án Unity bằng tiếng Việt theo quy tắc trong copilot-instructions.md",
-    
-    // Code style cho Unity C#
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
     "editor.detectIndentation": false,
-    
-    // Suggestions settings
     "editor.suggest.insertMode": "replace",
     "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.acceptSuggestionOnEnter": "on"
-    
-
 }

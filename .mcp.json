@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "mcp-unity": {
+      "command": "node",
+      "args": [
+        "E:/unity/testaiunity/Library/PackageCache/com.gamelovers.mcp-unity@f0d0bcf07942/Server~/build/index.js"
+      ]
+    }
+  }
+}
