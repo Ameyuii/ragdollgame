@@ -49,10 +49,15 @@ public class BattleGameManager : MonoBehaviour
             resetButton.onClick.AddListener(ResetBattle);
         
         // Reset drag states on start
-        CharacterDragSource.ResetAllDragStates();
+        Invoke("ResetDragStatesDelayed", 0.1f);
         
         // Initialize setup mode
         InitializeSetupMode();
+    }
+    
+    void ResetDragStatesDelayed()
+    {
+        CharacterDragSource.ResetAllDragStates();
     }
     
     public void InitializeSetupMode()
@@ -74,7 +79,7 @@ public class BattleGameManager : MonoBehaviour
         
         // Update UI
         if (statusText != null)
-            statusText.text = "Setup Mode: Drag characters to map, then click Start";
+            statusText.text = "Setup Mode: Drag characters ANYWHERE on map - UNLIMITED spawning!";
         
         if (startButton != null)
             startButton.interactable = true;
@@ -127,7 +132,7 @@ public class BattleGameManager : MonoBehaviour
                 
                 RectTransform rect = setupPanel.AddComponent<RectTransform>();
                 rect.anchorMin = new Vector2(0, 0);
-                rect.anchorMax = new Vector2(0.3f, 1);
+                rect.anchorMax = new Vector2(0.25f, 1);
                 rect.offsetMin = Vector2.zero;
                 rect.offsetMax = Vector2.zero;
                 
@@ -140,9 +145,9 @@ public class BattleGameManager : MonoBehaviour
                 
                 RectTransform listRect = listParent.AddComponent<RectTransform>();
                 listRect.anchorMin = new Vector2(0, 0);
-                listRect.anchorMax = new Vector2(1, 1);
+                listRect.anchorMax = new Vector2(1, 0.7f);
                 listRect.offsetMin = new Vector2(10, 10);
-                listRect.offsetMax = new Vector2(-10, -10);
+                listRect.offsetMax = new Vector2(-10, 0);
                 
                 // Add vertical layout group
                 VerticalLayoutGroup layout = listParent.AddComponent<VerticalLayoutGroup>();
@@ -204,7 +209,7 @@ public class BattleGameManager : MonoBehaviour
         button.transform.SetParent(characterListParent, false);
         
         RectTransform rect = button.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0, 100); // Taller for image + text
+        rect.sizeDelta = new Vector2(0, 120); // Taller for better visibility
         
         Image bg = button.AddComponent<Image>();
         bg.color = new Color(0.3f, 0.3f, 0.3f, 1f);
@@ -264,7 +269,7 @@ public class BattleGameManager : MonoBehaviour
         Text nameText = nameObj.AddComponent<Text>();
         nameText.text = prefab.name;
         nameText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        nameText.fontSize = 12;
+        nameText.fontSize = 14;
         nameText.color = Color.white;
         nameText.alignment = TextAnchor.UpperLeft;
         nameText.fontStyle = FontStyle.Bold;
@@ -282,7 +287,7 @@ public class BattleGameManager : MonoBehaviour
         Text infoText = infoObj.AddComponent<Text>();
         infoText.text = GetCharacterInfo(prefab);
         infoText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        infoText.fontSize = 10;
+        infoText.fontSize = 12;
         infoText.color = new Color(0.8f, 0.8f, 0.8f, 1f);
         infoText.alignment = TextAnchor.UpperLeft;
         
@@ -297,7 +302,11 @@ public class BattleGameManager : MonoBehaviour
         hoverEffect.hoverColor = new Color(0.5f, 0.5f, 0.5f, 1f);
         hoverEffect.backgroundImage = bg;
         
-        btn.onClick.AddListener(() => SelectCharacterType(index));
+        btn.onClick.AddListener(() => {
+            // Reset any ongoing drag before selecting
+            CharacterDragSource.ResetAllDragStates();
+            SelectCharacterType(index);
+        });
     }
     
     string GetCharacterInfo(GameObject prefab)
@@ -326,7 +335,7 @@ public class BattleGameManager : MonoBehaviour
         button.transform.SetParent(characterListParent, false);
         
         RectTransform rect = button.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0, 50);
+        rect.sizeDelta = new Vector2(0, 60);
         
         Image bg = button.AddComponent<Image>();
         bg.color = teamId == 1 ? new Color(0.2f, 0.4f, 0.8f, 1f) : new Color(0.8f, 0.2f, 0.2f, 1f);
@@ -340,7 +349,7 @@ public class BattleGameManager : MonoBehaviour
         Text text = textObj.AddComponent<Text>();
         text.text = teamName;
         text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        text.fontSize = 14;
+        text.fontSize = 16;
         text.color = Color.white;
         text.alignment = TextAnchor.MiddleCenter;
         text.fontStyle = FontStyle.Bold;
@@ -351,7 +360,11 @@ public class BattleGameManager : MonoBehaviour
         textRect.offsetMin = Vector2.zero;
         textRect.offsetMax = Vector2.zero;
         
-        btn.onClick.AddListener(() => SelectTeam(teamId));
+        btn.onClick.AddListener(() => {
+            // Reset any ongoing drag before selecting team
+            CharacterDragSource.ResetAllDragStates();
+            SelectTeam(teamId);
+        });
         
         // Store reference for highlighting
         if (teamId == 1)
@@ -370,6 +383,10 @@ public class BattleGameManager : MonoBehaviour
     {
         selectedCharacterType = index;
         Debug.Log($"Selected character type: {characterPrefabs[index].name}");
+        
+        // Reset drag states when changing character type
+        CharacterDragSource.ResetAllDragStates();
+        
         UpdateSelectedDisplay();
     }
     
@@ -378,7 +395,7 @@ public class BattleGameManager : MonoBehaviour
         selectedTeam = teamId;
         Debug.Log($"Selected team: {teamId}");
         
-        // Reset drag states when changing team
+        // Reset drag states when changing team to prevent conflicts
         CharacterDragSource.ResetAllDragStates();
         
         UpdateTeamButtonHighlight();
@@ -412,13 +429,27 @@ public class BattleGameManager : MonoBehaviour
             string teamIcon = selectedTeam == 1 ? "🔵" : "🔴";
             string teamName = selectedTeam == 1 ? "Team 1 (Blue)" : "Team 2 (Red)";
             
+            // Count current spawned characters for this team
+            int teamCount = 0;
+            foreach (GameObject character in spawnedCharacters)
+            {
+                if (character != null)
+                {
+                    RagdollCharacter ragdoll = character.GetComponent<RagdollCharacter>();
+                    if (ragdoll != null && ragdoll.teamId == selectedTeam)
+                    {
+                        teamCount++;
+                    }
+                }
+            }
+            
             if (characterName == "None")
             {
-                selectedTeamText.text = $"📋 READY TO PLACE\n{teamIcon} {teamName}\n\n👆 Click character → Drag to map";
+                selectedTeamText.text = $"📋 READY TO PLACE\n{teamIcon} {teamName} ({teamCount} placed)\n\n👆 Click character → Drag anywhere\n🚀 UNLIMITED SPAWNING";
             }
             else
             {
-                selectedTeamText.text = $"✅ SELECTED: {characterName}\n{teamIcon} {teamName}\n\n🖱️ Drag to map to place";
+                selectedTeamText.text = $"✅ SELECTED: {characterName}\n{teamIcon} {teamName} ({teamCount} placed)\n\n🖱️ Drag anywhere to place\n🚀 UNLIMITED SPAWNING";
             }
         }
     }
@@ -431,8 +462,8 @@ public class BattleGameManager : MonoBehaviour
         displayObj.transform.SetParent(setupPanel.transform, false);
         
         RectTransform rect = displayObj.AddComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0, 0.75f);
-        rect.anchorMax = new Vector2(1, 0.9f);
+        rect.anchorMin = new Vector2(0, 0.7f);
+        rect.anchorMax = new Vector2(1, 0.88f);
         rect.offsetMin = new Vector2(5, 0);
         rect.offsetMax = new Vector2(-5, 0);
         
@@ -445,7 +476,7 @@ public class BattleGameManager : MonoBehaviour
         selectedTeamText = textObj.AddComponent<Text>();
         selectedTeamText.text = "📋 READY TO PLACE\n🔵 Team 1 Selected\n\n👆 Click character → Drag to map";
         selectedTeamText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        selectedTeamText.fontSize = 11;
+        selectedTeamText.fontSize = 16;
         selectedTeamText.color = Color.white;
         selectedTeamText.alignment = TextAnchor.MiddleCenter;
         
@@ -464,9 +495,9 @@ public class BattleGameManager : MonoBehaviour
         headerObj.transform.SetParent(setupPanel.transform, false);
         
         RectTransform rect = headerObj.AddComponent<RectTransform>();
-        rect.anchorMin = new Vector2(0, 0.9f);
+        rect.anchorMin = new Vector2(0, 0.88f);
         rect.anchorMax = new Vector2(1, 1f);
-        rect.offsetMin = new Vector2(5, -50);
+        rect.offsetMin = new Vector2(5, 0);
         rect.offsetMax = new Vector2(-5, -5);
         
         Image bg = headerObj.AddComponent<Image>();
@@ -478,7 +509,7 @@ public class BattleGameManager : MonoBehaviour
         Text titleText = titleObj.AddComponent<Text>();
         titleText.text = "CHARACTER SELECTION";
         titleText.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        titleText.fontSize = 14;
+        titleText.fontSize = 18;
         titleText.color = Color.white;
         titleText.alignment = TextAnchor.MiddleCenter;
         titleText.fontStyle = FontStyle.Bold;
@@ -493,20 +524,79 @@ public class BattleGameManager : MonoBehaviour
     public void SpawnCharacterAtPosition(Vector3 position)
     {
         if (!setupMode || characterPrefabs == null || selectedCharacterType >= characterPrefabs.Length)
+        {
+            Debug.LogWarning($"Cannot spawn character - setupMode: {setupMode}, prefabs: {characterPrefabs != null}, selectedType: {selectedCharacterType}");
             return;
+        }
         
         GameObject prefab = characterPrefabs[selectedCharacterType];
-        GameObject newCharacter = Instantiate(prefab, position, Quaternion.identity);
+        if (prefab == null)
+        {
+            Debug.LogWarning("Selected character prefab is null!");
+            return;
+        }
+        
+        // Try to find ground position, but allow spawning anywhere
+        Vector3 spawnPosition = GetGroundPosition(position);
+        
+        // Always spawn character - no restrictions on position or quantity
+        GameObject newCharacter = Instantiate(prefab, spawnPosition, Quaternion.identity);
         
         // Set team
         RagdollCharacter ragdoll = newCharacter.GetComponent<RagdollCharacter>();
         if (ragdoll != null)
         {
             ragdoll.teamId = selectedTeam;
+            
+            // Apply team material if available
+            ApplyTeamMaterial(newCharacter, selectedTeam);
         }
         
         spawnedCharacters.Add(newCharacter);
-        Debug.Log($"Spawned {prefab.name} for team {selectedTeam} at {position}");
+        Debug.Log($"Spawned {prefab.name} for team {selectedTeam} at {spawnPosition} (unlimited spawning enabled)");
+    }
+    
+    Vector3 GetGroundPosition(Vector3 position)
+    {
+        // Raycast down to find ground with extended range
+        RaycastHit hit;
+        Vector3 rayStart = new Vector3(position.x, position.y + 100f, position.z);
+        
+        // Extended raycast range to find ground anywhere
+        if (Physics.Raycast(rayStart, Vector3.down, out hit, 200f))
+        {
+            return hit.point + Vector3.up * 0.1f; // Small offset above ground
+        }
+        
+        // If no ground found, use the original position (allow floating characters)
+        return position;
+    }
+    
+    void ApplyTeamMaterial(GameObject character, int teamId)
+    {
+        // Try to apply team material
+        Material teamMaterial = null;
+        
+        if (teamId == 1)
+        {
+            teamMaterial = Resources.Load<Material>("Team1_Blue");
+        }
+        else if (teamId == 2)
+        {
+            teamMaterial = Resources.Load<Material>("Team2_Red");
+        }
+        
+        if (teamMaterial != null)
+        {
+            Renderer[] renderers = character.GetComponentsInChildren<Renderer>();
+            foreach (Renderer renderer in renderers)
+            {
+                if (renderer != null)
+                {
+                    renderer.material = teamMaterial;
+                }
+            }
+        }
     }
     
     public void StartBattle()
