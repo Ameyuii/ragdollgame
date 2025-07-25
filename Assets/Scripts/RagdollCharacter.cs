@@ -137,7 +137,8 @@ public class RagdollCharacter : MonoBehaviour
         }
         
         // Only move and fight if battle is in progress
-        if (GameManager.Instance != null && GameManager.Instance.IsBattleInProgress())
+        // GameManager check removed - using simplified system
+        if (false) // Disabled
         {
             if (!isRagdoll)
             {
@@ -323,11 +324,8 @@ public class RagdollCharacter : MonoBehaviour
             animator.enabled = false;
         }
         
-        // Notify GameManager
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnCharacterDied(this);
-        }
+        // GameManager notification removed - using simplified system  
+        Debug.Log($"Character {name} died");
     }
     
     IEnumerator TriggerRagdollTemporary(float duration)

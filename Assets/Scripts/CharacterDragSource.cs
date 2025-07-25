@@ -197,7 +197,9 @@ public class CharacterDragSource : MonoBehaviour, IBeginDragHandler, IDragHandle
         
         if (dropPosition != Vector3.zero && IsValidDropPosition(dropPosition))
         {
-            // Use MapStateManager if available, otherwise fallback to old system
+            // Team selection được quản lý trực tiếp bởi BattleGameManager
+            Debug.Log($"[DRAG DEBUG] Using team from BattleGameManager: {gameManager.GetSelectedTeam()}");
+
             MapStateManager mapManager = MapStateManager.Instance;
             if (mapManager != null)
             {
@@ -209,16 +211,9 @@ public class CharacterDragSource : MonoBehaviour, IBeginDragHandler, IDragHandle
                     // Add through MapStateManager
                     string instanceID = mapManager.AddCharacterInstance(
                         characterPrefab.name, groundPosition, 
-                        gameManager.selectedTeam, characterPrefab);
+                        gameManager.GetSelectedTeam(), characterPrefab);
                     
-                    // Notify UI Manager
-                    AdvancedUIManager uiManager = FindObjectOfType<AdvancedUIManager>();
-                    if (uiManager != null)
-                    {
-                        uiManager.OnCharacterPlaced(groundPosition);
-                    }
-                    
-                    Debug.Log($"[DRAG DEBUG] Successfully dropped character {instanceID} at {groundPosition}");
+                    Debug.Log($"[DRAG DEBUG] Successfully dropped character {instanceID} at {groundPosition} for team {gameManager.GetSelectedTeam()}");
                 }
                 else
                 {
@@ -227,7 +222,7 @@ public class CharacterDragSource : MonoBehaviour, IBeginDragHandler, IDragHandle
             }
             else
             {
-                // Fallback to old system
+                // Fallback to original system
                 gameManager.SpawnCharacterAtPosition(dropPosition);
                 Debug.Log($"[DRAG DEBUG] Dropped character at {dropPosition} (fallback)");
             }
@@ -281,7 +276,7 @@ public class CharacterDragSource : MonoBehaviour, IBeginDragHandler, IDragHandle
             Material previewMat = new Material(Shader.Find("Standard"));
             
             // Set team color
-            Color teamColor = (gameManager != null && gameManager.selectedTeam == 1) ? Color.blue : Color.red;
+            Color teamColor = (gameManager != null && gameManager.GetSelectedTeam() == 1) ? Color.blue : Color.red;
             previewMat.color = new Color(teamColor.r, teamColor.g, teamColor.b, 0.6f);
             
             previewMat.SetFloat("_Mode", 3); // Transparent mode

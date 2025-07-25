@@ -140,15 +140,7 @@ public class ForceStabilizeCharacters : MonoBehaviour
     
     void Update()
     {
-        // Auto-fix flying objects
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Execute();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            EmergencyStopAllPhysics();
-        }
+        // Hotkey functionality removed to avoid Input System conflicts
+        // Use the Execute() method directly from scripts or context menu
     }
 }

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ce95add5f814d49b25f56bfff8645e, type: 3}
+  m_Name: CharacterDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::NewCharacterDatabase
+  databaseVersion: 1.0
+  lastUpdated: 
+  characters: []
+  categories:
+  - categoryID: warrior
+    displayName: Warriors
+    description: Strong melee fighters
+    categoryIcon: {fileID: 0}
+    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    sortOrder: 0
+    isActive: 1
+  - categoryID: archer
+    displayName: Archers
+    description: Ranged attackers
+    categoryIcon: {fileID: 0}
+    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    sortOrder: 0
+    isActive: 1
+  - categoryID: mage
+    displayName: Mages
+    description: Magic users
+    categoryIcon: {fileID: 0}
+    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    sortOrder: 0
+    isActive: 1
+  teams: []

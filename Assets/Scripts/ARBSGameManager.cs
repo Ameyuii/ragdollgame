@@ -11,7 +11,6 @@ public class ARBSGameManager : MonoBehaviour
     [Header("System References")]
     public BattleGameManager battleManager;
     public MapStateManager mapStateManager;
-    public AdvancedUIManager uiManager;
     
     [Header("Game Configuration")]
     public bool enableGrid = false;
@@ -62,8 +61,7 @@ public class ARBSGameManager : MonoBehaviour
         if (mapStateManager == null)
             mapStateManager = GetComponent<MapStateManager>();
         
-        if (uiManager == null)
-            uiManager = FindObjectOfType<AdvancedUIManager>();
+        // UI Manager removed - using simplified UI system
         
         // Initialize map bounds based on ground object
         GameObject ground = GameObject.Find("Ground");

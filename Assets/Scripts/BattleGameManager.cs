@@ -25,6 +25,9 @@ public class BattleGameManager : MonoBehaviour
     [Header("Character Prefabs")]
     public GameObject[] characterPrefabs;
     
+    [Header("Team Selection")]
+    public TeamSelector teamSelector;
+    
     private List<RagdollCharacter> allCharacters = new List<RagdollCharacter>();
     private List<GameObject> spawnedCharacters = new List<GameObject>();
     
@@ -47,6 +50,16 @@ public class BattleGameManager : MonoBehaviour
             startButton.onClick.AddListener(StartBattle);
         if (resetButton != null)
             resetButton.onClick.AddListener(ResetBattle);
+        
+        // Find TeamSelector if not assigned
+        if (teamSelector == null)
+            teamSelector = FindObjectOfType<TeamSelector>();
+        
+        // Setup team selector listener
+        if (teamSelector != null)
+        {
+            teamSelector.OnTeamChanged += OnTeamChanged;
+        }
         
         // Reset drag states on start
         Invoke("ResetDragStatesDelayed", 0.1f);
@@ -205,18 +218,37 @@ public class BattleGameManager : MonoBehaviour
     
     void CreateCharacterButton(GameObject prefab, int index)
     {
+        // Tạo button container với kích thước cố định
+        GameObject button = CreateButtonContainer(index);
+        
+        // Thêm preview image với border
+        AddCharacterPreview(button, prefab);
+        
+        // Thêm text thông tin character
+        AddCharacterInfo(button, prefab);
+        
+        // Setup drag functionality và button click
+        SetupButtonInteraction(button, prefab, index);
+    }
+    
+    GameObject CreateButtonContainer(int index)
+    {
         GameObject button = new GameObject($"CharacterButton_{index}");
         button.transform.SetParent(characterListParent, false);
         
         RectTransform rect = button.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0, 120); // Taller for better visibility
+        rect.sizeDelta = new Vector2(0, 120);
         
         Image bg = button.AddComponent<Image>();
         bg.color = new Color(0.3f, 0.3f, 0.3f, 1f);
         
-        Button btn = button.AddComponent<Button>();
-        
-        // Add preview image
+        button.AddComponent<Button>();
+        return button;
+    }
+    
+    void AddCharacterPreview(GameObject button, GameObject prefab)
+    {
+        // Tạo preview image container
         GameObject imageObj = new GameObject("PreviewImage");
         imageObj.transform.SetParent(button.transform, false);
         
@@ -228,21 +260,34 @@ public class BattleGameManager : MonoBehaviour
         
         Image previewImage = imageObj.AddComponent<Image>();
         
-        // Generate preview
-        Texture2D previewTexture = PrefabPreviewGenerator.GeneratePreviewTexture(prefab, 64, 64);
-        if (previewTexture != null)
+        // Generate preview với error handling tốt hơn
+        try
         {
-            Sprite previewSprite = Sprite.Create(previewTexture, 
-                new Rect(0, 0, previewTexture.width, previewTexture.height), 
-                new Vector2(0.5f, 0.5f));
-            previewImage.sprite = previewSprite;
+            Texture2D previewTexture = PrefabPreviewGenerator.GeneratePreviewTexture(prefab, 64, 64);
+            if (previewTexture != null)
+            {
+                Sprite previewSprite = Sprite.Create(previewTexture, 
+                    new Rect(0, 0, previewTexture.width, previewTexture.height), 
+                    new Vector2(0.5f, 0.5f));
+                previewImage.sprite = previewSprite;
+            }
+            else
+            {
+                previewImage.color = Color.gray;
+            }
         }
-        else
+        catch (System.Exception e)
         {
+            Debug.LogWarning($"Không thể tạo preview cho {prefab.name}: {e.Message}");
             previewImage.color = Color.gray;
         }
         
-        // Add border to image
+        // Thêm border cho preview
+        AddImageBorder(imageObj);
+    }
+    
+    void AddImageBorder(GameObject imageObj)
+    {
         GameObject borderObj = new GameObject("Border");
         borderObj.transform.SetParent(imageObj.transform, false);
         
@@ -254,9 +299,12 @@ public class BattleGameManager : MonoBehaviour
         
         Image border = borderObj.AddComponent<Image>();
         border.color = new Color(0.6f, 0.6f, 0.6f, 1f);
-        borderObj.transform.SetAsFirstSibling(); // Put border behind image
-        
-        // Add character name
+        borderObj.transform.SetAsFirstSibling();
+    }
+    
+    void AddCharacterInfo(GameObject button, GameObject prefab)
+    {
+        // Thêm tên character
         GameObject nameObj = new GameObject("CharacterName");
         nameObj.transform.SetParent(button.transform, false);
         
@@ -274,7 +322,7 @@ public class BattleGameManager : MonoBehaviour
         nameText.alignment = TextAnchor.UpperLeft;
         nameText.fontStyle = FontStyle.Bold;
         
-        // Add character info
+        // Thêm thông tin character
         GameObject infoObj = new GameObject("CharacterInfo");
         infoObj.transform.SetParent(button.transform, false);
         
@@ -290,23 +338,37 @@ public class BattleGameManager : MonoBehaviour
         infoText.fontSize = 12;
         infoText.color = new Color(0.8f, 0.8f, 0.8f, 1f);
         infoText.alignment = TextAnchor.UpperLeft;
+    }
+    
+    void SetupButtonInteraction(GameObject button, GameObject prefab, int index)
+    {
+        // Get components from button
+        Image bg = button.GetComponent<Image>();
+        Button btn = button.GetComponent<Button>();
         
-        // Add drag component
+        // Thêm drag component
         CharacterDragSource dragSource = button.AddComponent<CharacterDragSource>();
         dragSource.characterPrefab = prefab;
         dragSource.gameManager = this;
         
-        // Add hover effect
-        CharacterButtonHover hoverEffect = button.AddComponent<CharacterButtonHover>();
-        hoverEffect.normalColor = bg.color;
-        hoverEffect.hoverColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-        hoverEffect.backgroundImage = bg;
+        // Thêm hover effect với null checks
+        if (bg != null)
+        {
+            CharacterButtonHover hoverEffect = button.AddComponent<CharacterButtonHover>();
+            hoverEffect.normalColor = bg.color;
+            hoverEffect.hoverColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+            hoverEffect.backgroundImage = bg;
+        }
         
-        btn.onClick.AddListener(() => {
-            // Reset any ongoing drag before selecting
-            CharacterDragSource.ResetAllDragStates();
-            SelectCharacterType(index);
-        });
+        // Setup button click event
+        if (btn != null)
+        {
+            btn.onClick.AddListener(() => {
+                // Reset any ongoing drag before selecting
+                CharacterDragSource.ResetAllDragStates();
+                SelectCharacterType(index);
+            });
+        }
     }
     
     string GetCharacterInfo(GameObject prefab)
@@ -402,18 +464,34 @@ public class BattleGameManager : MonoBehaviour
         UpdateSelectedDisplay();
     }
     
+    // Called when TeamSelector changes team
+    void OnTeamChanged(int newTeamId)
+    {
+        SelectTeam(newTeamId);
+    }
+    
+    // Get currently selected team (from TeamSelector if available)
+    public int GetSelectedTeam()
+    {
+        if (teamSelector != null)
+            return teamSelector.GetSelectedTeam();
+        return selectedTeam;
+    }
+    
     void UpdateTeamButtonHighlight()
     {
+        int currentTeam = GetSelectedTeam();
+        
         if (team1Button != null)
         {
-            team1Button.color = selectedTeam == 1 ? 
+            team1Button.color = currentTeam == 1 ? 
                 new Color(0.3f, 0.6f, 1f, 1f) : 
                 new Color(0.2f, 0.4f, 0.8f, 1f);
         }
         
         if (team2Button != null)
         {
-            team2Button.color = selectedTeam == 2 ? 
+            team2Button.color = currentTeam == 2 ? 
                 new Color(1f, 0.3f, 0.3f, 1f) : 
                 new Color(0.8f, 0.2f, 0.2f, 1f);
         }
@@ -426,8 +504,10 @@ public class BattleGameManager : MonoBehaviour
             string characterName = characterPrefabs != null && selectedCharacterType < characterPrefabs.Length ? 
                 characterPrefabs[selectedCharacterType].name : "None";
             
-            string teamIcon = selectedTeam == 1 ? "🔵" : "🔴";
-            string teamName = selectedTeam == 1 ? "Team 1 (Blue)" : "Team 2 (Red)";
+            int currentTeam = GetSelectedTeam();
+            string teamIcon = currentTeam == 1 ? "🔵" : "🔴";
+            string teamName = teamSelector != null ? teamSelector.GetSelectedTeamName() : 
+                             (currentTeam == 1 ? "Team 1 (Blue)" : "Team 2 (Red)");
             
             // Count current spawned characters for this team
             int teamCount = 0;
@@ -436,7 +516,7 @@ public class BattleGameManager : MonoBehaviour
                 if (character != null)
                 {
                     RagdollCharacter ragdoll = character.GetComponent<RagdollCharacter>();
-                    if (ragdoll != null && ragdoll.teamId == selectedTeam)
+                    if (ragdoll != null && ragdoll.teamId == currentTeam)
                     {
                         teamCount++;
                     }
@@ -523,16 +603,29 @@ public class BattleGameManager : MonoBehaviour
     
     public void SpawnCharacterAtPosition(Vector3 position)
     {
-        if (!setupMode || characterPrefabs == null || selectedCharacterType >= characterPrefabs.Length)
+        // Validation đầy đủ hơn với thông báo lỗi cụ thể
+        if (!setupMode)
         {
-            Debug.LogWarning($"Cannot spawn character - setupMode: {setupMode}, prefabs: {characterPrefabs != null}, selectedType: {selectedCharacterType}");
+            Debug.LogWarning("Không thể spawn character - Game không ở setup mode");
+            return;
+        }
+        
+        if (characterPrefabs == null || characterPrefabs.Length == 0)
+        {
+            Debug.LogWarning("Không thể spawn character - Không có character prefabs nào được set");
+            return;
+        }
+        
+        if (selectedCharacterType < 0 || selectedCharacterType >= characterPrefabs.Length)
+        {
+            Debug.LogWarning($"Không thể spawn character - selectedCharacterType ({selectedCharacterType}) không hợp lệ. Phải từ 0 đến {characterPrefabs.Length - 1}");
             return;
         }
         
         GameObject prefab = characterPrefabs[selectedCharacterType];
         if (prefab == null)
         {
-            Debug.LogWarning("Selected character prefab is null!");
+            Debug.LogWarning($"Character prefab tại index {selectedCharacterType} là null!");
             return;
         }
         

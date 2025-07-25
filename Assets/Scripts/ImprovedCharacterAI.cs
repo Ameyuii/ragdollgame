@@ -103,10 +103,11 @@ public class ImprovedCharacterAI : MonoBehaviour
     {
         if (animator == null) return;
         
-        // Set animation parameters
+        // Set animation parameters - using correct parameter names from Animation Controller
         animator.SetBool("IsWalking", moving);
-        animator.SetBool("IsRunning", moving && agent.velocity.magnitude > 2f);
-        animator.SetBool("IsDead", dead);
+        // Note: IsRunning parameter doesn't exist in controller, using IsWalking instead
+        // animator.SetBool("IsRunning", moving && agent.velocity.magnitude > 2f);
+        animator.SetBool("IsAlive", !dead); // Using IsAlive instead of IsDead
         
         if (attacking)
         {
