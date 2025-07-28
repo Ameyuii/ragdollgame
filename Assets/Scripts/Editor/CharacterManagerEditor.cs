@@ -466,7 +466,8 @@ public class CharacterEntryEditWindow : EditorWindow
         
         // Visual
         GUILayout.Label("Visual", EditorStyles.boldLabel);
-        character.teamColor = EditorGUILayout.ColorField("Team Color", character.teamColor);
+        // ✅ DISABLED: Team color editor - loại bỏ hoàn toàn chức năng màu team
+        // character.teamColor = EditorGUILayout.ColorField("Team Color", character.teamColor);
         character.description = EditorGUILayout.TextArea(character.description, GUILayout.Height(60));
         
         GUILayout.Space(20);

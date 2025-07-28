@@ -10,6 +10,8 @@ public class TeamConfiguration
     [TextArea(2, 3)]
     public string teamDescription;
 
+    // ✅ DISABLED: Colors and Materials - loại bỏ hoàn toàn chức năng màu team
+    /*
     [Header("Colors")]
     public Color primaryColor = Color.blue;
     public Color secondaryColor = Color.white;
@@ -17,6 +19,7 @@ public class TeamConfiguration
     [Header("Materials")]
     public Material baseMaterial;
     public List<MaterialOverride> materialOverrides = new List<MaterialOverride>();
+    */
 
     [Header("Visual")]
     public Sprite teamIcon;
@@ -28,17 +31,20 @@ public class TeamConfiguration
 
     public TeamConfiguration()
     {
-        materialOverrides = new List<MaterialOverride>();
+        // ✅ DISABLED: Material overrides - loại bỏ hoàn toàn chức năng màu team
+        // materialOverrides = new List<MaterialOverride>();
     }
 
     /// <summary>
-    /// Get the appropriate material for a character part
+    /// DISABLED: Get the appropriate material for a character part - loại bỏ hoàn toàn chức năng màu team
     /// </summary>
+    /*
     public Material GetMaterialForPart(string partName)
     {
         MaterialOverride materialOverride = materialOverrides.Find(m => m.partName == partName);
         return materialOverride?.material ?? baseMaterial;
     }
+    */
 
     /// <summary>
     /// Check if this team is enemy to another team

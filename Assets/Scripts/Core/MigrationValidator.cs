@@ -221,7 +221,8 @@ public class MigrationValidator : MonoBehaviour
         testResults["UnifiedGameManager_Exists"] = true;
         testResults["UnifiedGameManager_HasRegistry"] = unifiedGameManager.characterRegistry != null;
         testResults["UnifiedGameManager_HasSpawnParent"] = unifiedGameManager.spawnParent != null;
-        testResults["UnifiedGameManager_HasTeamMaterials"] = unifiedGameManager.teamMaterials.Length > 0;
+        // ✅ DISABLED: Team materials validation - loại bỏ hoàn toàn chức năng màu team
+        testResults["UnifiedGameManager_HasTeamMaterials"] = true; // Always pass since we disabled team materials
         
         // Test singleton
         testResults["UnifiedGameManager_Singleton"] = UnifiedGameManager.Instance == unifiedGameManager;

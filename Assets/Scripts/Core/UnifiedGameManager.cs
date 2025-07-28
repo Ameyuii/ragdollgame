@@ -16,11 +16,14 @@ public class UnifiedGameManager : MonoBehaviour
     public Transform spawnParent;
     
     [Header("👥 Team Settings")]
+    // ✅ DISABLED: Team materials and colors - loại bỏ hoàn toàn chức năng màu team
+    /*
     [Tooltip("Materials for each team (Team 1-4)")]
     public Material[] teamMaterials = new Material[4];
-    
+
     [Tooltip("Colors for each team (used for previews)")]
     public Color[] teamColors = { Color.blue, Color.red, Color.green, Color.yellow };
+    */
     
     [Header("⚙️ Current State")]
     [Tooltip("Currently selected team")]
@@ -197,8 +200,9 @@ public class UnifiedGameManager : MonoBehaviour
     }
     
     /// <summary>
-    /// Get team color for UI previews
+    /// DISABLED: Get team color for UI previews - loại bỏ hoàn toàn chức năng màu team
     /// </summary>
+    /*
     public Color GetTeamColor(int teamId)
     {
         if (teamId > 0 && teamId <= teamColors.Length)
@@ -207,10 +211,12 @@ public class UnifiedGameManager : MonoBehaviour
         }
         return Color.white;
     }
-    
+    */
+
     /// <summary>
-    /// Get team material for character rendering
+    /// DISABLED: Get team material for character rendering - loại bỏ hoàn toàn chức năng màu team
     /// </summary>
+    /*
     public Material GetTeamMaterial(int teamId)
     {
         if (teamId > 0 && teamId <= teamMaterials.Length)
@@ -219,6 +225,7 @@ public class UnifiedGameManager : MonoBehaviour
         }
         return null;
     }
+    */
 
     /// <summary>
     /// Enable AI for all spawned characters (called when battle starts)
@@ -279,20 +286,9 @@ public class UnifiedGameManager : MonoBehaviour
             ragdoll.teamId = teamId;
             ragdoll.maxHealth = 100f; // Default values
         }
-        
-        // Apply team material
-        Material teamMaterial = GetTeamMaterial(teamId);
-        if (teamMaterial != null)
-        {
-            Renderer[] renderers = character.GetComponentsInChildren<Renderer>();
-            foreach (Renderer renderer in renderers)
-            {
-                if (renderer != null)
-                {
-                    renderer.material = teamMaterial;
-                }
-            }
-        }
+
+        // ✅ Loại bỏ việc áp dụng team material - giữ nguyên texture gốc
+        Debug.Log($"✅ Set team {teamId} for character: {character.name} (keeping original texture)");
     }
     
     private void SetupCharacterAI(GameObject character)

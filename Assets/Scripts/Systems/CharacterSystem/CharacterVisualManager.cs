@@ -53,27 +53,34 @@ public class CharacterVisualManager : MonoBehaviour
     {
         if (variant == null) return;
 
+        // ✅ DISABLED: Custom materials - giữ nguyên texture gốc
+        /*
         // Apply custom materials if available
         if (variant.customMaterials != null && variant.customMaterials.Length > 0)
         {
             ApplyMaterials(variant.customMaterials);
         }
+        */
 
         // Apply custom animator if available
         if (variant.customAnimator != null && animator != null)
         {
             animator.runtimeAnimatorController = variant.customAnimator;
         }
+
+        Debug.Log($"✅ Applied variant visuals for {variant.variantID} (keeping original texture)");
     }
 
     /// <summary>
-    /// Apply team configuration visuals
+    /// Apply team configuration visuals - DISABLED to preserve original textures
     /// </summary>
     public void ApplyTeamConfiguration(TeamConfiguration team)
     {
         currentTeam = team;
         if (team == null) return;
 
+        // ✅ DISABLED: Team material application - giữ nguyên texture gốc
+        /*
         // Apply team materials
         if (currentDefinition != null)
         {
@@ -88,11 +95,15 @@ public class CharacterVisualManager : MonoBehaviour
                 ApplyTeamBaseMaterial(team);
             }
         }
+        */
+
+        Debug.Log($"✅ Team {team.teamID} assigned to {gameObject.name} (keeping original texture)");
     }
 
     /// <summary>
-    /// Apply materials to renderers
+    /// DISABLED: Apply materials to renderers - giữ nguyên texture gốc
     /// </summary>
+    /*
     private void ApplyMaterials(Material[] materials)
     {
         if (materials == null || materials.Length == 0) return;
@@ -105,10 +116,12 @@ public class CharacterVisualManager : MonoBehaviour
             }
         }
     }
+    */
 
     /// <summary>
-    /// Apply team base material with color tinting
+    /// DISABLED: Apply team base material with color tinting - giữ nguyên texture gốc
     /// </summary>
+    /*
     private void ApplyTeamBaseMaterial(TeamConfiguration team)
     {
         if (team.baseMaterial == null) return;
@@ -118,7 +131,7 @@ public class CharacterVisualManager : MonoBehaviour
             if (renderer != null)
             {
                 renderer.material = team.baseMaterial;
-                
+
                 // Apply team color tinting
                 if (renderer.material.HasProperty("_Color"))
                 {
@@ -127,6 +140,7 @@ public class CharacterVisualManager : MonoBehaviour
             }
         }
     }
+    */
 
     /// <summary>
     /// Update health bar visuals

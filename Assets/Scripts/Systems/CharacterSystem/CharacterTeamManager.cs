@@ -55,12 +55,14 @@ public class CharacterTeamManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Get team color
+    /// DISABLED: Get team color - loại bỏ hoàn toàn chức năng màu team
     /// </summary>
+    /*
     public Color GetTeamColor()
     {
         return currentTeam?.primaryColor ?? Color.white;
     }
+    */
 
     /// <summary>
     /// Get team name

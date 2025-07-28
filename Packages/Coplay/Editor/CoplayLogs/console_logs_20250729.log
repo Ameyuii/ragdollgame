@@ -1,3 +1,922 @@
 2025-07-29 00:02:28.474 +07:00 [INF] Cleaned up all thumbnail textures
 2025-07-29 00:02:28.476 +07:00 [INF] AssistantController: Dispose called
 2025-07-29 00:02:28.476 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:02:32.242 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:02:33.086 +07:00 [INF] Loading state from file, and setting to: Initialized
+2025-07-29 00:02:33.104 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:02:33.104 +07:00 [INF] MCP host initialized
+2025-07-29 00:02:33.124 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:02:33.125 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:02:33.808 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:02:33.809 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:02:34.527 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:02:34.535 +07:00 [INF] Loading threads state
+2025-07-29 00:02:34.570 +07:00 [INF] Loading thread messages for thread cpl_thread_39fdf297_b640_477a_864a_b573188fddfd
+2025-07-29 00:02:34.615 +07:00 [INF] FunctionExecutionController: Loaded thread with 1 function calls from chat history.
+2025-07-29 00:02:34.617 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:02:34.618 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:05:01.119 +07:00 [INF] Creating thread
+2025-07-29 00:05:01.756 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:05:01.809 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:05:01.811 +07:00 [INF] Clearing state model
+2025-07-29 00:05:01.811 +07:00 [WRN] You are setting to the same state: Initialized
+2025-07-29 00:05:03.231 +07:00 [INF] Updating thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a to New chat 2025-07-29 00:05:01
+2025-07-29 00:05:03.834 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:05:03.886 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:05:14.255 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:05:14.257 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:05:14.257 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:05:17.746 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:05:18.532 +07:00 [INF] Loading state from file, and setting to: Initialized
+2025-07-29 00:05:18.549 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:05:18.549 +07:00 [INF] MCP host initialized
+2025-07-29 00:05:18.569 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:05:18.569 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:05:19.220 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:05:19.220 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:05:19.284 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:05:19.290 +07:00 [INF] Loading threads state
+2025-07-29 00:05:19.317 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:05:19.355 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:05:19.355 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:05:36.086 +07:00 [INF] Image extracted from clipboard and saved to: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:05:36.087 +07:00 [INF] Downsampling image: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:05:36.102 +07:00 [INF] Image Attached: Clipboard image has been attached to the context.
+2025-07-29 00:05:52.983 +07:00 [INF] [Mode: Normal] User prompt: nhân vật spaw ra map đang không có texture, prefap của nhân vật có texture
+2025-07-29 00:05:52.993 +07:00 [INF] Coplay State Change: Initialized -> WaitingForAI
+2025-07-29 00:05:53.002 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:05:53.006 +07:00 [INF] Added image data URL for C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoA...
+2025-07-29 00:05:53.134 +07:00 [INF] Listed 200 recursive files and directories matching glob pattern '**/*' in E:/unity/testaiunity. (Result truncated to first 200 items. Use more specific patterns or explore subdirectories.)
+2025-07-29 00:05:53.141 +07:00 [INF] Initializing EditorThreadHelper
+2025-07-29 00:05:53.141 +07:00 [INF] EditorThreadHelper initialized successfully
+2025-07-29 00:05:53.174 +07:00 [INF] Updating thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a to nhân vật spaw ra map đang không có texture, prefap của nhân vật có texture
+2025-07-29 00:05:53.897 +07:00 [INF] FunctionExecutionController: Loaded thread with 0 function calls from chat history.
+2025-07-29 00:05:53.897 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:05:53.948 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:06:09.376 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:06:09.382 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:06:09.388 +07:00 [INF] Func: get_game_object_info Args: gameObjectPath: SpawnedCharacters/BattleCharacter (Team 1), includeInactive: false
+2025-07-29 00:06:09.437 +07:00 [INF] Function result: {
+  "Name": "BattleCharacter (Team 1)",
+  "Tag": "Team1",
+  "Layer": 8,
+  "LayerName": "Enemy",
+  "IsStatic": false,
+  "IsActive": true,
+  "Bounds": {
+    "center": {
+      "x": 3.09489274,
+      "y": -0.06198001,
+      "z": 3.84378481
+    },
+    "size": {
+      "x": 1.47875547,
+      "y": 1.96049452,
+      "z": 0.5888376
+    },
+    "min": {
+      "x": 2.355515,
+      "y": -1.04222727,
+      "z": 3.549366
+    },
+    "max": {
+      "x": 3.83427048,
+      "y": 0.91826725,
+      "z": 4.13820362
+    }
+  },
+  "Components": [
+    {
+      "type": "UnityEngine.Transform",
+      "properties": {
+        "localPosition": {
+          "x": 3.09362817,
+          "y": 0.0833333358,
+          "z": 3.96594334
+        },
+        "localRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "localScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    {
+      "type": "UnityEngine.Animator",
+      "properties": {
+        "isOptimizable": true,
+        "humanScale": 1.07056034,
+        "isHuman": true,
+        "hasRootMotion": false,
+        "runtimeAnimatorControllerPath": "Assets/Animation/CharacterAnimationController.controller",
+        "avatarPath": "Assets/Military/Basemesh/SK_Military_Survivalist.fbx",
+        "enabled": true
+      }
+    },
+    {
+      "type": "UnityEngine.AI.NavMeshAgent",
+      "properties": {
+        "agentTypeID": 0,
+        "radius": 0.5,
+        "speed": 3.5,
+        "acceleration": 8.0,
+        "avoidancePriority": 50,
+        "angularSpeed": 120.0,
+        "stoppingDistance": 1.8,
+        "autoTraverseOffMeshLink": true,
+        "autoBraking": true,
+        "autoRepath": true,
+        "height": 2.0,
+        "baseOffset": 0.0,
+        "walkableMask": -1,
+        "obstacleAvoidanceType": "High Quality",
+        "enabled": true
+      }
+    },
+    {
+      "type": "UnityEngine.CapsuleCollider",
+      "properties": {
+        "layerOverridePriority": 0,
+        "isTrigger": false,
+        "providesContacts": false,
+        "radius": 0.5,
+        "height": 2.0,
+        "direction": "Y-Axis",
+        "center": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "enabled": true
+      }
+    },
+    {
+      "type": "RagdollCharacter",
+      "properties": {
+        "maxHealth": 100.0,
+        "moveSpeed": 3.0,
+        "attackDamage": 20.0,
+        "attackRange": 2.0,
+        "attackCooldown": 1.0,
+        "teamId": 1,
+        "healthBarCanvas": "",
+        "enabled": true,
+        "scriptPath": "Assets/Scripts/Utils/RagdollCharacter.cs"
+      }
+    },
+    {
+      "type": "UnityEngine.Rigidbody",
+      "properties": {
+        "mass": 1.0,
+        "linearDamping": 5.0,
+        "angularDamping": 10.0,
+        "centerOfMass": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "inertiaTensor": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "inertiaRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "implicitCom": true,
+        "implicitTensor": true,
+        "useGravity": false,
+        "isKinematic": true,
+        "interpolate": "None",
+        "collisionDetection": "Discrete"
+      }
+    },
+    {
+      "type": "SimpleCharacterAI",
+      "properties": {
+        "detectionRange": 15.0,
+        "attackRange": 2.5,
+        "moveSpeed": 3.0,
+        "patrolRadius": 10.0,
+        "attackCooldown": 1.5,
+        "enabled": false,
+        "scriptPath": "Assets/Scripts/AI/SimpleCharacterAI.cs"
+      }
+    }
+  ]
+}
+2025-07-29 00:06:09.443 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:06:09.444 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:06:09.445 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:09.445 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:06:09.445 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:09.445 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:06:09.451 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:06:09.453 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:06:15.912 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:06:15.918 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:06:15.920 +07:00 [INF] Func: get_game_object_info Args: gameObjectPath: BattleCharacter, prefabPath: Assets/Resources/BattleCharacter.prefab, includeInactive: false
+2025-07-29 00:06:15.945 +07:00 [INF] Function result: {
+  "Name": "BattleCharacter",
+  "Tag": "Team1",
+  "Layer": 8,
+  "LayerName": "Enemy",
+  "IsStatic": false,
+  "IsActive": true,
+  "Bounds": {
+    "center": {
+      "x": -5.99699545,
+      "y": 1.04004562,
+      "z": 1.89533532
+    },
+    "size": {
+      "x": 1.478755,
+      "y": 1.96049428,
+      "z": 0.5888374
+    },
+    "min": {
+      "x": -6.736373,
+      "y": 0.05979848,
+      "z": 1.60091662
+    },
+    "max": {
+      "x": -5.257618,
+      "y": 2.02029276,
+      "z": 2.189754
+    }
+  },
+  "Components": [
+    {
+      "type": "UnityEngine.Transform",
+      "properties": {
+        "localPosition": {
+          "x": -6.0,
+          "y": 0.1,
+          "z": 2.0
+        },
+        "localRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "localScale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
+    },
+    {
+      "type": "UnityEngine.Animator",
+      "properties": {
+        "isOptimizable": true,
+        "humanScale": 1.07056034,
+        "isHuman": true,
+        "hasRootMotion": false,
+        "runtimeAnimatorControllerPath": "Assets/Animation/CharacterAnimationController.controller",
+        "avatarPath": "Assets/Military/Basemesh/SK_Military_Survivalist.fbx",
+        "enabled": true
+      }
+    },
+    {
+      "type": "UnityEngine.AI.NavMeshAgent",
+      "properties": {
+        "agentTypeID": 0,
+        "radius": 0.5,
+        "speed": 3.5,
+        "acceleration": 8.0,
+        "avoidancePriority": 50,
+        "angularSpeed": 120.0,
+        "stoppingDistance": 1.8,
+        "autoTraverseOffMeshLink": true,
+        "autoBraking": true,
+        "autoRepath": true,
+        "height": 2.0,
+        "baseOffset": 0.0,
+        "walkableMask": -1,
+        "obstacleAvoidanceType": "High Quality",
+        "enabled": true
+      }
+    },
+    {
+      "type": "UnityEngine.CapsuleCollider",
+      "properties": {
+        "layerOverridePriority": 0,
+        "isTrigger": false,
+        "providesContacts": false,
+        "radius": 0.5,
+        "height": 2.0,
+        "direction": "Y-Axis",
+        "center": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "enabled": true
+      }
+    },
+    {
+      "type": "UnityEngine.Rigidbody",
+      "properties": {
+        "mass": 1.0,
+        "linearDamping": 5.0,
+        "angularDamping": 10.0,
+        "centerOfMass": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "inertiaTensor": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "inertiaRotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "implicitCom": true,
+        "implicitTensor": true,
+        "useGravity": false,
+        "isKinematic": true,
+        "interpolate": "None",
+        "collisionDetection": "Discrete"
+      }
+    }
+  ]
+}
+2025-07-29 00:06:15.947 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:06:15.948 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:06:15.949 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:15.949 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:06:15.949 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:15.949 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:06:15.956 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:06:15.957 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:06:23.070 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:06:23.075 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:06:23.077 +07:00 [INF] Func: list_game_objects_in_hierarchy Args: referenceObjectPath: SpawnedCharacters/BattleCharacter (Team 1), componentFilter: MeshRenderer, limit: 50, onlyPaths: false
+2025-07-29 00:06:23.084 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:23.084 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:06:23.085 +07:00 [INF] Using reference object: BattleCharacter (Team 1) at path SpawnedCharacters/BattleCharacter (Team 1)
+2025-07-29 00:06:23.169 +07:00 [INF] Function result: {"gameObjects":[{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Backpack1","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Boots3","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Cap1","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Head1","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Male_Arms1","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Pants2","components":["Transform","SkinnedMeshRenderer"],"children":[]},{"path":"/SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Shirt3","components":["Transform","SkinnedMeshRenderer"],"children":[]}],"message":""}
+2025-07-29 00:06:23.171 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:06:23.206 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:06:23.207 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:23.207 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:06:23.209 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:06:23.211 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:06:29.098 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:06:29.104 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:06:29.105 +07:00 [INF] Func: get_game_object_info Args: gameObjectPath: SpawnedCharacters/BattleCharacter (Team 1)/SK_Military_Head1, componentFilter: SkinnedMeshRenderer, includeInactive: false
+2025-07-29 00:06:29.106 +07:00 [INF] Function result: {
+  "Name": "SK_Military_Head1",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "LayerName": "Default",
+  "IsStatic": false,
+  "IsActive": true,
+  "Bounds": {
+    "center": {
+      "x": 3.092013,
+      "y": 0.712575555,
+      "z": 3.93196249
+    },
+    "size": {
+      "x": 0.220772222,
+      "y": 0.4113833,
+      "z": 0.370599657
+    },
+    "min": {
+      "x": 2.98162675,
+      "y": 0.5068839,
+      "z": 3.74666262
+    },
+    "max": {
+      "x": 3.202399,
+      "y": 0.9182672,
+      "z": 4.11726236
+    }
+  },
+  "Components": [
+    {
+      "type": "UnityEngine.SkinnedMeshRenderer",
+      "properties": {
+        "castShadows": "On",
+        "receiveShadows": true,
+        "dynamicOccludee": true,
+        "staticShadowCaster": false,
+        "motionVectors": "Per Object Motion",
+        "lightProbeUsage": 1,
+        "reflectionProbeUsage": 1,
+        "rayTracingMode": 3,
+        "rayTraceProcedural": false,
+        "rayTracingAccelStructBuildFlagsOverride": false,
+        "rayTracingAccelStructBuildFlags": 1,
+        "smallMeshCulling": true,
+        "forceMeshLod": -1,
+        "meshLodSelectionBias": 0.0,
+        "renderingLayerMask": 1,
+        "rendererPriority": 0,
+        "quality": "Auto",
+        "updateWhenOffscreen": false,
+        "skinnedMotionVectors": true,
+        "mesh": "Assets/Military/Basemesh/SK_Military_Survivalist.fbx",
+        "rootBone": "",
+        "enabled": true
+      }
+    }
+  ]
+}
+2025-07-29 00:06:29.108 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:06:29.108 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:06:29.108 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:29.108 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:06:29.108 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:06:29.108 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:06:29.116 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:06:29.117 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:08:25.064 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:08:25.071 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:08:25.072 +07:00 [INF] Func: get_game_object_info Args: prefabPath: Assets/Resources/BattleCharacter.prefab, gameObjectPath: BattleCharacter/SK_Military_Head1, componentFilter: SkinnedMeshRenderer, includeInactive: false
+2025-07-29 00:08:25.078 +07:00 [INF] Function result: {
+  "Name": "SK_Military_Head1",
+  "Tag": "Untagged",
+  "Layer": 0,
+  "LayerName": "Default",
+  "IsStatic": false,
+  "IsActive": true,
+  "Bounds": {
+    "center": {
+      "x": -5.99987555,
+      "y": 1.81460106,
+      "z": 1.98351312
+    },
+    "size": {
+      "x": 0.220772,
+      "y": 0.411383152,
+      "z": 0.3705995
+    },
+    "min": {
+      "x": -6.11026144,
+      "y": 1.60890949,
+      "z": 1.79821336
+    },
+    "max": {
+      "x": -5.88948965,
+      "y": 2.02029276,
+      "z": 2.16881275
+    }
+  },
+  "Components": [
+    {
+      "type": "UnityEngine.SkinnedMeshRenderer",
+      "properties": {
+        "castShadows": "On",
+        "receiveShadows": true,
+        "dynamicOccludee": true,
+        "staticShadowCaster": false,
+        "motionVectors": "Per Object Motion",
+        "lightProbeUsage": 1,
+        "reflectionProbeUsage": 1,
+        "rayTracingMode": 3,
+        "rayTraceProcedural": false,
+        "rayTracingAccelStructBuildFlagsOverride": false,
+        "rayTracingAccelStructBuildFlags": 1,
+        "smallMeshCulling": true,
+        "forceMeshLod": -1,
+        "meshLodSelectionBias": 0.0,
+        "renderingLayerMask": 1,
+        "rendererPriority": 0,
+        "quality": "Auto",
+        "updateWhenOffscreen": false,
+        "skinnedMotionVectors": true,
+        "mesh": "Assets/Military/Basemesh/SK_Military_Survivalist.fbx",
+        "rootBone": "",
+        "enabled": true
+      }
+    }
+  ]
+}
+2025-07-29 00:08:25.081 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:08:25.081 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:08:25.082 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:25.082 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:08:25.082 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:25.082 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:08:25.086 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:08:25.088 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:08:31.798 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:08:31.805 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:08:31.807 +07:00 [INF] Func: list_files Args: path: Assets/Military/Materials, recursive: false
+2025-07-29 00:08:31.811 +07:00 [INF] Listed 60 top-level files and directories matching glob pattern '*' in Assets/Military/Materials. 
+2025-07-29 00:08:31.812 +07:00 [INF] Function result: Backpack1_Skin1.mat
+Backpack1_Skin1.mat.meta
+Backpack1_Skin2.mat
+Backpack1_Skin2.mat.meta
+Backpack1_Skin3.mat
+Backpack1_Skin3.mat.meta
+Backpack1_Skin4.mat
+Backpack1_Skin4.mat.meta
+Boots3_Skin1.mat
+Boots3_Skin1.mat.meta
+Boots3_Skin2.mat
+Boots3_Skin2.mat.meta
+Boots3_Skin3.mat
+Boots3_Skin3.mat.meta
+Cap1_Skin1.mat
+Cap1_Skin1.mat.meta
+Cap1_Skin2.mat
+Cap1_Skin2.mat.meta
+Cap1_Skin3.mat
+Cap1_Skin3.mat.meta
+Cap1_Skin4.mat
+Cap1_Skin4.mat.meta
+Eyes1.mat
+Eyes1.mat.meta
+FPS_Hands1_Skin1.mat
+FPS_Hands1_Skin1.mat.meta
+Gloves1_Skin1.mat
+Gloves1_Skin1.mat.meta
+Gloves1_Skin2.mat
+Gloves1_Skin2.mat.meta
+Hands1_Skin1.mat
+Hands1_Skin1.mat.meta
+Hands1_Skin2.mat
+Hands1_Skin2.mat.meta
+Head1.mat
+Head1.mat.meta
+Pants2_Skin1.mat
+Pants2_Skin1.mat.meta
+Pants2_Skin2.mat
+Pants2_Skin2.mat.meta
+Pants2_Skin3.mat
+Pants2_Skin3.mat.meta
+Pouches1_Skin1.mat
+Pouches1_Skin1.mat.meta
+Pouches1_Skin2.mat
+Pouches1_Skin2.mat.meta
+Pouches1_Skin3.mat
+Pouches1_Skin3.mat.meta
+Shirt3_Skin1.mat
+Shirt3_Skin1.mat.meta
+Shirt3_Skin2.mat
+Shirt3_Skin2.mat.meta
+Shirt3_Skin3.mat
+Shirt3_Skin3.mat.meta
+Vest1_Skin1.mat
+Vest1_Skin1.mat.meta
+Vest1_Skin2.mat
+Vest1_Skin2.mat.meta
+Vest1_Skin3.mat
+Vest1_Skin3.mat.meta
+
+
+2025-07-29 00:08:31.814 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:08:31.814 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:08:31.815 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:31.815 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:08:31.815 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:31.815 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:08:31.819 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:08:31.820 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:08:46.841 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:08:46.841 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:08:46.861 +07:00 [INF] Func: write_to_file Args: path: Assets/Scripts/FixCharacterMaterials.cs, content: using UnityEngine;
+
+public class FixCharacterMaterials : MonoBehaviour
+{
+    public static void Execute()
+    {
+        // Tìm nhân vật đã spawn
+        GameObject spawnedCharacter = GameObject.Find("SpawnedCharacters/BattleCharacter (Team 1)");
+        if (spawnedCharacter == null)
+        {
+            Debug.LogError("Không tìm thấy nhân vật đã spawn!");
+            return;
+        }
+
+        // Gán materials cho từng phần của nhân vật
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Backpack1", "Assets/Military/Materials/Backpack1_Skin1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Boots3", "Assets/Military/Materials/Boots3_Skin1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Cap1", "Assets/Military/Materials/Cap1_Skin1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Head1", "Assets/Military/Materials/Head1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Male_Arms1", "Assets/Military/Materials/Hands1_Skin1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Pants2", "Assets/Military/Materials/Pants2_Skin1.mat");
+        AssignMaterialToChild(spawnedCharacter, "SK_Military_Shirt3", "Assets/Military/Materials/Shirt3_Skin1.mat");
+
+        Debug.Log("Đã gán materials cho nhân vật spawn!");
+    }
+
+    private static void AssignMaterialToChild(GameObject parent, string childName, string materialPath)
+    {
+        Transform childTransform = parent.transform.Find(childName);
+        if (childTransform == null)
+        {
+            Debug.LogWarning($"Không tìm thấy child object: {childName}");
+            return;
+        }
+
+        SkinnedMeshRenderer renderer = childTransform.GetComponent<SkinnedMeshRenderer>();
+        if (renderer == null)
+        {
+            Debug.LogWarning($"Không tìm thấy SkinnedMeshRenderer trên: {childName}");
+            return;
+        }
+
+        Material material = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>(materialPath);
+        if (material == null)
+        {
+            Debug.LogWarning($"Không tìm thấy material: {materialPath}");
+            return;
+        }
+
+        renderer.material = material;
+        Debug.Log($"Đã gán material {materialPath} cho {childName}");
+    }
+}
+2025-07-29 00:08:46.864 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:46.864 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:08:47.091 +07:00 [INF] Function result: Placeholder text for file creation. Result will be read from E:\unity\testaiunity\Packages\Coplay\Editor\CoplayLogs\compile_function_result.json
+2025-07-29 00:08:51.107 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(8,18): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.107 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.107 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(9,16): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.107 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.107 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(10,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(11,21): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(12,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\TeamSelector.cs(36,30): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(18,18): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(19,18): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.109 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(26,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.109 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.111 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(30,21): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.111 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.111 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(31,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.111 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(32,21): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(33,24): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(34,23): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(8,16): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(9,16): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(10,16): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(11,18): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.112 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(18,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.112 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(19,21): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(20,22): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(29,24): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(32,24): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\BattleGameManager.cs(35,25): warning CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(35,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(36,25): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.114 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(66,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.114 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.117 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\GameStateManager.cs(76,29): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.117 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.117 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\SystemMigrationController.cs(87,33): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.117 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.117 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\CharacterSystem\CharacterPool.cs(34,29): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.117 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.117 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\CharacterSystem\CharacterSystemManager.cs(23,29): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.117 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.118 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\SimpleCharacterAI.cs(108,44): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.118 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.118 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\LegacySystemCleanup.cs(193,35): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.118 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.118 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\MigrationValidator.cs(168,35): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.118 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.118 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\MigrationValidator.cs(174,34): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\MigrationValidator.cs(177,31): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\UnifiedGameManager.cs(228,37): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\UnifiedGameManager.cs(248,37): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\SimpleCharacterAI.cs(199,43): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\LegacySystemCleanup.cs(257,35): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\LegacySystemCleanup.cs(286,30): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\LegacySystemCleanup.cs(287,31): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\LegacySystemCleanup.cs(288,35): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Systems\CharacterSystem\PerformanceManager.cs(53,29): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Core\UnifiedGameManager.cs(352,35): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\CompileValidator.cs(96,28): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\CompileValidator.cs(140,30): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.119 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\CompileValidator.cs(158,33): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.119 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\CompileValidator.cs(184,26): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(160,32): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(161,39): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\UI\SimpleCharacterDrag.cs(288,22): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Utils\RagdollCharacter.cs(266,44): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(137,41): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(218,45): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\AICoordinator.cs(219,36): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\AI\SimpleCharacterAI.cs(17,18): warning CS0414: The field 'SimpleCharacterAI.isAttacking' is assigned but its value is never used  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.122 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterManagerEditor.cs(5,22): warning CS0618: 'CharacterManager' is obsolete: 'CharacterManager will be replaced by UnifiedGameManager in the new Unified Character System. This script is deprecated and will be removed after migration.'  Warning
+2025-07-29 00:08:51.122 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterManagerEditor.cs(435,61): warning CS0618: 'CharacterManager' is obsolete: 'CharacterManager will be replaced by UnifiedGameManager in the new Unified Character System. This script is deprecated and will be removed after migration.'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterManagerEditor.cs(433,13): warning CS0618: 'CharacterManager' is obsolete: 'CharacterManager will be replaced by UnifiedGameManager in the new Unified Character System. This script is deprecated and will be removed after migration.'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterManagerEditor.cs(8,13): warning CS0618: 'CharacterManager' is obsolete: 'CharacterManager will be replaced by UnifiedGameManager in the new Unified Character System. This script is deprecated and will be removed after migration.'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterDatabaseManager.cs(51,18): warning CS0108: 'CharacterDatabaseManager.DrawHeader()' hides inherited member 'Editor.DrawHeader()'. Use the new keyword if hiding was intended.  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\CharacterManagerEditor.cs(22,20): warning CS0618: 'CharacterManager' is obsolete: 'CharacterManager will be replaced by UnifiedGameManager in the new Unified Character System. This script is deprecated and will be removed after migration.'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\FixTextMaterial.cs(13,27): warning CS0618: 'Object.FindObjectsOfType<T>()' is obsolete: 'Object.FindObjectsOfType has been deprecated. Use Object.FindObjectsByType instead which lets you decide whether you need the results sorted or not.  FindObjectsOfType sorts the results by InstanceID but if you do not need this using FindObjectSortMode.None is considerably faster.'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.124 +07:00 [INF] OnLogMessageReceived: Assets\Scripts\Editor\TeamDropdownFixEditor.cs(18,45): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'  Warning
+2025-07-29 00:08:51.124 +07:00 [INF] Is checking compilation: True
+2025-07-29 00:08:51.194 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:08:51.194 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:08:51.194 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:08:54.794 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:08:54.915 +07:00 [INF] Loading state from file, and setting to: ExecutingAllFunctions
+2025-07-29 00:08:54.939 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:08:54.939 +07:00 [INF] MCP host initialized
+2025-07-29 00:08:54.956 +07:00 [INF] Downsampling image: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:08:54.973 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:08:54.973 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:08:56.174 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:08:56.174 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:08:56.918 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:08:56.924 +07:00 [INF] Loading threads state
+2025-07-29 00:08:56.964 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:08:57.014 +07:00 [INF] HandleCompilationCompletion
+2025-07-29 00:08:57.040 +07:00 [INF] FunctionExecutionController: Loaded thread with 1 function calls from chat history.
+2025-07-29 00:08:57.042 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:08:57.044 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:08:57.044 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:08:57.072 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:08:57.072 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:08:57.072 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:08:57.127 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:08:57.148 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:09:02.654 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:09:02.657 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:09:02.659 +07:00 [INF] Func: execute_script Args: filePath: Assets/Scripts/FixCharacterMaterials.cs, methodName: Execute
+2025-07-29 00:09:02.683 +07:00 [INF] Resolving file path: Assets/Scripts/FixCharacterMaterials.cs
+2025-07-29 00:09:02.685 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:09:02.685 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:09:02.702 +07:00 [INF] Executing script from file: E:\unity\testaiunity\Assets\Scripts\FixCharacterMaterials.cs
+2025-07-29 00:09:02.704 +07:00 [INF] Initializing EditorThreadHelper
+2025-07-29 00:09:02.704 +07:00 [INF] EditorThreadHelper initialized successfully
+2025-07-29 00:09:02.704 +07:00 [INF] Triggering script recompilation via AssetDatabase.Refresh()
+2025-07-29 00:09:02.707 +07:00 [INF] No script compilation in progress. Proceeding with script execution.
+2025-07-29 00:09:02.765 +07:00 [WRN] Could not add reference to assembly Anonymously Hosted DynamicMethods Assembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null: The invoked member is not supported in a dynamic module.
+2025-07-29 00:09:02.765 +07:00 [WRN] Could not add reference to assembly Microsoft.GeneratedCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null: The invoked member is not supported in a dynamic module.
+2025-07-29 00:09:03.317 +07:00 [INF] Found Execute method in class FixCharacterMaterials
+2025-07-29 00:09:03.398 +07:00 [INF] Function result: {"Success":true,"Result":null}
+2025-07-29 00:09:03.406 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:09:03.406 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:09:03.407 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:09:03.407 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:09:03.450 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:09:03.450 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:09:25.725 +07:00 [INF] Cancelling current request
+2025-07-29 00:09:25.725 +07:00 [INF] Request cancelled
+2025-07-29 00:09:26.616 +07:00 [INF] Returned to previous state: WaitingForAI -> Initialized (Finished running assistant thread)
+2025-07-29 00:09:26.616 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:09:37.288 +07:00 [INF] [Mode: Normal] User prompt: tại sao lại phải tạo script, bạn tạo quá nhiều script rác
+2025-07-29 00:09:37.289 +07:00 [INF] Coplay State Change: Initialized -> WaitingForAI
+2025-07-29 00:09:37.299 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:09:37.308 +07:00 [INF] Added image data URL for C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoA...
+2025-07-29 00:09:37.407 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:09:58.915 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:09:58.915 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:09:58.925 +07:00 [INF] Func: execute_command Args: command: del "Assets\Scripts\FixCharacterMaterials.cs", requires_approval: false
+2025-07-29 00:09:58.929 +07:00 [INF] Executing command: del "Assets\Scripts\FixCharacterMaterials.cs" (Requires approval: False)
+2025-07-29 00:09:58.935 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:09:58.935 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:09:59.094 +07:00 [INF] Command executed successfully with exit code: 0
+2025-07-29 00:09:59.094 +07:00 [INF] Command contained deletion command, refreshing AssetDatabase.
+2025-07-29 00:09:59.311 +07:00 [INF] Function result: Command executed successfully
+2025-07-29 00:10:02.477 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:10:02.478 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:10:02.478 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:10:05.822 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:10:05.868 +07:00 [INF] Loading state from file, and setting to: ExecutingAllFunctions
+2025-07-29 00:10:05.891 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:10:05.891 +07:00 [INF] MCP host initialized
+2025-07-29 00:10:05.917 +07:00 [INF] Downsampling image: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:10:05.927 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:10:05.927 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:10:07.142 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:10:07.142 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:10:07.828 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:10:07.837 +07:00 [INF] Loading threads state
+2025-07-29 00:10:07.873 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:10:07.924 +07:00 [INF] HandleCompilationCompletion
+2025-07-29 00:10:07.943 +07:00 [INF] FunctionExecutionController: Loaded thread with 1 function calls from chat history.
+2025-07-29 00:10:07.946 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:10:07.948 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:10:07.948 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:10:07.991 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:10:07.991 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:10:07.991 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:10:08.049 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:10:08.069 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:10:15.697 +07:00 [INF] Coplay State Change: WaitingForAI -> WaitingForUserToExecuteFunction
+2025-07-29 00:10:15.697 +07:00 [INF] Coplay State Change: WaitingForUserToExecuteFunction -> ExecutingAllFunctions
+2025-07-29 00:10:15.703 +07:00 [INF] Func: add_asset_to_scene Args: asset_path: Resources/BattleCharacter.prefab, instance_name: BattleCharacter (Team 1), position: 3,0.1,4
+2025-07-29 00:10:15.735 +07:00 [INF] Function result: Added asset 'Assets\Resources/BattleCharacter.prefab' to scene as 'BattleCharacter (Team 1)'.
+2025-07-29 00:10:15.739 +07:00 [INF] Returned to previous state: ExecutingAllFunctions -> WaitingForUserToExecuteFunction (All functions executed)
+2025-07-29 00:10:15.739 +07:00 [INF] Returned to previous state: WaitingForUserToExecuteFunction -> WaitingForAI (User has executed all functions)
+2025-07-29 00:10:15.741 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:10:15.741 +07:00 [INF] Handling state change: ExecutingAllFunctions
+2025-07-29 00:10:15.741 +07:00 [INF] Handling state change: WaitingForUserToExecuteFunction
+2025-07-29 00:10:15.741 +07:00 [INF] Handling state change: WaitingForAI
+2025-07-29 00:10:15.849 +07:00 [INF] Tool outputs: 1
+2025-07-29 00:10:15.851 +07:00 [INF] assistant mode: Normal
+2025-07-29 00:10:25.888 +07:00 [INF] Cancelling current request
+2025-07-29 00:10:25.888 +07:00 [INF] Request cancelled
+2025-07-29 00:10:26.461 +07:00 [INF] Returned to previous state: WaitingForAI -> Initialized (Finished running assistant thread)
+2025-07-29 00:10:26.461 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:13:20.395 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:13:20.401 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:13:20.405 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:13:24.116 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:13:24.267 +07:00 [INF] Loading state from file, and setting to: Initialized
+2025-07-29 00:13:24.288 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:13:24.288 +07:00 [INF] MCP host initialized
+2025-07-29 00:13:24.310 +07:00 [INF] Downsampling image: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:13:24.322 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:13:24.322 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:13:25.596 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:13:25.596 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:13:26.367 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:13:26.377 +07:00 [INF] Loading threads state
+2025-07-29 00:13:26.420 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:13:26.479 +07:00 [INF] FunctionExecutionController: Loaded thread with 0 function calls from chat history.
+2025-07-29 00:13:26.483 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:13:26.483 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:15:27.838 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:15:27.843 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:15:27.844 +07:00 [INF] FunctionExecutionController: Dispose called
+2025-07-29 00:15:31.398 +07:00 [INF] Loaded 0 action records from JSON file.
+2025-07-29 00:15:31.572 +07:00 [INF] Loading state from file, and setting to: Initialized
+2025-07-29 00:15:31.605 +07:00 [INF] No MCP servers configuration found
+2025-07-29 00:15:31.605 +07:00 [INF] MCP host initialized
+2025-07-29 00:15:31.633 +07:00 [INF] Downsampling image: C:\Users\Admin\AppData\Local\Temp\copied_img_36_0005_20250729079.png
+2025-07-29 00:15:31.646 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:15:31.647 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:15:32.927 +07:00 [INF] Checking for dependencies in: E:\unity\testaiunity\Packages\Coplay\Editor\Binaries
+2025-07-29 00:15:32.928 +07:00 [INF] Executable at E:\unity\testaiunity\Packages\Coplay\Editor\Binaries\ripgrep\x86_64\rg.exe exists: True
+2025-07-29 00:15:33.733 +07:00 [INF] Placeholder text would be: What can I help with?
+2025-07-29 00:15:33.743 +07:00 [INF] Loading threads state
+2025-07-29 00:15:33.791 +07:00 [INF] Loading thread messages for thread cpl_thread_f311da96_2394_44fa_942e_8d68ebf1ca4a
+2025-07-29 00:15:33.841 +07:00 [INF] FunctionExecutionController: Loaded thread with 0 function calls from chat history.
+2025-07-29 00:15:33.846 +07:00 [INF] 1 OnThreadChanged
+2025-07-29 00:15:33.847 +07:00 [INF] Handling state change: Initialized
+2025-07-29 00:25:21.916 +07:00 [INF] Cleaned up all thumbnail textures
+2025-07-29 00:25:21.916 +07:00 [INF] AssistantController: Dispose called
+2025-07-29 00:25:21.919 +07:00 [INF] FunctionExecutionController: Dispose called

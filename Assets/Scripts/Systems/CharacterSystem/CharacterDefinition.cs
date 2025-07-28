@@ -20,8 +20,11 @@ public class CharacterDefinition : ScriptableObject
     [SerializeField] private CharacterStats baseStats;
     [SerializeField] private List<CharacterVariant> variants = new List<CharacterVariant>();
 
+    // ✅ DISABLED: Team Materials - loại bỏ hoàn toàn chức năng màu team
+    /*
     [Header("Team Materials")]
     [SerializeField] private List<TeamMaterialSet> teamMaterials = new List<TeamMaterialSet>();
+    */
 
     [Header("Audio")]
     [SerializeField] private AudioClip[] attackSounds;
@@ -79,7 +82,8 @@ public class CharacterDefinition : ScriptableObject
     {
         // Initialize lists if null
         if (variants == null) variants = new List<CharacterVariant>();
-        if (teamMaterials == null) teamMaterials = new List<TeamMaterialSet>();
+        // ✅ DISABLED: Team materials initialization - loại bỏ hoàn toàn chức năng màu team
+        // if (teamMaterials == null) teamMaterials = new List<TeamMaterialSet>();
         if (tags == null) tags = new List<string>();
         
         // Initialize stats if null
@@ -123,13 +127,15 @@ public class CharacterDefinition : ScriptableObject
     }
 
     /// <summary>
-    /// Get team materials for a specific team
+    /// DISABLED: Get team materials for a specific team - loại bỏ hoàn toàn chức năng màu team
     /// </summary>
+    /*
     public Material[] GetTeamMaterials(int teamID)
     {
         TeamMaterialSet materialSet = teamMaterials.Find(t => t.teamID == teamID);
         return materialSet?.materials ?? new Material[0];
     }
+    */
 
     /// <summary>
     /// Get variant by ID
@@ -254,16 +260,18 @@ public class CharacterDefinition : ScriptableObject
     }
 }
 
+// ✅ DISABLED: TeamMaterialSet - loại bỏ hoàn toàn chức năng màu team
+/*
 [System.Serializable]
 public class TeamMaterialSet
 {
     [Header("Team Info")]
     public int teamID;
     public string teamName;
-    
+
     [Header("Materials")]
     public Material[] materials;
-    
+
     [Header("Colors")]
     public Color primaryColor = Color.blue;
     public Color secondaryColor = Color.white;
@@ -280,3 +288,4 @@ public class TeamMaterialSet
         materials = mats ?? new Material[0];
     }
 }
+*/

@@ -31,7 +31,8 @@ public class CharacterEntry
     public float attackRange = 2f;
     
     [Header("Visual")]
-    public Color teamColor = Color.white;
+    // ✅ DISABLED: Team color - loại bỏ hoàn toàn chức năng màu team
+    // public Color teamColor = Color.white;
     [TextArea(2, 3)]
     public string description = "";
 }

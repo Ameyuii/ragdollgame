@@ -221,8 +221,9 @@ public class CharacterDatabase : ScriptableObject
                 teamID = 1,
                 teamName = "Blue Team",
                 teamDescription = "Default blue team",
-                primaryColor = Color.blue,
-                secondaryColor = Color.white,
+                // ✅ DISABLED: Team colors - loại bỏ hoàn toàn chức năng màu team
+                // primaryColor = Color.blue,
+                // secondaryColor = Color.white,
                 isPlayerTeam = true
             };
             teams.Add(team1);
@@ -236,8 +237,9 @@ public class CharacterDatabase : ScriptableObject
                 teamID = 2,
                 teamName = "Red Team",
                 teamDescription = "Default red team",
-                primaryColor = Color.red,
-                secondaryColor = Color.white,
+                // ✅ DISABLED: Team colors - loại bỏ hoàn toàn chức năng màu team
+                // primaryColor = Color.red,
+                // secondaryColor = Color.white,
                 isPlayerTeam = false
             };
             teams.Add(team2);

@@ -63,9 +63,10 @@ public class TeamDropdownController : MonoBehaviour
             team4Option.onClick.AddListener(() => SelectTeam(4));
         }
 
-        // Update button text and color to show Team 1 initially
+        // Update button text to show Team 1 initially
         UpdateButtonText();
-        UpdateButtonColor();
+        // ✅ DISABLED: Update button color - loại bỏ hoàn toàn chức năng màu team
+        // UpdateButtonColor();
 
         // Fix text materials after a short delay
         Invoke("FixTextMaterials", 0.1f);
@@ -115,8 +116,8 @@ public class TeamDropdownController : MonoBehaviour
             Debug.LogWarning("⚠️ UnifiedGameManager not found!");
         }
         
-        // Update button color
-        UpdateButtonColor();
+        // ✅ DISABLED: Update button color - loại bỏ hoàn toàn chức năng màu team
+        // UpdateButtonColor();
         
         Debug.Log($"Selected Team {teamId}");
     }
@@ -129,6 +130,8 @@ public class TeamDropdownController : MonoBehaviour
         }
     }
     
+    // ✅ DISABLED: Update button color - loại bỏ hoàn toàn chức năng màu team
+    /*
     void UpdateButtonColor()
     {
         if (teamDropdownButton)
@@ -157,6 +160,7 @@ public class TeamDropdownController : MonoBehaviour
             }
         }
     }
+    */
     
     void FixTextMaterials()
     {

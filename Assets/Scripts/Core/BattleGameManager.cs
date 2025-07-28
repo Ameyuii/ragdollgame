@@ -717,8 +717,8 @@ public class BattleGameManager : MonoBehaviour
             ragdoll.teamId = currentTeam;
             Debug.Log($"✅ Set team {currentTeam} for character: {newCharacter.name}");
             
-            // Apply team material if available
-            ApplyTeamMaterial(newCharacter, currentTeam);
+            // ✅ Loại bỏ việc áp dụng team material - giữ nguyên texture gốc
+            // ApplyTeamMaterial(newCharacter, currentTeam);
         }
         
         // Setup AI cho character mới
@@ -747,11 +747,13 @@ public class BattleGameManager : MonoBehaviour
         return position;
     }
     
+    // ✅ DISABLED: ApplyTeamMaterial - Giữ nguyên texture gốc của prefab
+    /*
     void ApplyTeamMaterial(GameObject character, int teamId)
     {
         // Try to apply team material
         Material teamMaterial = null;
-        
+
         if (teamId == 1)
         {
             teamMaterial = Resources.Load<Material>("Team1_Blue");
@@ -760,7 +762,7 @@ public class BattleGameManager : MonoBehaviour
         {
             teamMaterial = Resources.Load<Material>("Team2_Red");
         }
-        
+
         if (teamMaterial != null)
         {
             Renderer[] renderers = character.GetComponentsInChildren<Renderer>();
@@ -773,6 +775,7 @@ public class BattleGameManager : MonoBehaviour
             }
         }
     }
+    */
     
     public void StartBattle()
     {

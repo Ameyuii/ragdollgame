@@ -14,10 +14,10 @@ public class TeamSelector : MonoBehaviour
     [Header("Team Configuration")]
     public TeamData[] availableTeams = new TeamData[]
     {
-        new TeamData { teamId = 1, teamName = "🔵 TEAM 1", teamColor = Color.blue },
-        new TeamData { teamId = 2, teamName = "🔴 TEAM 2", teamColor = Color.red },
-        new TeamData { teamId = 3, teamName = "🟢 TEAM 3", teamColor = Color.green },
-        new TeamData { teamId = 4, teamName = "🟡 TEAM 4", teamColor = Color.yellow }
+        new TeamData { teamId = 1, teamName = "TEAM 1" },
+        new TeamData { teamId = 2, teamName = "TEAM 2" },
+        new TeamData { teamId = 3, teamName = "TEAM 3" },
+        new TeamData { teamId = 4, teamName = "TEAM 4" }
     };
     
     [System.Serializable]
@@ -25,7 +25,8 @@ public class TeamSelector : MonoBehaviour
     {
         public int teamId;
         public string teamName;
-        public Color teamColor;
+        // ✅ DISABLED: Team color - loại bỏ hoàn toàn chức năng màu team
+        // public Color teamColor;
     }
     
     // Current selected team
@@ -204,13 +205,15 @@ public class TeamSelector : MonoBehaviour
         Button button = buttonObj.AddComponent<Button>();
         button.targetGraphic = buttonImage;
         
-        // Set button colors
+        // ✅ DISABLED: Set button colors - loại bỏ hoàn toàn chức năng màu team
+        /*
         ColorBlock colors = button.colors;
         colors.normalColor = new Color(0.3f, 0.3f, 0.3f, 1f);
         colors.highlightedColor = teamData.teamColor * 0.8f;
         colors.pressedColor = teamData.teamColor * 0.6f;
         colors.selectedColor = teamData.teamColor * 0.8f;
         button.colors = colors;
+        */
         
         // Create text
         GameObject textObj = new GameObject("Text");
@@ -282,8 +285,9 @@ public class TeamSelector : MonoBehaviour
         if (selectedTeam != null)
         {
             teamDisplayText.text = selectedTeam.teamName;
-            
-            // Update button color to match team
+
+            // ✅ DISABLED: Update button color - loại bỏ hoàn toàn chức năng màu team
+            /*
             if (teamDropdownButton != null)
             {
                 Image buttonImage = teamDropdownButton.GetComponent<Image>();
@@ -292,6 +296,7 @@ public class TeamSelector : MonoBehaviour
                     buttonImage.color = selectedTeam.teamColor;
                 }
             }
+            */
         }
     }
     
@@ -325,11 +330,14 @@ public class TeamSelector : MonoBehaviour
         return team != null ? team.teamName : "Unknown Team";
     }
     
+    // ✅ DISABLED: Get selected team color - loại bỏ hoàn toàn chức năng màu team
+    /*
     public Color GetSelectedTeamColor()
     {
         TeamData team = GetTeamData(selectedTeamId);
         return team != null ? team.teamColor : Color.white;
     }
+    */
     
     // Close dropdown when clicking outside
     void Update()
