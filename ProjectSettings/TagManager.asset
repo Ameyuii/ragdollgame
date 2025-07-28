@@ -10,6 +10,7 @@ TagManager:
   - NPC
   - Team1
   - Team2
+  - Zombie
   layers:
   - Default
   - TransparentFX

@@ -13,28 +13,61 @@ MonoBehaviour:
   m_Name: CharacterDatabase
   m_EditorClassIdentifier: Assembly-CSharp::NewCharacterDatabase
   databaseVersion: 1.0
-  lastUpdated: 
-  characters: []
+  lastUpdated: 2025-07-27 10:31:29
+  characters:
+  - {fileID: 11400000, guid: f17fcfe584512914692817f734361bfc, type: 2}
+  - {fileID: 11400000, guid: bf54baf2eb13d9d40af0cce912656ee7, type: 2}
+  - {fileID: 11400000, guid: b4b857ebd90abb44c8ceecce829f573a, type: 2}
+  - {fileID: 11400000, guid: 9fef1fcafb4581449a38ff8597c70c8b, type: 2}
   categories:
-  - categoryID: warrior
-    displayName: Warriors
-    description: Strong melee fighters
+  - categoryID: chienbinh
+    displayName: "\U0001FA96 CHI\u1EBEN BINH"
+    description: "C\xE1c chi\u1EBFn binh qu\xE2n s\u1EF1"
     categoryIcon: {fileID: 0}
-    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    categoryColor: {r: 0.3, g: 1, b: 0.3, a: 1}
     sortOrder: 0
     isActive: 1
-  - categoryID: archer
-    displayName: Archers
-    description: Ranged attackers
+  - categoryID: robot
+    displayName: "\U0001F916 ROBOT"
+    description: "C\xE1c robot chi\u1EBFn \u0111\u1EA5u"
     categoryIcon: {fileID: 0}
-    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    categoryColor: {r: 0.3, g: 0.6, b: 1, a: 1}
     sortOrder: 0
     isActive: 1
-  - categoryID: mage
-    displayName: Mages
-    description: Magic users
+  - categoryID: quaivat
+    displayName: "\U0001F479 QU\xC1I V\u1EACT"
+    description: "C\xE1c qu\xE1i v\u1EADt v\xE0 sinh v\u1EADt l\u1EA1"
     categoryIcon: {fileID: 0}
-    categoryColor: {r: 1, g: 1, b: 1, a: 1}
+    categoryColor: {r: 1, g: 0.3, b: 0.3, a: 1}
     sortOrder: 0
     isActive: 1
-  teams: []
+  - categoryID: zombie
+    displayName: "\U0001F9DF ZOMBIE"
+    description: "C\xE1c zombie v\xE0 x\xE1c s\u1ED1ng"
+    categoryIcon: {fileID: 0}
+    categoryColor: {r: 0.5, g: 0.8, b: 0.3, a: 1}
+    sortOrder: 0
+    isActive: 1
+  teams:
+  - teamID: 1
+    teamName: Blue Team
+    teamDescription: Default blue team
+    primaryColor: {r: 0, g: 0, b: 1, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    baseMaterial: {fileID: 0}
+    materialOverrides: []
+    teamIcon: {fileID: 0}
+    teamFlag: {fileID: 0}
+    isPlayerTeam: 1
+    isNeutralTeam: 0
+  - teamID: 2
+    teamName: Red Team
+    teamDescription: Default red team
+    primaryColor: {r: 1, g: 0, b: 0, a: 1}
+    secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+    baseMaterial: {fileID: 0}
+    materialOverrides: []
+    teamIcon: {fileID: 0}
+    teamFlag: {fileID: 0}
+    isPlayerTeam: 0
+    isNeutralTeam: 0

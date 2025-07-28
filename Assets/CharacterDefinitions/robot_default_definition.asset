@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2aff5a55f274b64c9c3c5b43cd242fb, type: 3}
+  m_Name: robot_default_definition
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDefinition
+  characterID: robot_basic_default_01
+  displayName: Combat Robot
+  categoryID: robot
+  basePrefab: {fileID: 108563576048935225, guid: 1dd8d8793790a2c4a91d56b404647756, type: 3}
+  uiIcon: {fileID: 0}
+  portraitImage: {fileID: 0}
+  animatorController: {fileID: 0}
+  baseStats:
+    maxHealth: 150
+    attackDamage: 30
+    attackRange: 3
+    attackCooldown: 1.2
+    criticalChance: 0.15
+    armor: 10
+    moveSpeed: 3
+    rotationSpeed: 120
+    jumpHeight: 0.5
+    mana: 100
+    manaRegenRate: 10
+    specialAbilityCooldown: 8
+  variants: []
+  teamMaterials: []
+  attackSounds: []
+  hitSounds: []
+  deathSounds: []
+  hitEffect: {fileID: 0}
+  deathEffect: {fileID: 0}
+  spawnEffect: {fileID: 0}
+  description: "M\u1ED9t robot chi\u1EBFn \u0111\u1EA5u t\u1EF1 \u0111\u1ED9ng v\u1EDBi
+    v\u0169 kh\xED t\xEDch h\u1EE3p v\xE0 gi\xE1p th\xE9p m\u1EA1nh m\u1EBD."
+  tags: []
+  unlockCondition:
+    unlockType: 0
+    requiredValue: 0
+    requiredCharacterID: 
+    isUnlocked: 0
+    description: 
+  sortOrder: 0
+  rarity: 0

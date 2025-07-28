@@ -1,9 +1,12 @@
 {
   "mcpServers": {
-    "mcp-unity": {
-      "command": "node",
+    "unityMCP": {
+      "command": "uv",
       "args": [
-        "E:/unity/testaiunity/Library/PackageCache/com.gamelovers.mcp-unity@f0d0bcf07942/Server~/build/index.js"
+        "--directory",
+        "C:\\Users\\Admin\\AppData\\Local\\Programs\\UnityMCP\\UnityMcpServer\\src",
+        "run",
+        "server.py"
       ]
     }
   }

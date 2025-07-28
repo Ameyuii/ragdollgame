@@ -1,7 +1,0 @@
-{
-    "runtimeOptions": {
-        "configProperties": {
-            "System.Reflection.Metadata.MetadataUpdater.IsSupported": false
-        }
-    }
-}

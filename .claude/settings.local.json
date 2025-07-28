@@ -3,12 +3,18 @@
     "allow": [
       "Bash(find:*)",
       "Bash(rm:*)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(start /B \"C:\\Program Files\\Unity\\Hub\\Editor\\2023.3.47f1\\Editor\\Unity.exe\" -projectPath .)",
+      "Bash(ss:*)",
+      "Bash(ls:*)",
+      "mcp__unityMCP__manage_asset",
+      "mcp__unityMCP__execute_menu_item",
+      "mcp__unityMCP__manage_gameobject"
     ]
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "mcp-unity"
+    "unityMCP"
   ],
   "disabledMcpjsonServers": [
     "mcp-unity"

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2aff5a55f274b64c9c3c5b43cd242fb, type: 3}
+  m_Name: bearfish_definition
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterDefinition
+  characterID: quaivat_bearfish_default_01
+  displayName: Bear Fish
+  categoryID: quaivat
+  basePrefab: {fileID: 3871258337923495913, guid: 16a00ff99f79ab54f8aecc8404084c37, type: 3}
+  uiIcon: {fileID: 0}
+  portraitImage: {fileID: 0}
+  animatorController: {fileID: 0}
+  baseStats:
+    maxHealth: 120
+    attackDamage: 25
+    attackRange: 2
+    attackCooldown: 1.5
+    criticalChance: 0.1
+    armor: 0
+    moveSpeed: 3.5
+    rotationSpeed: 180
+    jumpHeight: 1
+    mana: 50
+    manaRegenRate: 5
+    specialAbilityCooldown: 10
+  variants: []
+  teamMaterials: []
+  attackSounds: []
+  hitSounds: []
+  deathSounds: []
+  hitEffect: {fileID: 0}
+  deathEffect: {fileID: 0}
+  spawnEffect: {fileID: 0}
+  description: "M\u1ED9t sinh v\u1EADt lai gi\u1EEFa g\u1EA5u v\xE0 c\xE1, c\xF3
+    s\u1EE9c m\u1EA1nh to l\u1EDBn v\xE0 kh\u1EA3 n\u0103ng t\u1EA5n c\xF4ng m\u1EA1nh
+    m\u1EBD."
+  tags: []
+  unlockCondition:
+    unlockType: 0
+    requiredValue: 0
+    requiredCharacterID: 
+    isUnlocked: 0
+    description: 
+  sortOrder: 0
+  rarity: 0

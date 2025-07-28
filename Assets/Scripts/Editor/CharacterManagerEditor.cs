@@ -136,9 +136,9 @@ public class CharacterManagerEditor : Editor
                 AddNewCharacter();
             }
             
-            if (GUILayout.Button("Advanced Setup & Add"))
+            if (GUILayout.Button("Database Setup"))
             {
-                AdvancedCharacterSetup.ShowWindow();
+                DatabaseSetupTool.ShowWindow();
             }
             GUILayout.EndHorizontal();
             
@@ -196,10 +196,10 @@ public class CharacterManagerEditor : Editor
                 Debug.Log("Character Setup Tool is disabled. Use Character System Setup instead.");
             }
             
-            // Advanced Character Setup button
-            if (GUILayout.Button("Open Advanced Character Setup"))
+            // Database Setup button
+            if (GUILayout.Button("Open Database Setup"))
             {
-                AdvancedCharacterSetup.ShowWindow();
+                DatabaseSetupTool.ShowWindow();
             }
             
             EditorGUI.indentLevel--;

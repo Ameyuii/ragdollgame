@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GameDatabase
   m_EditorClassIdentifier: Assembly-CSharp::GameDatabase
   characterDatabase: {fileID: 11400000, guid: 4a8954d60461f30459bfe5088512ea18, type: 2}
-  enableNewSystem: 0
+  enableNewSystem: 1
   enableDebugLogging: 1

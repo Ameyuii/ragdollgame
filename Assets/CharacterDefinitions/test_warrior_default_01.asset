@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDefinition
   characterID: warrior_basic_default_01
   displayName: Basic Warrior
-  categoryID: warrior
+  categoryID: chienbinh
   basePrefab: {fileID: 108563576048935225, guid: 1dd8d8793790a2c4a91d56b404647756, type: 3}
   uiIcon: {fileID: 0}
   portraitImage: {fileID: 0}

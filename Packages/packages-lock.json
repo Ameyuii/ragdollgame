@@ -8,18 +8,16 @@
         "com.unity.inputsystem": "1.1.1",
         "com.unity.cloud.gltfast": "6.12.1"
       },
-      "hash": "bb0a4c5383365c88c4f3c42bb454ac84b8c930c9"
+      "hash": "ccb880bb8f7ed9f50f42f390c107712252840792"
     },
-    "com.gamelovers.mcp-unity": {
-      "version": "https://github.com/CoderGamester/mcp-unity.git",
+    "com.justinpbarnett.unity-mcp": {
+      "version": "https://github.com/justinpbarnett/unity-mcp.git?path=/UnityMcpBridge",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.editorcoroutines": "1.0.0",
-        "com.unity.test-framework": "1.3.3"
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
       },
-      "hash": "2d8d85370248ef238c3e65ca68f34ff9a073db28"
+      "hash": "9ff89886acb84d84a57ac116858677ff171cd8f3"
     },
     "com.unity.ai.navigation": {
       "version": "2.0.7",
@@ -71,13 +69,6 @@
         "com.unity.nuget.mono-cecil": "1.11.5",
         "com.unity.test-framework.performance": "3.0.3"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.editorcoroutines": {
-      "version": "1.0.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ext.nunit": {
