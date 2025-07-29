@@ -15,7 +15,7 @@ MonoBehaviour:
   characterID: zombie_basic_default_01
   displayName: Zombie Warrior
   categoryID: zombie
-  basePrefab: {fileID: 7446312103769086644, guid: 811edbfd7faea424db756a0f2626275c, type: 3}
+  basePrefab: {fileID: 7446312103769086644, guid: f3f4079dbd200154b85123d6ec2274b5, type: 3}
   uiIcon: {fileID: 0}
   portraitImage: {fileID: 0}
   animatorController: {fileID: 9100000, guid: 7b88e8edfd7d1b1449c1b9c3c93c3ab3, type: 2}

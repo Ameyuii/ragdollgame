@@ -285,7 +285,7 @@ public class SimpleCharacterDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
         Camera camera = Camera.main;
         if (camera == null)
         {
-            camera = FindObjectOfType<Camera>();
+            camera = FindFirstObjectByType<Camera>();
         }
         
         if (camera != null)

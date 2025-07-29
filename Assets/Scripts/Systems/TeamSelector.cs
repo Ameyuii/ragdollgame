@@ -1,3 +1,4 @@
+#nullable disable
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -5,11 +6,11 @@ using System.Collections.Generic;
 public class TeamSelector : MonoBehaviour
 {
     [Header("UI References")]
-    public Button? teamDropdownButton;
-    public Text? teamDisplayText;
-    public GameObject? dropdownPanel;
-    public Transform? dropdownContent;
-    public GameObject? teamButtonPrefab;
+    public Button teamDropdownButton;
+    public Text teamDisplayText;
+    public GameObject dropdownPanel;
+    public Transform dropdownContent;
+    public GameObject teamButtonPrefab;
     
     [Header("Team Configuration")]
     public TeamData[] availableTeams = new TeamData[]
@@ -34,7 +35,7 @@ public class TeamSelector : MonoBehaviour
     private bool isDropdownOpen = false;
     
     // Events
-    public System.Action<int>? OnTeamChanged;
+    public System.Action<int> OnTeamChanged;
     
     void Start()
     {

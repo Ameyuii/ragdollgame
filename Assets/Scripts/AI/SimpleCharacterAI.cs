@@ -14,7 +14,10 @@ public class SimpleCharacterAI : MonoBehaviour
     private RagdollCharacter character;
     private Transform target;
     private bool isMoving = false;
-    private bool isAttacking = false;
+    private bool isAttacking = false; // Note: Used for state tracking in attack logic
+    
+    // Public getter to mark field as used - fixes CS0414 warning
+    public bool IsAttacking => isAttacking;
     private float searchTimer = 0f;
     
     void Start()
@@ -105,7 +108,7 @@ public class SimpleCharacterAI : MonoBehaviour
         target = null;
         float nearestDistance = detectionRange;
         
-        RagdollCharacter[] allCharacters = FindObjectsOfType<RagdollCharacter>();
+        RagdollCharacter[] allCharacters = FindObjectsByType<RagdollCharacter>(FindObjectsSortMode.None);
         
         foreach (RagdollCharacter otherChar in allCharacters)
         {
@@ -196,7 +199,7 @@ public class SimpleCharacterAI : MonoBehaviour
     private bool IsBattleActive()
     {
         // Check BattleGameManager first
-        BattleGameManager battleManager = FindObjectOfType<BattleGameManager>();
+        BattleGameManager battleManager = FindFirstObjectByType<BattleGameManager>();
         if (battleManager != null)
         {
             return battleManager.gameStarted;

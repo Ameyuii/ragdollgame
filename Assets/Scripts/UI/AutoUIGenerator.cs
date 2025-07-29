@@ -2,17 +2,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 /// <summary>
-/// Auto UI Generator - Drop-in replacement for CategoryButtonHandler
-/// Generates UI dynamically from CharacterRegistry while maintaining existing UI structure
+/// Auto UI Generator - Enhanced version using CharacterDatabase
+/// Generates UI dynamically from CharacterDatabase (new system) while maintaining existing UI structure
 /// </summary>
 public class AutoUIGenerator : MonoBehaviour
 {
     [Header("🎯 Core References")]
-    [Tooltip("Character registry to generate UI from")]
-    public CharacterRegistry characterRegistry;
-    
+    [Tooltip("DEPRECATED: Character registry (old system) - will be removed")]
+    [SerializeField] private CharacterRegistry characterRegistry;
+
+    [Tooltip("Character database (new system) - primary data source")]
+    public CharacterDatabase characterDatabase;
+
     [Tooltip("Unified game manager for character operations")]
     public UnifiedGameManager unifiedGameManager;
     
@@ -46,12 +52,13 @@ public class AutoUIGenerator : MonoBehaviour
     public Vector2 buttonSize = new Vector2(100, 100);
     
     [Header("📊 Current State")]
-    [SerializeField] private string currentCategory = "ROBOT";
+    [SerializeField] private string currentCategory = "robot";
     [SerializeField] private int currentPage = 0;
     [SerializeField] private bool uiInitialized = false;
-    
-    // Runtime data
-    private List<CharacterRegistry.CharacterEntry> currentCharacters = new List<CharacterRegistry.CharacterEntry>();
+    [SerializeField] private bool useNewSystem = true;
+
+    // Runtime data - Updated for new system
+    private List<CharacterDefinition> currentCharacters = new List<CharacterDefinition>();
     private List<GameObject> currentButtons = new List<GameObject>();
     
     private void Start()
@@ -61,28 +68,39 @@ public class AutoUIGenerator : MonoBehaviour
     
     private void InitializeUI()
     {
-        Debug.Log("🎨 AutoUIGenerator: Initializing UI...");
-        
+        Debug.Log("🎨 AutoUIGenerator: Initializing UI with new system...");
+
         try
         {
+            // Auto-get CharacterDatabase if not assigned
+            if (characterDatabase == null)
+            {
+                GameDatabase gameDB = GameDatabase.Instance;
+                if (gameDB != null && gameDB.characterDatabase != null)
+                {
+                    characterDatabase = gameDB.characterDatabase;
+                    Debug.Log("🔗 Auto-assigned CharacterDatabase from GameDatabase");
+                }
+            }
+
             // Find UI elements if not assigned
             FindUIElements();
-            
+
             // Validate references
             if (!ValidateReferences())
             {
                 Debug.LogError("❌ AutoUIGenerator: Missing required references!");
                 return;
             }
-            
+
             // Setup button listeners
             SetupButtonListeners();
-            
+
             // Generate initial UI
             GenerateUI();
-            
+
             uiInitialized = true;
-            Debug.Log("✅ AutoUIGenerator: UI initialized successfully");
+            Debug.Log("✅ AutoUIGenerator: UI initialized successfully with new system");
         }
         catch (System.Exception e)
         {
@@ -138,12 +156,25 @@ public class AutoUIGenerator : MonoBehaviour
     
     private bool ValidateReferences()
     {
-        if (characterRegistry == null)
+        // Check new system first
+        if (useNewSystem)
         {
-            Debug.LogError("❌ CharacterRegistry not assigned!");
-            return false;
+            if (characterDatabase == null)
+            {
+                Debug.LogError("❌ CharacterDatabase not assigned! (New System)");
+                return false;
+            }
         }
-        
+        else
+        {
+            // Fallback to old system
+            if (characterRegistry == null)
+            {
+                Debug.LogError("❌ CharacterRegistry not assigned! (Old System)");
+                return false;
+            }
+        }
+
         if (unifiedGameManager == null)
         {
             unifiedGameManager = UnifiedGameManager.Instance;
@@ -153,13 +184,13 @@ public class AutoUIGenerator : MonoBehaviour
                 return false;
             }
         }
-        
+
         if (modelContainer == null)
         {
             Debug.LogError("❌ ModelContainer not found!");
             return false;
         }
-        
+
         return true;
     }
     
@@ -185,10 +216,10 @@ public class AutoUIGenerator : MonoBehaviour
     private void SetupCategoryButtons()
     {
         // Find and setup category buttons
-        SetupCategoryButton("RobotButton", "ROBOT");
-        SetupCategoryButton("MonsterButton", "QUAIVAT");
-        SetupCategoryButton("WarriorButton", "CHIENBINH");
-        SetupCategoryButton("ZombieButton", "ZOMBIE");
+        SetupCategoryButton("RobotButton", "robot");
+        SetupCategoryButton("MonsterButton", "quaivat");
+        SetupCategoryButton("WarriorButton", "chienbinh");
+        SetupCategoryButton("ZombieButton", "zombie");
     }
     
     private void SetupCategoryButton(string buttonName, string category)
@@ -209,31 +240,48 @@ public class AutoUIGenerator : MonoBehaviour
     #region Public API
     
     /// <summary>
-    /// Generate UI from character registry
+    /// Generate UI from character database (new system) or registry (fallback)
     /// </summary>
     [ContextMenu("🎨 Generate UI")]
     public void GenerateUI()
     {
         if (!uiInitialized && !ValidateReferences()) return;
-        
-        Debug.Log($"🎨 Generating UI for category: {currentCategory}");
-        
+
+        Debug.Log($"🎨 Generating UI for category: {currentCategory} (System: {(useNewSystem ? "New" : "Old")})");
+
         // Get characters for current category
-        currentCharacters = characterRegistry.GetCharactersByCategory(currentCategory);
-        
+        if (useNewSystem && characterDatabase != null)
+        {
+            // Use new CharacterDatabase system
+            currentCharacters = characterDatabase.GetCharactersByCategory(currentCategory);
+            Debug.Log($"📊 Found {currentCharacters.Count} characters in category '{currentCategory}' from CharacterDatabase");
+        }
+        else if (characterRegistry != null)
+        {
+            // Fallback to old CharacterRegistry system
+            var registryCharacters = characterRegistry.GetCharactersByCategory(currentCategory.ToUpper());
+            currentCharacters = ConvertRegistryToDatabase(registryCharacters);
+            Debug.Log($"📊 Found {currentCharacters.Count} characters in category '{currentCategory}' from CharacterRegistry (fallback)");
+        }
+        else
+        {
+            Debug.LogError("❌ No data source available!");
+            return;
+        }
+
         // Clear existing buttons
         ClearCurrentButtons();
-        
+
         // Update category title
         UpdateCategoryTitle();
-        
+
         // Create character buttons
         CreateCharacterButtons();
-        
+
         // Update pagination
         UpdatePagination();
-        
-        Debug.Log($"✅ Generated {currentButtons.Count} character buttons");
+
+        Debug.Log($"✅ Generated {currentButtons.Count} character buttons using {(useNewSystem ? "CharacterDatabase" : "CharacterRegistry")}");
     }
     
     /// <summary>
@@ -288,6 +336,20 @@ public class AutoUIGenerator : MonoBehaviour
 
     private void ClearCurrentButtons()
     {
+        // Clear all existing character buttons in modelContainer
+        if (modelContainer != null)
+        {
+            for (int i = modelContainer.transform.childCount - 1; i >= 0; i--)
+            {
+                GameObject child = modelContainer.transform.GetChild(i).gameObject;
+                if (child.name.Contains("CharacterButton"))
+                {
+                    DestroyImmediate(child);
+                }
+            }
+        }
+        
+        // Also clear from currentButtons list
         foreach (GameObject button in currentButtons)
         {
             if (button != null)
@@ -296,6 +358,8 @@ public class AutoUIGenerator : MonoBehaviour
             }
         }
         currentButtons.Clear();
+        
+        Debug.Log("🧹 Cleared all character buttons");
     }
 
     private void UpdateCategoryTitle()
@@ -338,51 +402,60 @@ public class AutoUIGenerator : MonoBehaviour
         }
     }
 
-    private void CreateCharacterButton(CharacterRegistry.CharacterEntry character, int index)
+    private void CreateCharacterButton(CharacterDefinition character, int index)
     {
-        if (character?.prefab == null) return;
+        if (character?.BasePrefab == null) return;
 
-        // Create button GameObject
-        GameObject buttonObj = new GameObject($"CharacterButton_{character.displayName}");
-        buttonObj.transform.SetParent(modelContainer.transform, false);
+        GameObject buttonObj = null;
 
-        // Add Button component
-        Button button = buttonObj.AddComponent<Button>();
-
-        // Add Image component for background
-        Image buttonImage = buttonObj.AddComponent<Image>();
-        buttonImage.color = Color.white;
-
-        // Set button size
-        RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();
-        rectTransform.sizeDelta = buttonSize;
-
-        // Position button (simple grid layout)
-        float spacing = 10f;
-        int columns = 3;
-        int row = index / columns;
-        int col = index % columns;
-
-        float x = col * (buttonSize.x + spacing);
-        float y = -row * (buttonSize.y + spacing);
-        rectTransform.anchoredPosition = new Vector2(x, y);
-
-        // Add character icon if available
-        if (character.icon != null)
+        // Use prefab if available, otherwise create from scratch
+        if (characterButtonPrefab != null)
         {
-            buttonImage.sprite = character.icon;
+            buttonObj = Instantiate(characterButtonPrefab, modelContainer.transform);
+            buttonObj.name = $"CharacterButton_{character.DisplayName}";
         }
         else
         {
+            // Fallback: Create button from scratch
+            buttonObj = new GameObject($"CharacterButton_{character.DisplayName}");
+            buttonObj.transform.SetParent(modelContainer.transform, false);
+
+            // Add Button component
+            Button button = buttonObj.AddComponent<Button>();
+
+            // Add Image component for background
+            Image buttonImage = buttonObj.AddComponent<Image>();
+            buttonImage.color = Color.white;
+
+            // Set button size
+            RectTransform rectTransform = buttonObj.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = buttonSize;
+        }
+
+        // Get components
+        Button btn = buttonObj.GetComponent<Button>();
+        Image img = buttonObj.GetComponent<Image>();
+
+        // Add character icon if available
+        if (character.UIIcon != null && img != null)
+        {
+            img.sprite = character.UIIcon;
+        }
+        else if (img != null)
+        {
             // Create placeholder icon
-            CreatePlaceholderIcon(buttonImage, character);
+            CreatePlaceholderIcon(img, character);
         }
 
         // Add text label
-        CreateButtonLabel(buttonObj, character.displayName);
+        CreateButtonLabel(buttonObj, character.DisplayName);
 
         // Add click listener
-        button.onClick.AddListener(() => OnCharacterButtonClick(character));
+        if (btn != null)
+        {
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() => OnCharacterButtonClick(character));
+        }
 
         // Add drag component
         AddDragComponent(buttonObj, character);
@@ -390,10 +463,10 @@ public class AutoUIGenerator : MonoBehaviour
         // Store button reference
         currentButtons.Add(buttonObj);
 
-        Debug.Log($"✅ Created button for: {character.displayName}");
+        Debug.Log($"✅ Created button for: {character.DisplayName}");
     }
 
-    private void CreatePlaceholderIcon(Image buttonImage, CharacterRegistry.CharacterEntry character)
+    private void CreatePlaceholderIcon(Image buttonImage, CharacterDefinition character)
     {
         // Create simple colored background based on category
         Color categoryColor = GetCategoryColor(currentCategory);
@@ -434,17 +507,32 @@ public class AutoUIGenerator : MonoBehaviour
         textRect.offsetMax = Vector2.zero;
     }
 
-    private void AddDragComponent(GameObject buttonObj, CharacterRegistry.CharacterEntry character)
+    private void AddDragComponent(GameObject buttonObj, CharacterDefinition character)
     {
-        // Add SimpleCharacterDrag component
+        // Add SimpleCharacterDrag component for new system
         SimpleCharacterDrag dragComponent = buttonObj.AddComponent<SimpleCharacterDrag>();
-        dragComponent.characterEntry = character;
+
+        // Convert CharacterDefinition to CharacterEntry for compatibility
+        if (useNewSystem)
+        {
+            // Create temporary CharacterEntry for drag component
+            var tempEntry = new CharacterRegistry.CharacterEntry
+            {
+                id = character.CharacterID,
+                displayName = character.DisplayName,
+                category = character.CategoryID,
+                prefab = character.BasePrefab,
+                icon = character.UIIcon
+            };
+            dragComponent.characterEntry = tempEntry;
+        }
+
         dragComponent.unifiedGameManager = unifiedGameManager;
     }
 
-    private void OnCharacterButtonClick(CharacterRegistry.CharacterEntry character)
+    private void OnCharacterButtonClick(CharacterDefinition character)
     {
-        Debug.Log($"🖱️ Character button clicked: {character.displayName}");
+        Debug.Log($"🖱️ Character button clicked: {character.DisplayName}");
 
         // Optional: Show character details or perform other actions
         // For now, just log the click
@@ -491,12 +579,47 @@ public class AutoUIGenerator : MonoBehaviour
     [ContextMenu("🔄 Refresh UI")]
     public void RefreshUI()
     {
-        if (characterRegistry != null)
+        if (useNewSystem && characterDatabase != null)
+        {
+            characterDatabase.InitializeLookupTables();
+        }
+        else if (characterRegistry != null)
         {
             characterRegistry.RebuildLookupTables();
         }
         GenerateUI();
         Debug.Log("🔄 UI refreshed");
+    }
+
+    /// <summary>
+    /// Convert CharacterRegistry entries to CharacterDefinition format (compatibility layer)
+    /// </summary>
+    private List<CharacterDefinition> ConvertRegistryToDatabase(List<CharacterRegistry.CharacterEntry> registryEntries)
+    {
+        List<CharacterDefinition> converted = new List<CharacterDefinition>();
+
+        foreach (var entry in registryEntries)
+        {
+            if (entry?.prefab == null) continue;
+
+            // Create temporary CharacterDefinition for compatibility
+            CharacterDefinition tempDef = ScriptableObject.CreateInstance<CharacterDefinition>();
+            tempDef.CharacterID = entry.id;
+            tempDef.DisplayName = entry.displayName;
+            tempDef.CategoryID = entry.category;
+
+            // Use SerializedObject to set private fields (Editor only)
+            #if UNITY_EDITOR
+            SerializedObject serializedDef = new SerializedObject(tempDef);
+            serializedDef.FindProperty("basePrefab").objectReferenceValue = entry.prefab;
+            serializedDef.FindProperty("uiIcon").objectReferenceValue = entry.icon;
+            serializedDef.ApplyModifiedProperties();
+            #endif
+
+            converted.Add(tempDef);
+        }
+
+        return converted;
     }
 
     #endregion

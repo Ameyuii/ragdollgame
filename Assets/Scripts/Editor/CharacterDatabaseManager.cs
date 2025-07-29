@@ -17,6 +17,24 @@ public class CharacterDatabaseManager : Editor
     private string newCharacterName = "";
     private string newCharacterID = "";
     private int selectedCategoryIndex = 0;
+
+    // Enhanced character creation fields
+    private GameObject newCharacterPrefab;
+    private Sprite newCharacterIcon;
+    private RuntimeAnimatorController newAnimatorController;
+    private string newCharacterDescription = "";
+
+    // Stats fields
+    private float newMaxHealth = 100f;
+    private float newMoveSpeed = 5f;
+    private float newAttackDamage = 25f;
+    private float newAttackRange = 2f;
+    private float newAttackCooldown = 1f;
+
+    // Auto-extraction settings
+    private bool autoExtractStats = true;
+    private bool autoGenerateIcon = true;
+    private bool showAdvancedOptions = false;
     
     // Category Management
     private bool showCategoryList = true;
@@ -48,7 +66,7 @@ public class CharacterDatabaseManager : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void DrawHeader()
+    private new void DrawHeader()
     {
         EditorGUILayout.BeginVertical("box");
         
@@ -96,17 +114,19 @@ public class CharacterDatabaseManager : Editor
     private void DrawAddCharacterSection()
     {
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField("Add New Character", EditorStyles.boldLabel);
-        
+        EditorGUILayout.LabelField("🎯 Complete Character Creation", EditorStyles.boldLabel);
+
+        // Basic Info Section
+        EditorGUILayout.LabelField("📝 Basic Information", EditorStyles.miniBoldLabel);
         newCharacterName = EditorGUILayout.TextField("Display Name", newCharacterName);
         newCharacterID = EditorGUILayout.TextField("Character ID", newCharacterID);
-        
+
         // Auto-generate ID from name
         if (!string.IsNullOrEmpty(newCharacterName) && string.IsNullOrEmpty(newCharacterID))
         {
             newCharacterID = newCharacterName.ToLower().Replace(" ", "_");
         }
-        
+
         // Category dropdown
         if (database.categories.Count > 0)
         {
@@ -117,19 +137,77 @@ public class CharacterDatabaseManager : Editor
         {
             EditorGUILayout.LabelField("No categories available. Create categories first.");
         }
-        
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Create Character"))
+
+        newCharacterDescription = EditorGUILayout.TextArea(newCharacterDescription, GUILayout.Height(40));
+
+        EditorGUILayout.Space(5);
+
+        // Assets Section
+        EditorGUILayout.LabelField("🎨 Visual Assets", EditorStyles.miniBoldLabel);
+
+        GameObject oldPrefab = newCharacterPrefab;
+        newCharacterPrefab = (GameObject)EditorGUILayout.ObjectField("Base Prefab", newCharacterPrefab, typeof(GameObject), false);
+
+        // Auto-extract when prefab changes
+        if (newCharacterPrefab != oldPrefab && newCharacterPrefab != null && autoExtractStats)
         {
-            CreateNewCharacter();
+            ExtractStatsFromPrefab();
         }
-        if (GUILayout.Button("Cancel"))
+
+        newCharacterIcon = (Sprite)EditorGUILayout.ObjectField("UI Icon", newCharacterIcon, typeof(Sprite), false);
+        newAnimatorController = (RuntimeAnimatorController)EditorGUILayout.ObjectField("Animator Controller", newAnimatorController, typeof(RuntimeAnimatorController), false);
+
+        EditorGUILayout.Space(5);
+
+        // Stats Section
+        showAdvancedOptions = EditorGUILayout.Foldout(showAdvancedOptions, "⚙️ Character Stats");
+        if (showAdvancedOptions)
+        {
+            EditorGUI.indentLevel++;
+            newMaxHealth = EditorGUILayout.FloatField("Max Health", newMaxHealth);
+            newMoveSpeed = EditorGUILayout.FloatField("Move Speed", newMoveSpeed);
+            newAttackDamage = EditorGUILayout.FloatField("Attack Damage", newAttackDamage);
+            newAttackRange = EditorGUILayout.FloatField("Attack Range", newAttackRange);
+            newAttackCooldown = EditorGUILayout.FloatField("Attack Cooldown", newAttackCooldown);
+            EditorGUI.indentLevel--;
+        }
+
+        EditorGUILayout.Space(5);
+
+        // Auto-extraction options
+        EditorGUILayout.LabelField("🔧 Auto-Extraction Options", EditorStyles.miniBoldLabel);
+        autoExtractStats = EditorGUILayout.Toggle("Auto Extract Stats from Prefab", autoExtractStats);
+        autoGenerateIcon = EditorGUILayout.Toggle("Auto Generate Icon", autoGenerateIcon);
+
+        EditorGUILayout.Space(10);
+
+        // Action buttons
+        EditorGUILayout.BeginHorizontal();
+
+        GUI.enabled = !string.IsNullOrEmpty(newCharacterName) && newCharacterPrefab != null;
+        if (GUILayout.Button("🎯 Create Complete Character", GUILayout.Height(30)))
+        {
+            CreateCompleteCharacter();
+        }
+        GUI.enabled = true;
+
+        if (GUILayout.Button("Cancel", GUILayout.Height(30)))
         {
             showAddCharacter = false;
             ResetAddCharacterFields();
         }
         EditorGUILayout.EndHorizontal();
-        
+
+        // Validation messages
+        if (string.IsNullOrEmpty(newCharacterName))
+        {
+            EditorGUILayout.HelpBox("⚠️ Display Name is required", MessageType.Warning);
+        }
+        if (newCharacterPrefab == null)
+        {
+            EditorGUILayout.HelpBox("⚠️ Base Prefab is required", MessageType.Warning);
+        }
+
         EditorGUILayout.EndVertical();
     }
 
@@ -308,6 +386,35 @@ public class CharacterDatabaseManager : Editor
             ScanForCharacterPrefabs();
         }
 
+        EditorGUILayout.Space(5);
+
+        // Batch operations
+        EditorGUILayout.LabelField("🚀 Batch Operations", EditorStyles.miniBoldLabel);
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("📦 Import from Prefabs Folder"))
+        {
+            BatchImportFromPrefabsFolder();
+        }
+
+        if (GUILayout.Button("🎨 Auto-Assign Icons"))
+        {
+            BatchAutoAssignIcons();
+        }
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("🎭 Auto-Assign Animators"))
+        {
+            BatchAutoAssignAnimators();
+        }
+
+        if (GUILayout.Button("📊 Extract All Stats"))
+        {
+            BatchExtractStats();
+        }
+        EditorGUILayout.EndHorizontal();
+
         EditorGUILayout.Space(10);
         
         if (GUILayout.Button("Clear All Data"))
@@ -322,11 +429,17 @@ public class CharacterDatabaseManager : Editor
         }
     }
 
-    private void CreateNewCharacter()
+    private void CreateCompleteCharacter()
     {
         if (string.IsNullOrEmpty(newCharacterName) || string.IsNullOrEmpty(newCharacterID))
         {
             EditorUtility.DisplayDialog("Error", "Please fill in all required fields.", "OK");
+            return;
+        }
+
+        if (newCharacterPrefab == null)
+        {
+            EditorUtility.DisplayDialog("Error", "Base Prefab is required!", "OK");
             return;
         }
 
@@ -341,12 +454,53 @@ public class CharacterDatabaseManager : Editor
         CharacterDefinition newCharacter = CreateInstance<CharacterDefinition>();
         newCharacter.CharacterID = newCharacterID;
         newCharacter.DisplayName = newCharacterName;
-        
+
         // Set category if available
         if (database.categories.Count > 0 && selectedCategoryIndex < database.categories.Count)
         {
             newCharacter.CategoryID = database.categories[selectedCategoryIndex].categoryID;
         }
+
+        // Use SerializedObject to set private fields
+        SerializedObject serializedCharacter = new SerializedObject(newCharacter);
+
+        // Set visual assets
+        serializedCharacter.FindProperty("basePrefab").objectReferenceValue = newCharacterPrefab;
+        serializedCharacter.FindProperty("uiIcon").objectReferenceValue = newCharacterIcon;
+        serializedCharacter.FindProperty("animatorController").objectReferenceValue = newAnimatorController;
+        serializedCharacter.FindProperty("description").stringValue = newCharacterDescription;
+
+        // Set stats
+        SerializedProperty statsProperty = serializedCharacter.FindProperty("baseStats");
+        statsProperty.FindPropertyRelative("maxHealth").floatValue = newMaxHealth;
+        statsProperty.FindPropertyRelative("moveSpeed").floatValue = newMoveSpeed;
+        statsProperty.FindPropertyRelative("attackDamage").floatValue = newAttackDamage;
+        statsProperty.FindPropertyRelative("attackRange").floatValue = newAttackRange;
+        statsProperty.FindPropertyRelative("attackCooldown").floatValue = newAttackCooldown;
+
+        // Create default variant
+        SerializedProperty variantsProperty = serializedCharacter.FindProperty("variants");
+        variantsProperty.arraySize = 1;
+        SerializedProperty variantElement = variantsProperty.GetArrayElementAtIndex(0);
+
+        variantElement.FindPropertyRelative("variantID").stringValue = "default";
+        variantElement.FindPropertyRelative("variantName").stringValue = "Default";
+        variantElement.FindPropertyRelative("description").stringValue = "Default variant";
+        variantElement.FindPropertyRelative("isDefault").boolValue = true;
+        variantElement.FindPropertyRelative("customPrefab").objectReferenceValue = newCharacterPrefab;
+
+        // Auto-generate icon if needed
+        if (newCharacterIcon == null && autoGenerateIcon)
+        {
+            Sprite generatedIcon = GenerateIconFromPrefab(newCharacterPrefab);
+            if (generatedIcon != null)
+            {
+                serializedCharacter.FindProperty("uiIcon").objectReferenceValue = generatedIcon;
+            }
+        }
+
+        // Apply changes
+        serializedCharacter.ApplyModifiedProperties();
 
         // Create folder if it doesn't exist
         if (!AssetDatabase.IsValidFolder("Assets/CharacterDefinitions"))
@@ -357,17 +511,18 @@ public class CharacterDatabaseManager : Editor
         // Save as asset
         string path = $"Assets/CharacterDefinitions/{newCharacterID}_definition.asset";
         AssetDatabase.CreateAsset(newCharacter, path);
-        
+
         // Add to database
         database.characters.Add(newCharacter);
-        
+
         EditorUtility.SetDirty(database);
         AssetDatabase.SaveAssets();
-        
+
         showAddCharacter = false;
         ResetAddCharacterFields();
-        
-        Debug.Log($"Created new character: {newCharacterName} at {path}");
+
+        Debug.Log($"✅ Created complete character: {newCharacterName} at {path}");
+        EditorUtility.DisplayDialog("Success", $"Character '{newCharacterName}' created successfully!", "OK");
     }
 
     private void CreateNewCategory()
@@ -523,6 +678,69 @@ public class CharacterDatabaseManager : Editor
         newCharacterName = "";
         newCharacterID = "";
         selectedCategoryIndex = 0;
+
+        // Reset enhanced fields
+        newCharacterPrefab = null;
+        newCharacterIcon = null;
+        newAnimatorController = null;
+        newCharacterDescription = "";
+
+        // Reset stats to defaults
+        newMaxHealth = 100f;
+        newMoveSpeed = 5f;
+        newAttackDamage = 25f;
+        newAttackRange = 2f;
+        newAttackCooldown = 1f;
+
+        showAdvancedOptions = false;
+    }
+
+    private void ExtractStatsFromPrefab()
+    {
+        if (newCharacterPrefab == null) return;
+
+        // Try to extract stats from RagdollCharacter component
+        RagdollCharacter ragdoll = newCharacterPrefab.GetComponent<RagdollCharacter>();
+        if (ragdoll != null)
+        {
+            newMaxHealth = ragdoll.maxHealth;
+            newMoveSpeed = ragdoll.moveSpeed;
+            newAttackDamage = ragdoll.attackDamage;
+            newAttackRange = ragdoll.attackRange;
+            newAttackCooldown = ragdoll.attackCooldown;
+
+            Debug.Log($"📊 Extracted stats from {newCharacterPrefab.name}");
+        }
+
+        // Auto-extract animator controller
+        Animator animator = newCharacterPrefab.GetComponent<Animator>();
+        if (animator != null && animator.runtimeAnimatorController != null)
+        {
+            newAnimatorController = animator.runtimeAnimatorController;
+            Debug.Log($"🎭 Extracted animator controller from {newCharacterPrefab.name}");
+        }
+
+        // Auto-generate character ID if empty
+        if (string.IsNullOrEmpty(newCharacterID) && !string.IsNullOrEmpty(newCharacterName))
+        {
+            string categoryPrefix = "";
+            if (database.categories.Count > 0 && selectedCategoryIndex < database.categories.Count)
+            {
+                categoryPrefix = database.categories[selectedCategoryIndex].categoryID + "_";
+            }
+            newCharacterID = categoryPrefix + newCharacterName.ToLower().Replace(" ", "_");
+        }
+    }
+
+    private Sprite GenerateIconFromPrefab(GameObject prefab)
+    {
+        // This is a placeholder - in a real implementation, you might:
+        // 1. Take a screenshot of the prefab
+        // 2. Use a default icon based on category
+        // 3. Extract icon from prefab's renderer
+
+        Debug.Log($"🖼️ Auto-generating icon for {prefab.name} (placeholder)");
+        return null; // Return generated sprite
     }
 
     private void ResetAddCategoryFields()
@@ -530,4 +748,176 @@ public class CharacterDatabaseManager : Editor
         newCategoryName = "";
         newCategoryID = "";
     }
+
+    #region Batch Operations
+
+    private void BatchImportFromPrefabsFolder()
+    {
+        string[] prefabGuids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Prefabs" });
+        int importedCount = 0;
+
+        foreach (string guid in prefabGuids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+
+            if (prefab != null && prefab.GetComponent<RagdollCharacter>() != null)
+            {
+                string characterName = prefab.name;
+                string characterID = characterName.ToLower().Replace(" ", "_");
+
+                // Skip if already exists
+                if (database.characters.Any(c => c != null && c.CharacterID == characterID))
+                    continue;
+
+                // Determine category from folder structure
+                string categoryID = DetermineCategoryFromPath(path);
+
+                // Create character definition
+                CharacterDefinition newCharacter = CreateInstance<CharacterDefinition>();
+                newCharacter.CharacterID = characterID;
+                newCharacter.DisplayName = characterName;
+                newCharacter.CategoryID = categoryID;
+
+                // Use SerializedObject to set private fields
+                SerializedObject serializedCharacter = new SerializedObject(newCharacter);
+                serializedCharacter.FindProperty("basePrefab").objectReferenceValue = prefab;
+
+                // Extract stats
+                RagdollCharacter ragdoll = prefab.GetComponent<RagdollCharacter>();
+                if (ragdoll != null)
+                {
+                    SerializedProperty statsProperty = serializedCharacter.FindProperty("baseStats");
+                    statsProperty.FindPropertyRelative("maxHealth").floatValue = ragdoll.maxHealth;
+                    statsProperty.FindPropertyRelative("moveSpeed").floatValue = ragdoll.moveSpeed;
+                    statsProperty.FindPropertyRelative("attackDamage").floatValue = ragdoll.attackDamage;
+                    statsProperty.FindPropertyRelative("attackRange").floatValue = ragdoll.attackRange;
+                    statsProperty.FindPropertyRelative("attackCooldown").floatValue = ragdoll.attackCooldown;
+                }
+
+                // Create default variant
+                SerializedProperty variantsProperty = serializedCharacter.FindProperty("variants");
+                variantsProperty.arraySize = 1;
+                SerializedProperty variantElement = variantsProperty.GetArrayElementAtIndex(0);
+
+                variantElement.FindPropertyRelative("variantID").stringValue = "default";
+                variantElement.FindPropertyRelative("variantName").stringValue = "Default";
+                variantElement.FindPropertyRelative("description").stringValue = "Default variant";
+                variantElement.FindPropertyRelative("isDefault").boolValue = true;
+                variantElement.FindPropertyRelative("customPrefab").objectReferenceValue = prefab;
+
+                // Apply changes
+                serializedCharacter.ApplyModifiedProperties();
+
+                // Save asset
+                string assetPath = $"Assets/CharacterDefinitions/{characterID}_definition.asset";
+                AssetDatabase.CreateAsset(newCharacter, assetPath);
+                database.characters.Add(newCharacter);
+
+                importedCount++;
+            }
+        }
+
+        EditorUtility.SetDirty(database);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log($"📦 Batch imported {importedCount} characters from prefabs folder");
+        EditorUtility.DisplayDialog("Batch Import", $"Successfully imported {importedCount} characters!", "OK");
+    }
+
+    private void BatchAutoAssignIcons()
+    {
+        int assignedCount = 0;
+
+        foreach (var character in database.characters)
+        {
+            if (character != null && character.UIIcon == null)
+            {
+                // Try to find icon based on character name
+                string[] iconGuids = AssetDatabase.FindAssets($"{character.DisplayName} t:Sprite");
+                if (iconGuids.Length > 0)
+                {
+                    string iconPath = AssetDatabase.GUIDToAssetPath(iconGuids[0]);
+                    Sprite icon = AssetDatabase.LoadAssetAtPath<Sprite>(iconPath);
+                    if (icon != null)
+                    {
+                        SerializedObject serializedCharacter = new SerializedObject(character);
+                        serializedCharacter.FindProperty("uiIcon").objectReferenceValue = icon;
+                        serializedCharacter.ApplyModifiedProperties();
+                        assignedCount++;
+                    }
+                }
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        Debug.Log($"🎨 Auto-assigned {assignedCount} icons");
+        EditorUtility.DisplayDialog("Auto-Assign Icons", $"Assigned {assignedCount} icons!", "OK");
+    }
+
+    private void BatchAutoAssignAnimators()
+    {
+        int assignedCount = 0;
+
+        foreach (var character in database.characters)
+        {
+            if (character != null && character.AnimatorController == null && character.BasePrefab != null)
+            {
+                Animator animator = character.BasePrefab.GetComponent<Animator>();
+                if (animator != null && animator.runtimeAnimatorController != null)
+                {
+                    SerializedObject serializedCharacter = new SerializedObject(character);
+                    serializedCharacter.FindProperty("animatorController").objectReferenceValue = animator.runtimeAnimatorController;
+                    serializedCharacter.ApplyModifiedProperties();
+                    assignedCount++;
+                }
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        Debug.Log($"🎭 Auto-assigned {assignedCount} animator controllers");
+        EditorUtility.DisplayDialog("Auto-Assign Animators", $"Assigned {assignedCount} animator controllers!", "OK");
+    }
+
+    private void BatchExtractStats()
+    {
+        int extractedCount = 0;
+
+        foreach (var character in database.characters)
+        {
+            if (character != null && character.BasePrefab != null)
+            {
+                RagdollCharacter ragdoll = character.BasePrefab.GetComponent<RagdollCharacter>();
+                if (ragdoll != null)
+                {
+                    SerializedObject serializedCharacter = new SerializedObject(character);
+                    SerializedProperty statsProperty = serializedCharacter.FindProperty("baseStats");
+
+                    statsProperty.FindPropertyRelative("maxHealth").floatValue = ragdoll.maxHealth;
+                    statsProperty.FindPropertyRelative("moveSpeed").floatValue = ragdoll.moveSpeed;
+                    statsProperty.FindPropertyRelative("attackDamage").floatValue = ragdoll.attackDamage;
+                    statsProperty.FindPropertyRelative("attackRange").floatValue = ragdoll.attackRange;
+                    statsProperty.FindPropertyRelative("attackCooldown").floatValue = ragdoll.attackCooldown;
+
+                    serializedCharacter.ApplyModifiedProperties();
+                    extractedCount++;
+                }
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        Debug.Log($"📊 Extracted stats from {extractedCount} characters");
+        EditorUtility.DisplayDialog("Extract Stats", $"Extracted stats from {extractedCount} characters!", "OK");
+    }
+
+    private string DetermineCategoryFromPath(string path)
+    {
+        if (path.Contains("ChienBinh") || path.Contains("Warrior")) return "chien_binh";
+        if (path.Contains("Robot")) return "robot";
+        if (path.Contains("Zombie")) return "zombie";
+        if (path.Contains("QuaiVat") || path.Contains("Monster")) return "quai_vat";
+        return "unknown";
+    }
+
+    #endregion
 }

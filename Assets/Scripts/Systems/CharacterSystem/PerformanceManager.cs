@@ -50,7 +50,7 @@ public class PerformanceManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<PerformanceManager>();
+                _instance = FindFirstObjectByType<PerformanceManager>();
                 if (_instance == null)
                 {
                     GameObject go = new GameObject("PerformanceManager");

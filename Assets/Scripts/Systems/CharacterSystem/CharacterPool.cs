@@ -31,7 +31,7 @@ public class CharacterPool : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<CharacterPool>();
+                _instance = FindFirstObjectByType<CharacterPool>();
                 if (_instance == null)
                 {
                     GameObject go = new GameObject("CharacterPool");

@@ -127,8 +127,36 @@ public class UnifiedGameManager : MonoBehaviour
             return null;
         }
         
-        var character = characterRegistry.GetCharacter(characterId);
-        if (character?.prefab == null)
+        // Try CharacterDatabase first (new system)
+        GameObject prefabToSpawn = null;
+        string displayName = "";
+        
+        // Get CharacterDatabase from GameDatabase
+        CharacterDatabase characterDB = GameDatabase.Instance?.characterDatabase;
+        if (characterDB != null)
+        {
+            CharacterDefinition charDef = characterDB.GetCharacter(characterId);
+            if (charDef?.BasePrefab != null)
+            {
+                prefabToSpawn = charDef.BasePrefab;
+                displayName = charDef.DisplayName;
+                Debug.Log($"🔍 Found character in CharacterDatabase: {displayName}");
+            }
+        }
+        
+        // Fallback to CharacterRegistry (old system) if not found in new system
+        if (prefabToSpawn == null && characterRegistry != null)
+        {
+            var character = characterRegistry.GetCharacter(characterId);
+            if (character?.prefab != null)
+            {
+                prefabToSpawn = character.prefab;
+                displayName = character.displayName;
+                Debug.Log($"🔍 Found character in CharacterRegistry (fallback): {displayName}");
+            }
+        }
+        
+        if (prefabToSpawn == null)
         {
             Debug.LogError($"❌ Character not found: {characterId}");
             return null;
@@ -136,9 +164,9 @@ public class UnifiedGameManager : MonoBehaviour
         
         try
         {
-            // Instantiate character
-            GameObject instance = Instantiate(character.prefab, position, Quaternion.identity, spawnParent);
-            instance.name = $"{character.displayName} (Team {selectedTeam})";
+            // Instantiate character  
+            GameObject instance = Instantiate(prefabToSpawn, position, Quaternion.identity, spawnParent);
+            instance.name = $"{displayName} (Team {selectedTeam})";
             
             // Setup character
             SetupCharacterTeam(instance, selectedTeam);
@@ -146,7 +174,7 @@ public class UnifiedGameManager : MonoBehaviour
             SetupCharacterHealth(instance);
             
             charactersSpawned++;
-            Debug.Log($"✅ Spawned {character.displayName} for team {selectedTeam} at {position}");
+            Debug.Log($"✅ Spawned {displayName} for team {selectedTeam} at {position}");
             
             return instance;
         }
@@ -232,7 +260,7 @@ public class UnifiedGameManager : MonoBehaviour
     /// </summary>
     public void EnableAllAI()
     {
-        SimpleCharacterAI[] allAI = FindObjectsOfType<SimpleCharacterAI>();
+        SimpleCharacterAI[] allAI = FindObjectsByType<SimpleCharacterAI>(FindObjectsSortMode.None);
         int enabledCount = 0;
 
         foreach (SimpleCharacterAI ai in allAI)
@@ -252,7 +280,7 @@ public class UnifiedGameManager : MonoBehaviour
     /// </summary>
     public void DisableAllAI()
     {
-        SimpleCharacterAI[] allAI = FindObjectsOfType<SimpleCharacterAI>();
+        SimpleCharacterAI[] allAI = FindObjectsByType<SimpleCharacterAI>(FindObjectsSortMode.None);
         int disabledCount = 0;
 
         foreach (SimpleCharacterAI ai in allAI)
@@ -345,7 +373,7 @@ public class UnifiedGameManager : MonoBehaviour
         // Find legacy BattleGameManager if not assigned
         if (legacyBattleManager == null)
         {
-            legacyBattleManager = FindObjectOfType<BattleGameManager>();
+            legacyBattleManager = FindFirstObjectByType<BattleGameManager>();
         }
 
         if (legacyBattleManager != null)

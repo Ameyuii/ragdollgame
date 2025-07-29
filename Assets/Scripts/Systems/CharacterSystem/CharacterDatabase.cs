@@ -46,7 +46,7 @@ public class CharacterDatabase : ScriptableObject
     /// <summary>
     /// Initialize lookup tables for fast runtime access
     /// </summary>
-    private void InitializeLookupTables()
+    public void InitializeLookupTables()
     {
         // Character lookup by ID
         characterLookup = new Dictionary<string, CharacterDefinition>();

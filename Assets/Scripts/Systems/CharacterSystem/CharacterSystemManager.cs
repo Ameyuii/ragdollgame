@@ -20,7 +20,7 @@ public class CharacterSystemManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<CharacterSystemManager>();
+                _instance = FindFirstObjectByType<CharacterSystemManager>();
                 
                 if (_instance == null)
                 {

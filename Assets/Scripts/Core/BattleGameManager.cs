@@ -1,3 +1,4 @@
+#nullable disable
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -5,19 +6,19 @@ using System.Collections.Generic;
 public class BattleGameManager : MonoBehaviour
 {
     [Header("UI References")]
-    public Text? team1CounterText;
-    public Text? team2CounterText;
-    public Text? statusText;
-    public Button? startButton;
+    public Text team1CounterText;
+    public Text team2CounterText;
+    public Text statusText;
+    public Button startButton;
     // public Button resetButton; - DISABLED FOR CLEANUP
     
     // [Header("Game State Integration")] - DISABLED FOR CLEANUP
     // private GameStateManager gameStateManager; - DISABLED FOR CLEANUP
     
     [Header("Setup UI")]
-    public GameObject? setupPanel;
-    public Transform? characterListParent;
-    public GameObject? characterButtonPrefab;
+    public GameObject setupPanel;
+    public Transform characterListParent;
+    public GameObject characterButtonPrefab;
     
     [Header("Game State")]
     public bool gameStarted = false;
@@ -26,13 +27,13 @@ public class BattleGameManager : MonoBehaviour
     public int team2AliveCount = 0;
     
     [Header("Character Prefabs")]
-    public GameObject[]? characterPrefabs;
+    public GameObject[] characterPrefabs;
     
     [Header("Team Selection")]
-    public TeamSelector? teamSelector;
+    public TeamSelector teamSelector;
     
     [Header("AI Management")]
-    public AutoAIManager? aiManager;
+    public AutoAIManager aiManager;
     
     private List<RagdollCharacter> allCharacters = new List<RagdollCharacter>();
     private List<GameObject> spawnedCharacters = new List<GameObject>();

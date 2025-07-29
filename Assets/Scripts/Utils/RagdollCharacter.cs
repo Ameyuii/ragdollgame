@@ -1,3 +1,4 @@
+#nullable disable
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -15,23 +16,23 @@ public class RagdollCharacter : MonoBehaviour
     public int teamId = 1;
     
     [Header("Health Bar")]
-    public Canvas? healthBarCanvas;
-    public Slider? healthSlider;
+    public Canvas healthBarCanvas;
+    public Slider healthSlider;
     private float currentDisplayedHealth = 100f; // Để làm smooth animation
     
     // Private variables
     private float health;
     private bool isDead = false;
     private bool isRagdoll = false;
-    private Transform? target;
+    private Transform target;
     private float lastAttackTime = 0f;
     
     // Components
-    private Animator? animator;
-    private Rigidbody? mainRigidbody;
-    private Collider? mainCollider;
-    private Rigidbody[]? ragdollRigidbodies;
-    private Collider[]? ragdollColliders;
+    private Animator animator;
+    private Rigidbody mainRigidbody;
+    private Collider mainCollider;
+    private Rigidbody[] ragdollRigidbodies;
+    private Collider[] ragdollColliders;
     
     // Movement
     private Vector3 moveDirection;
@@ -157,8 +158,8 @@ public class RagdollCharacter : MonoBehaviour
         // 2. No external SimpleCharacterAI is attached
         // 3. AutoAIManager is disabled or not found
         // OR: Enable hybrid mode for combat logic even with external AI
-        AutoAIManager autoAI = FindObjectOfType<AutoAIManager>();
-        AICoordinator aiCoordinator = FindObjectOfType<AICoordinator>();
+        AutoAIManager autoAI = FindFirstObjectByType<AutoAIManager>();
+        AICoordinator aiCoordinator = FindFirstObjectByType<AICoordinator>();
         
         bool shouldUseInternalAI = gameManager != null && gameManager.gameStarted && 
                                   externalAI == null && 
@@ -263,7 +264,7 @@ public class RagdollCharacter : MonoBehaviour
         target = null;
         float nearestDistance = float.MaxValue;
         
-        RagdollCharacter[] allCharacters = FindObjectsOfType<RagdollCharacter>();
+        RagdollCharacter[] allCharacters = FindObjectsByType<RagdollCharacter>(FindObjectsSortMode.None);
         
         foreach (RagdollCharacter character in allCharacters)
         {

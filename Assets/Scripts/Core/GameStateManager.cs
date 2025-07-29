@@ -73,7 +73,7 @@ public class GameStateManager : MonoBehaviour
     {
         // Tìm BattleGameManager
         if (battleManager == null)
-            battleManager = FindObjectOfType<BattleGameManager>();
+            battleManager = FindFirstObjectByType<BattleGameManager>();
         
         // Tự động tìm UI elements nếu chưa được gán
         FindUIElements();

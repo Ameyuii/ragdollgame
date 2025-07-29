@@ -32,8 +32,8 @@ public class AICoordinator : MonoBehaviour
     void Start()
     {
         // Tìm required components
-        battleManager = FindObjectOfType<BattleGameManager>();
-        autoAIManager = FindObjectOfType<AutoAIManager>();
+        battleManager = FindFirstObjectByType<BattleGameManager>();
+        autoAIManager = FindFirstObjectByType<AutoAIManager>();
         
         if (battleManager == null)
         {
@@ -63,7 +63,7 @@ public class AICoordinator : MonoBehaviour
     void RefreshCharacterList()
     {
         allCharacters.Clear();
-        RagdollCharacter[] characters = FindObjectsOfType<RagdollCharacter>();
+        RagdollCharacter[] characters = FindObjectsByType<RagdollCharacter>(FindObjectsSortMode.None);
         allCharacters.AddRange(characters);
         
         if (showDebugInfo)
@@ -134,7 +134,7 @@ public class AICoordinator : MonoBehaviour
         if (showDebugInfo)
         {
             // Check results
-            SimpleCharacterAI[] allAI = FindObjectsOfType<SimpleCharacterAI>();
+            SimpleCharacterAI[] allAI = FindObjectsByType<SimpleCharacterAI>(FindObjectsSortMode.None);
             Debug.Log($"AutoAI configuration complete - {allAI.Length} SimpleCharacterAI components found");
         }
     }
@@ -215,8 +215,8 @@ public class AICoordinator : MonoBehaviour
             bool hasSimpleAI = simpleAI != null && simpleAI.enabled;
             
             // Check if RagdollCharacter internal AI would be active
-            BattleGameManager gameManager = FindObjectOfType<BattleGameManager>();
-            AutoAIManager autoAI = FindObjectOfType<AutoAIManager>();
+            BattleGameManager gameManager = FindFirstObjectByType<BattleGameManager>();
+            AutoAIManager autoAI = FindFirstObjectByType<AutoAIManager>();
             bool wouldUseInternalAI = gameManager != null && gameManager.gameStarted && 
                                      simpleAI == null && 
                                      (autoAI == null || !autoAI.enableAutoAI);

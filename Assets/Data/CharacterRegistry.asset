@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742ff969ac04a3242a1914e1b55b8fac, type: 3}
   m_Name: CharacterRegistry
   m_EditorClassIdentifier: Assembly-CSharp::CharacterRegistry
-  enableAutoDiscovery: 1
+  enableAutoDiscovery: 0
   basePath: Assets/Resources/Characters
   autoGenerateIcons: 1
   characters:
@@ -27,7 +27,7 @@ MonoBehaviour:
     isActive: 1
     sortOrder: 0
     autoDiscovered: 1
-    lastDiscovered: 2025-07-29 00:05:17
+    lastDiscovered: 2025-07-29 08:58:50
   - id: auto_robot_battlecharacter
     displayName: BattleCharacter
     category: ROBOT
@@ -39,7 +39,7 @@ MonoBehaviour:
     isActive: 1
     sortOrder: 0
     autoDiscovered: 1
-    lastDiscovered: 2025-07-29 00:05:17
+    lastDiscovered: 2025-07-29 08:58:50
   - id: auto_robot_completecharacter
     displayName: CompleteCharacter
     category: ROBOT
@@ -51,7 +51,7 @@ MonoBehaviour:
     isActive: 1
     sortOrder: 0
     autoDiscovered: 1
-    lastDiscovered: 2025-07-29 00:05:17
+    lastDiscovered: 2025-07-29 08:58:50
   - id: auto_robot_npc
     displayName: NPC
     category: ROBOT
@@ -63,7 +63,7 @@ MonoBehaviour:
     isActive: 1
     sortOrder: 0
     autoDiscovered: 1
-    lastDiscovered: 2025-07-29 00:05:17
+    lastDiscovered: 2025-07-29 08:58:50
   - id: auto_zombie_character
     displayName: Character
     category: ZOMBIE
@@ -75,6 +75,6 @@ MonoBehaviour:
     isActive: 1
     sortOrder: 0
     autoDiscovered: 1
-    lastDiscovered: 2025-07-29 00:05:17
+    lastDiscovered: 2025-07-29 08:58:50
   cacheInitialized: 1
-  lastCacheUpdate: -1861077004
+  lastCacheUpdate: 734368486

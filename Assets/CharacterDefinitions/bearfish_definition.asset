@@ -15,7 +15,7 @@ MonoBehaviour:
   characterID: quaivat_bearfish_default_01
   displayName: Bear Fish
   categoryID: quaivat
-  basePrefab: {fileID: 3871258337923495913, guid: 16a00ff99f79ab54f8aecc8404084c37, type: 3}
+  basePrefab: {fileID: 3871258337923495913, guid: 3619683520c912240bdab6ff74a9da6e, type: 3}
   uiIcon: {fileID: 0}
   portraitImage: {fileID: 0}
   animatorController: {fileID: 0}
